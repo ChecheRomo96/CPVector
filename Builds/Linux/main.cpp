@@ -19,7 +19,7 @@ int main()
 
     for(uint8_t i = 0; i < a.size(); i++)
     {
-    	std::cout<(uint)(a[i]);
+    	std::cout<<(uint)(a[i]);
     	if(i<a.size()-1){std::cout<<", ";}
     	else{std::cout<<".\n";}
     }
