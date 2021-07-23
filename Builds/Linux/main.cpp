@@ -3,6 +3,8 @@
 
 int main()
 {
+	srand (time(NULL));
+	
     EVector::Vector<uint8_t> a;
     
     a.resize(10);
