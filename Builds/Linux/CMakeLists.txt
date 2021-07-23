@@ -4,7 +4,6 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_subdirectory(src)
-include_directories(${CMAKE_CURRENT_LIST_DIR}/src/EmbeddedVector)
+include_directories(src/EmbeddedVector)
 
-
-add_executable( EVectorXcode main.cpp ) 
+add_executable( EVectorLinux main.cpp ) 
