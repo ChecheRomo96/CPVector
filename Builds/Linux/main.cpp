@@ -15,7 +15,7 @@ int main()
     	else{std::cout<<".";}
     }
 
-    a.Sort_Ascending();
+    a.SortAscending();
 
     for(uint8_t i = 0; i < a.size(); i++)
     {
