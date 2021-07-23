@@ -1,0 +1,3 @@
+/Users/josemanuelromoperedo/Dropbox/Github/C++/EmbeddedVector/Builds/XCode/build/CMakeFiles/EVectorXcode.dir
+/Users/josemanuelromoperedo/Dropbox/Github/C++/EmbeddedVector/Builds/XCode/build/CMakeFiles/ALL_BUILD.dir
+/Users/josemanuelromoperedo/Dropbox/Github/C++/EmbeddedVector/Builds/XCode/build/CMakeFiles/ZERO_CHECK.dir

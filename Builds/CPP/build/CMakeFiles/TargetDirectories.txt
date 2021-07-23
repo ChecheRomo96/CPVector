@@ -1,0 +1,5 @@
+/Users/josemanuelromoperedo/Dropbox/Github/C++/EmbeddedVector/Builds/CPP/build/CMakeFiles/rebuild_cache.dir
+/Users/josemanuelromoperedo/Dropbox/Github/C++/EmbeddedVector/Builds/CPP/build/CMakeFiles/edit_cache.dir
+/Users/josemanuelromoperedo/Dropbox/Github/C++/EmbeddedVector/Builds/CPP/build/CMakeFiles/EVectorXcode.dir
+/Users/josemanuelromoperedo/Dropbox/Github/C++/EmbeddedVector/Builds/CPP/build/src/CMakeFiles/rebuild_cache.dir
+/Users/josemanuelromoperedo/Dropbox/Github/C++/EmbeddedVector/Builds/CPP/build/src/CMakeFiles/edit_cache.dir
