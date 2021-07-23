@@ -12,7 +12,7 @@ int main()
     	a[i] = rand();
     	std::cout<<a[i];
     	if(i<a.size()-1){std::cout<<", ";}
-    	else{std::cout<<".";}
+    	else{std::cout<<(uint)".\n";}
     }
 
     a.SortAscending();
@@ -21,7 +21,7 @@ int main()
     {
     	std::cout<<a[i];
     	if(i<a.size()-1){std::cout<<", ";}
-    	else{std::cout<<".";}
+    	else{std::cout<<(uint)".\n";}
     }
 
 	return 0;
