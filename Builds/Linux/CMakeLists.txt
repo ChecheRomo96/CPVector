@@ -6,3 +6,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include_directories(src/EmbeddedVector)
 
 add_executable( EVectorLinux main.cpp ) 
+target_link_libraries( EVectorLinux EVector )
