@@ -3,7 +3,7 @@ project(EVectorXcode CXX)
 set(CMAKE_CXX_STANDARD 14) 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories(src/EmbeddedVector)
+include_directories(src/EmbeddedVector/src)
 
 add_executable( EVectorLinux main.cpp ) 
 target_link_libraries( EVectorLinux EVector )
