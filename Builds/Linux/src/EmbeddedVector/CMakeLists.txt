@@ -1,2 +1,2 @@
-add_library(EVector STATIC EmbeddedVector.h)
-set_target_properties(MCC_MusicalCore PROPERTIES LINKER_LANGUAGE CXX)
+add_subdirectory(src)
+include_directories(src)
