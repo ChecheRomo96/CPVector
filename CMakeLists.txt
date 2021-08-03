@@ -7,6 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_subdirectory(src)
 
-if( EVECTOR_BUILD_TESTS  STREQUAL "ON")
-	add_subdirectory(tests)
+if( CPVECTOR_BUILD_EXAMPLES  STREQUAL "ON")
+	add_subdirectory(examples)
 endif()

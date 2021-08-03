@@ -1,14 +1,12 @@
 #include <iostream>
-#include <EmbeddedVector.h>
+#include <CPVector.h>
 
 int main()
 {
-	EVector::Vector<uint8_t> a;
+	CPVector::vector<uint8_t> a;
 	uint8_t elements = 10;
 
 	a.resize(elements);
-
-
 
 	for(uint8_t i = 0; i < elements; i++)
 	{

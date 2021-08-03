@@ -5,13 +5,15 @@ set(CPVECTOR_SRC_DIRECTORY  ${CMAKE_CURRENT_LIST_DIR})
 set( HEADERS_LIST "" )
 
 # Append Headers
-list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/EmbeddedVector.h")
-list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/EmbeddedVector_BuildSettings.h")
-list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/EmbeddedVector_Template.h")
+list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/CPVector.h")
+list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/CPVector_BuildSettings.h")
+list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/CPVector_Template.h")
+
+# Add Subdirectories
+add_subdirectory(Sorting)
 
 # Create the CPVector library (STATIC is not justified tho) and include the directories needed to compile
 add_library(CPVector INTERFACE)
-#target_include_directories(CPVector INTERFACE ${CPVECTOR_SRC_DIRECTORY})
 
 # Include directories for install and for build 
 target_include_directories( 
