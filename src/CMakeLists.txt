@@ -1,5 +1,5 @@
 # Store this directory as a variable called CPVECTOR_SRC_DIRECTORY to reference in deeper directories
-set(CPVECTOR_SRC_DIRECTORY  ${CMAKE_CURRENT_LIST_DIR})
+set( CPVECTOR_SRC_DIRECTORY  ${CMAKE_CURRENT_LIST_DIR})
 
 # Initialize HEADER_LIST as an empty string list
 set( HEADERS_LIST "" )
@@ -23,7 +23,7 @@ target_include_directories(
 )
 
 # CPVector install process
-if(CPVECTOR_INSTALL STREQUAL "ON")
+if( INSTALL STREQUAL "ON")
 
 	install(
 		FILES ${HEADERS_LIST} 

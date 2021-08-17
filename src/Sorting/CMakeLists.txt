@@ -8,7 +8,7 @@ list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/CPVector_SortingDefinitions
 list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/CPVector_SortingTemplates.h")
 
 # CPVector install process
-if(CPVECTOR_INSTALL STREQUAL "ON")
+if( INSTALL STREQUAL "ON")
 
 	install(
 		FILES ${HEADERS_LIST} 

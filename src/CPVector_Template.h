@@ -9,265 +9,608 @@
         template <class T>
         class  vector
         {
-            unsigned int _size;
-            T* buffer;
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            // Arduino and PSoC
+
+                #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                    unsigned int _Size;
+                    T* _Buffer;
+                #endif
+            //
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            // Desktop C++
+            
+                #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                    std::vector<T> _Vector;
+                #endif
+            //
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             
             public:
                 
-                ///////////////////////////////////////////////////////////////////////
-                // Constructors and Destructor
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // Constructors, Destructor
                 
                     vector()
                     {
-                        buffer = NULL;
-                        _size = 0;
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Initialization 
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Arduino and PSoC
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                _Buffer = NULL;
+                                _Size = 0;
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Resizing
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Cross Compatible Code
+
+                            resize(0);
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                     }
                     
-                    vector(unsigned int _size)
+                    vector(unsigned int Size)
                     {
-                        buffer = NULL;
-                        _size = 0;
-                        resize(_size);
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Initialization 
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Arduino and PSoC
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                _Buffer = NULL;
+                                _Size = 0;
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Resizing
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Cross Compatible Code
+                                
+                            resize(Size);
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                     }
                     
-                    vector(const vector<T>& source)
-                    {
-                        buffer = NULL;
-                        _size = 0;
-                        resize(source.size());
-                        
-                        for(unsigned int i = 0; i < _size; i++)
-                        {
-                            buffer[i] = source[i];
-                        }
+                    vector(const vector<T>& Source)
+                    {            
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Initialization 
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Arduino and PSoC
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                _Buffer = NULL;
+                                _Size = 0;
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Resizing and copying data
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Cross Compatible Code
+                                
+                            resize(Source.size());
+                            
+                            for(unsigned int i = 0; i < size(); i++)
+                            {
+                                (*this)[i] = Source[i];
+                            }
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                     }
                 
-                    vector(const T* source, unsigned int size)
+                    vector(const T* Source, unsigned int Size)
                     {
-                        buffer = NULL;
-                        _size = 0;
-                        resize(size);
-                        for(unsigned int i = 0; i < _size; i++)
-                        {
-                            buffer[i] = source[i];
-                        }
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Initialization 
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Arduino and PSoC
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                _Buffer = NULL;
+                                _Size = 0;
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Resizing and copying data
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Cross Compatible Code
+                                
+                            resize(Size);
+                            
+                            for(unsigned int i = 0; i < size(); i++)
+                            {
+                                (*this)[i] = Source[i];
+                            }
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                     }
                     
                     ~vector()
                     {
-                        Clear();
+                        clear();
                     }
                 //
-                ///////////////////////////////////////////////////////////////////////
-                // Const Return Functions
-                //
-                ///////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // Operators
-                
-                    operator T*() {return buffer;}
-                    operator T*() const{return buffer;}
                     
-                    T& operator[](int x){return buffer[x];}
-                    T operator [](int x) const{return buffer[x];}
-                    
-                    
-                    vector& operator=(const vector& source)
-                    {
-                        if(this == &source){return *this;}
-                        
-                        resize(source.size());
-                        
-                        for(unsigned int i = 0; i < _size; i++)
-                        {
-                            buffer[i] = source[i];
-                        }
-                        return *this;
-                    }
+                    ///////////////////////////////////////////////////////////////////
+                    // Assignment Operators
 
-                    bool operator==(const vector& source) const
-                    {
-                        if(*this == source){return 1;}
-                        
-                        if(_size != source.size()){return 0;}
-                        
-                        for(unsigned int i = 0; i < _size; i++)
+                        vector& operator=(const vector& source)
                         {
-                            if(buffer[i] != source[i])
-                            {return 0;}
+                            if(this == &source){return *this;}
+                            
+                            resize(source.size());
+                            
+                            for(unsigned int i = 0; i < _Size; i++)
+                            {
+                                (*this)[i] = source[i];
+                            }
+                            return *this;
                         }
-                        return 1;
-                    }
+                    //
+                    ///////////////////////////////////////////////////////////////////
+                    // Cast Operators 
+
+                        operator T*() 
+                        {
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            // Arduino and PSoC
+
+                                #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                    return _Buffer;
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            // Desktop C++
+                            
+                                #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                    return &_Vector[0];
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                        }
+
+                        operator T*() const
+                        {
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            // Arduino and PSoC
+
+                                #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                    return _Buffer;
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            // Desktop C++
+                            
+                                #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                    return &_Vector[0];
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                        }
+                    //
+                    ///////////////////////////////////////////////////////////////////
+                    // Subscript Array Operators
+                    
+                        T& operator[](unsigned int x)
+                        {
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            // Cast Operator 
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            // Arduino and PSoC
+
+                                #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                     return _Buffer[x];
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            //  std::vector
+
+                                #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                    return _Vector[x];
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                        }
+
+                        const T& operator[](unsigned int x) const
+                        {
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            // Cast Operator 
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            // Arduino and PSoC
+
+                                #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                     return _Buffer[x];
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            //  std::vector
+
+                                #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                    return _Vector[x];
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                        }
+
+                    //
+                    ///////////////////////////////////////////////////////////////////
+                    // Compare Operators
+
+                        bool operator==(const vector& source) const
+                        {
+                            if(*this == source){return 1;}
+                            
+                            if(size() != source.size()){return 0;}
+                            
+                            for(unsigned int i = 0; i < size(); i++)
+                            {
+                                if(_Buffer[i] != source[i])
+                                {return 0;}
+                            }
+                            return 1;
+                        }
+
+                        bool operator!=(const vector& source) const
+                        {
+                            if(*this == source){return 0;}
+                            
+                            if(size() != source.size()){return 1;}
+                            
+                            for(unsigned int i = 0; i < size(); i++)
+                            {
+                                if(_Buffer[i] != source[i])
+                                {return 1;}
+                            }
+                            return 0;
+                        }
+                    //
+                    ///////////////////////////////////////////////////////////////////
                 //
-                ///////////////////////////////////////////////////////////////////////
-                // Setting Functions
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // Size And Resize API
                 
                     const unsigned int size() const
                     {
-                        return _size;
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Arduino and PSoC
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                return _Size;
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        //  std::vector
+
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                return _Vector.size();
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
-                    bool resize(unsigned int new_size)
+                    bool resize(unsigned int NewSize)
                     {
-                        if(_size == new_size){return 1;}
+                        if(size() == NewSize){return 1;}
                         
-                        T* tmp = NULL;
-                        
-                        tmp = new T[new_size];
-                        if(tmp==NULL){return 0;}
-                        else
-                        {
-                            unsigned int min = new_size;
-                            if(_size<new_size){min = _size;}
-                            
-                            for(unsigned int i = 0; i < min; i++)
-                            {
-                                tmp[i] = buffer[i];
-                            }
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Arduino and PSoC
 
-                            delete[] buffer;
-                            buffer = tmp;
-                            _size = new_size;
-                            return 1;
-                        }
-                    }
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                T* tmp = NULL;
+                                tmp = new T[NewSize];
 
-                    void Clear()
-                    {
-                        delete[] buffer;
-                        buffer = NULL;
-                        _size = 0;
+                                if(tmp==NULL){return 0;}
+                                else
+                                {
+                                    unsigned int min = NewSize;
+                                    if(_Size<NewSize){min = size();}
+                                    
+                                    for(unsigned int i = 0; i < min; i++)
+                                    {
+                                        tmp[i] = _Buffer[i];
+                                    }
+
+                                    delete[] _Buffer;
+                                    _Buffer = tmp;
+                                    _Size = NewSize;
+                                    return 1;
+                                }
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        //  std::vector
+
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                _Vector.resize(NewSize);
+
+                                if(_Vector.size() == NewSize)
+                                {
+                                    return 1;
+                                }
+                                else
+                                {
+                                    return 0;
+                                }
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
                     void clear()
                     {
-                        Clear();
-                    }
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Arduino and PSoC
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                delete[] _Buffer;
+                                _Buffer = NULL;
+                                _Size = 0;
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        //  std::vector
+
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                _Vector.resize(0);
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                    } 
                 //
-                ///////////////////////////////////////////////////////////////////////
-                // Functionality
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // API
                 
                     void copy(const T* source, unsigned int len, unsigned int offset = 0, bool copyLength = 0)
                     {
-                        if(copyLength == 1){resize(len);}
-                        
-                        unsigned int min = len;
-                        if(_size<len){min = _size;}
-                        
-                        for(unsigned int i = offset; i < min; i++)
-                        {
-                            buffer[i] = source[i];
-                        }
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Cross Compatible Code
+
+                            if(copyLength == 1){resize(len);}
+                            
+                            unsigned int min = len;
+                            if(size()<len)
+                            {
+                                min = size();
+                            }
+                            
+                            for(unsigned int i = offset; i < min; i++)
+                            {
+                                (*this)[i] = source[i];
+                            }
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+
                     }
                     
                     void push_back(const T& data)
                     {
-                        resize(_size + 1);
-                        buffer[_size - 1] = data;
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // std::vector
+
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                return _Vector.push_back(data);
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        //  PSoC Creator and Arduino IDE
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                resize(size() + 1);
+                                (*this)[size() - 1] = data;
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                     }
                     
                     T pop(unsigned int postion = 0)
                     {
-                        T x = buffer[postion];
-                        for(unsigned int i = postion; i < _size-1; i++)
-                        {
-                            buffer[i] = buffer[i+1];
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // std::vector
+
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                return _Vector.pop(position);
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        //  PSoC Creator and Arduino IDE
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                T x = (*this)[postion];
+                                for(unsigned int i = postion; i < _Size-1; i++)
+                                {
+                                    (*this)[i] = (*this)[i+1];
+                                }
+                                resize(_Size-1);
+                                return x;
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                         }
-                        resize(_size-1);
-                        return x;
-                    }
                     
                     T pop_first()
                     {
-                        T x = buffer[0];
-                        for(unsigned int i = 0; i < _size-1; i++)
-                        {
-                            buffer[i] = buffer[i+1];
-                        }
-                        resize(_size-1);
-                        return x;
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // std::vector
+
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                return _Vector.pop_first();
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        //  PSoC Creator and Arduino IDE
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                T x = (*this)[0];
+                                for(unsigned int i = 0; i < _Size-1; i++)
+                                {
+                                    (*this)[i] = (*this)[i+1];
+                                }
+                                resize(_Size-1);
+                                return x;
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
                     T pop_back()
                     {
-                        T x = buffer[_size-1];
-                        resize(_size-1);
-                        return x;
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // std::vector
+
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                return _Vector.pop_back();
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        //  PSoC Creator and Arduino IDE
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                T x = (*this)[_Size-1];
+                                resize(_Size-1);
+                                return x;
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                     }
                     
                     void emplace(T data, unsigned int position)
                     {
-                        resize(_size+1);
-                        for(unsigned int i = 0 ; i < (_size - position - 1) ; i++)
-                        {
-                            buffer[position+i+1] = buffer[position+i];
-                        }
-                        buffer[position] = data;
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // std::vector
+
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                return _Vector.emplace(data,position);
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        //  PSoC Creator and Arduino IDE
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                resize(_Size+1);
+                                for(unsigned int i = 0 ; i < (_Size - position - 1) ; i++)
+                                {
+                                    (*this)[position+i+1] = (*this)[position+i];
+                                }
+                                (*this)[position] = data;
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
                     void swap(unsigned int a, unsigned int b)
                     {
-                        if(a == b){return;}
-                        T c = buffer[a];
-                        buffer[a] = buffer[b];
-                        buffer[b] = c;
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // std::vector
+
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                return _Vector.swap(a,b);
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        //  PSoC Creator and Arduino IDE
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                if(a == b){return;}
+                                T c = (*this)[a];
+                                (*this)[a] = (*this)[b];
+                                (*this)[b] = c;
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
                     unsigned int get_pos(T* source)
                     {
-                        for(unsigned int i = 0; i < _size;i++)
-                        {
-                            if(&buffer[i] == source)
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Cross Compatible code
+
+                            for(unsigned int i = 0; i < _Size;i++)
                             {
-                                return i;
+                                if(&(*this)[i] == source)
+                                {
+                                    return i;
+                                }
                             }
-                        }
-                        return -1;
+                            return -1;
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
-                    void erase(unsigned int position)
+                    void erase(unsigned int Positeion)
                     {
-                        if(position < _size)
-                        {
-                            for(unsigned int i = 0; i < _size - position - 1;i++)
-                            {
-                                buffer[position] = buffer[position+1];
-                            }
-                            resize(size()-1);
-                        }
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // std::vector
+
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                return _Vector.erase(Position);
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        //  PSoC Creator and Arduino IDE
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                if(Position < _Size)
+                                {
+                                    for(unsigned int i = 0; i < _Size - Position - 1;i++)
+                                    {
+                                        (*this)[Position] = (*this)[Position+1];
+                                    }
+                                    resize(size()-1);
+                                }
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
                     void erase(T* source)
                     {
-                        for(unsigned int i = 0; i < _size;i++)
+                        for(unsigned int i = 0; i < _Size;i++)
                         {
-                            if(&buffer[i] == source)
+                            if(&(*this)[i] == source)
                             {
-                                for(unsigned int j = i; j < _size-1; j++)
+                                for(unsigned int j = i; j < _Size-1; j++)
                                 {
-                                    buffer[j] = buffer[j+1];
+                                    (*this)[j] = (*this)[j+1];
                                 }
-                                resize(_size-1);
-                                i=_size;
+                                resize(_Size-1);
+                                i=_Size;
                             }
                         }
                     }
                 //
-                ///////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // Sorting
 
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     // In order for these to work the element T must have declared the <, >, and the == operators.
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    
-                    void SortAscending()
-                    {
-                        Sort(Sorting::Ascending);
-                    }
-                    
-                    void SortDescending()
-                    {
-                        Sort(Sorting::Descending);
-                    }
+                    //
+                        void SortAscending()
+                        {
+                            Sort(Sorting::Ascending);
+                        }
+                        
+                        void SortDescending()
+                        {
+                            Sort(Sorting::Descending);
+                        }
+                    //
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     
                     void Sort(int (*CompareFunction)(const T& a, const T& b))
                     {
@@ -279,11 +622,11 @@
                         _CustomSort_Helper(SortingArray, 0, size()-1);
                     }
                 //
-                ///////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             private:
 
-                ///////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // Sorting Helpers
 
                     void _CustomSort_Helper(int (*CompareFunction)(const T& a, const T& b), unsigned int lower, unsigned int upper)
@@ -317,7 +660,7 @@
                         for(int i = lower ; i < upper; i++)
                         {
                             // Comparing the n'th element against the pivot 
-                            if(CompareFunction(buffer[i],buffer[upper]) == 1)
+                            if(CompareFunction((*this)[i],(*this)[upper]) == 1)
                             {
                                 // If the element at the n'th position is lower compared to the Pivot,
                                 // then it is swapped to its new place and the the index counter increases.
@@ -363,7 +706,7 @@
                         for(int i = lower ; i < upper; i++)
                         {
                             // Comparing the n'th element against the pivot 
-                            if(CompareVector.Evaluate(buffer[i],buffer[upper]) == 1)
+                            if(CompareVector.Evaluate((*this)[i],(*this)[upper]) == 1)
                             {
                                 // If the element at the n'th position is lower compared to the Pivot,
                                 // then it is swapped to its new place and the the index counter increases.
@@ -377,7 +720,7 @@
                         return index;
                     }
                 //
-                ///////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         };
     }
 
