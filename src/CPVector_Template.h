@@ -154,7 +154,7 @@
                             
                             resize(source.size());
                             
-                            for(unsigned int i = 0; i < _Size; i++)
+                            for(unsigned int i = 0; i < size(); i++)
                             {
                                 (*this)[i] = source[i];
                             }
@@ -259,7 +259,7 @@
                             
                             for(unsigned int i = 0; i < size(); i++)
                             {
-                                if(_Buffer[i] != source[i])
+                                if((*this)[i] != source[i])
                                 {return 0;}
                             }
                             return 1;
@@ -273,7 +273,7 @@
                             
                             for(unsigned int i = 0; i < size(); i++)
                             {
-                                if(_Buffer[i] != source[i])
+                                if((*this)[i] != source[i])
                                 {return 1;}
                             }
                             return 0;
@@ -423,7 +423,7 @@
                         // std::vector
 
                             #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                return _Vector.pop(position);
+                                return _Vector.pop(postion);
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -539,7 +539,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Cross Compatible code
 
-                            for(unsigned int i = 0; i < _Size;i++)
+                            for(unsigned int i = 0; i < size(); i++)
                             {
                                 if(&(*this)[i] == source)
                                 {
@@ -551,7 +551,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
-                    void erase(unsigned int Positeion)
+                    void erase(unsigned int Position)
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // std::vector
@@ -579,16 +579,16 @@
 
                     void erase(T* source)
                     {
-                        for(unsigned int i = 0; i < _Size;i++)
+                        for(unsigned int i = 0; i < size(); i++)
                         {
                             if(&(*this)[i] == source)
                             {
-                                for(unsigned int j = i; j < _Size-1; j++)
+                                for(unsigned int j = i; j < size()-1; j++)
                                 {
                                     (*this)[j] = (*this)[j+1];
                                 }
-                                resize(_Size-1);
-                                i=_Size;
+                                resize(size()-1);
+                                i=size();
                             }
                         }
                     }
