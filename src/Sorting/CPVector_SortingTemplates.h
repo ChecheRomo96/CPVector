@@ -9,7 +9,7 @@
         namespace Sorting
         {
             template <class T>
-            int Ascending(const T& Element, const T& Pivot)
+            int8_t Ascending(const T& Element, const T& Pivot)
             {
                 if(Element==Pivot){return Sorting::Equal;}
                 else if(Element<Pivot){return Sorting::Swap;}
@@ -17,7 +17,7 @@
             }
             
             template <class T>
-            int Descending(const T& Element, const T& Pivot)
+            int8_t Descending(const T& Element, const T& Pivot)
             {
                 if(Element==Pivot){return Sorting::Equal;}
                 else if(Element>Pivot){return Sorting::Swap;}

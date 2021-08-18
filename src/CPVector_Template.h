@@ -515,21 +515,12 @@
                     void swap(unsigned int a, unsigned int b)
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
-                        // std::vector
+                        // Cross Compatible Code
 
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                return _Vector.swap(a,b);
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        //  PSoC Creator and Arduino IDE
-
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
-                                if(a == b){return;}
-                                T c = (*this)[a];
-                                (*this)[a] = (*this)[b];
-                                (*this)[b] = c;
-                            #endif
+                            if(a == b){return;}
+                            T c = (*this)[a];
+                            (*this)[a] = (*this)[b];
+                            (*this)[b] = c;
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
@@ -612,7 +603,7 @@
                     //
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     
-                    void Sort(int (*CompareFunction)(const T& a, const T& b))
+                    void Sort(int8_t (*CompareFunction)(const T& a, const T& b))
                     {
                         _CustomSort_Helper(CompareFunction, 0, size()-1);
                     }
@@ -629,7 +620,7 @@
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // Sorting Helpers
 
-                    void _CustomSort_Helper(int (*CompareFunction)(const T& a, const T& b), unsigned int lower, unsigned int upper)
+                    void _CustomSort_Helper(int8_t (*CompareFunction)(const T& a, const T& b), unsigned int lower, unsigned int upper)
                     {
                         // Limits check
                         if(lower > upper)
@@ -648,7 +639,7 @@
                         if(pivot < upper)_CustomSort_Helper(CompareFunction,pivot+1,upper);
                     }
                     
-                    unsigned int _CustomSort_Partition(int (*CompareFunction)(const T& a, const T& b), unsigned int lower, unsigned int upper, unsigned int pivot)
+                    unsigned int _CustomSort_Partition(int8_t (*CompareFunction)(const T& a, const T& b), unsigned int lower, unsigned int upper, unsigned int pivot)
                     {
                         // Store Pivot value at the Highest index (upper limit)
                         swap(pivot,upper);
