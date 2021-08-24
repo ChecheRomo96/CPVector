@@ -2,9 +2,9 @@
 
 void setup()
 {
-	Serial.begin();
+	Serial.begin(115200);
 	Serial.print(F("This project uses CPVector version:"));
-	Serial.println(CPVector_Version);
+	Serial.println(CPVECTOR_VERSION);
 }
 
 void loop()
