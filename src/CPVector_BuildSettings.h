@@ -5,7 +5,9 @@
     // Arduino IDE
 
         #if defined(ARDUINO)
+            #include <Arduino.h>
             #define PROGMEM_MACRO PROGMEM
+            #define CPVECTOR_VERSION "0.0.1"
         #endif
     //
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
