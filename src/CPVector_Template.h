@@ -162,47 +162,6 @@
                         }
                     //
                     ///////////////////////////////////////////////////////////////////
-                    // Cast Operators 
-
-                        operator T*() 
-                        {
-                            ////////////////////////////////////////////////////////////////////////////////////////////
-                            // Arduino and PSoC
-
-                                #if defined(ARDUINO) || defined(PSOC_CREATOR)
-                                    return _Buffer;
-                                #endif
-                            //
-                            ////////////////////////////////////////////////////////////////////////////////////////////
-                            // Desktop C++
-                            
-                                #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                    return &_Vector[0];
-                                #endif
-                            //
-                            ////////////////////////////////////////////////////////////////////////////////////////////
-                        }
-
-                        operator T*() const
-                        {
-                            ////////////////////////////////////////////////////////////////////////////////////////////
-                            // Arduino and PSoC
-
-                                #if defined(ARDUINO) || defined(PSOC_CREATOR)
-                                    return _Buffer;
-                                #endif
-                            //
-                            ////////////////////////////////////////////////////////////////////////////////////////////
-                            // Desktop C++
-                            
-                                #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                    return &_Vector[0];
-                                #endif
-                            //
-                            ////////////////////////////////////////////////////////////////////////////////////////////
-                        }
-                    //
-                    ///////////////////////////////////////////////////////////////////
                     // Subscript Array Operators
                     
                         T& operator[](unsigned int x)
@@ -311,8 +270,9 @@
                         // Arduino and PSoC
 
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                
                                 T* tmp = NULL;
-                                tmp = new T[NewSize];
+                                tmp = (T*) malloc(sizeof(T)*NewSize);
 
                                 if(tmp==NULL){return 0;}
                                 else
@@ -325,7 +285,8 @@
                                         tmp[i] = _Buffer[i];
                                     }
 
-                                    delete[] _Buffer;
+                                    free(tmp);
+
                                     _Buffer = tmp;
                                     _Size = NewSize;
                                     return 1;
