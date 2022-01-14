@@ -6,35 +6,65 @@ This library complies with the Arduino Library Specification. To achieve this, a
 
 List of platforms where it has been tested.
 
-	c++ Compiled thorugh cmake + make on Mac Os X
+	Mac Os X thorugh cmake + make
+	Windows 10 thorugh cmake 
 	Arduino IDE
 	PSoC Creator IDE
 
-## Steps to install package:
+## Steps to compile package:
 
-1.- Clone or download package.
+# Mac Os X through CMake + make
+
+1.- Clone or download the repo.
 
 2.- Open terminal and go to the the download directory (Replace "<path_to_directory>" with the path to the directory you downloaded) 
 
-    cd <path_to_directory>/EmbeddedString
+    cd <path_to_directory>/CPVector
 
 3.- Run 
 
 	mkdir build && cd build
 
-4.- Run 
+4.1.- To compile run: 
 	
-	cmake .. -DCPSTRING_INSTALL="ON"
+	cmake ..
+
+4.2.- To compile examples and turn them into executables, run: 
+	
+	cmake .. -DBUILD_EXAMPLES="ON"
 
 5.- Run 
 	
-	make
+	make	
+	sudo make install
 
-6.- Run 
+
+## Steps to install package:
+
+# Mac Os X through CMake + make
+
+1.- Clone or download the repo.
+
+2.- Open terminal and go to the the download directory (Replace "<path_to_directory>" with the path to the directory you downloaded) 
+
+    cd <path_to_directory>/CPVector
+
+3.- Run 
+
+	mkdir build && cd build
+
+4.1.- To compile run: 
 	
+	cmake .. -DINSTALL="ON"
+
+5.- Run 
+	
+	make	
 	sudo make install
 
 ## Steps to uninstall package:
+
+# Mac Os X
 
 1.- Remove the following directories
 
@@ -45,13 +75,15 @@ List of platforms where it has been tested.
 
 ### a) download zip file
 
-If you downlaoded the zip file containing this repository extract ists contents and move the CPString_vX.X.X to your current Arduino Project library directory.
+If you downlaoded the zip file containing this repository extract ists contents and move the CPVector_vX.X.X to your current Arduino Project library directory.
 
 Even though you did not installed through git you can update the package through it.
 
 ### b) clone through git
 
-Note that you must have git installed on your computer. To istall git through homebrew:
+Note that you must have git installed on your computer. 
+
+# To istall git through homebrew on Mac Os X:
 
 	brew install git
 
@@ -61,9 +93,11 @@ Note that you must have git installed on your computer. To istall git through ho
 
 2.- Clone through git
 
-	git clone https://github.com/ChecheRomo96/CPString.git
+	git clone https://github.com/ChecheRomo96/CPVector.git
 
 3.- To update this repository, enter to the repository and pull the newer version
 
 	cd CPString
 	git pull
+
+## Steps to install as a PSoC Creator Library:
