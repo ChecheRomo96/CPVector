@@ -11,9 +11,9 @@ List of platforms where it has been tested.
 	Arduino IDE
 	PSoC Creator IDE
 
-## Steps to compile package:
+# Steps to compile package:
 
-# Mac Os X through CMake + make
+## Mac Os X through CMake + make
 
 1.- Clone or download the repo.
 
@@ -39,9 +39,9 @@ List of platforms where it has been tested.
 	sudo make install
 
 
-## Steps to install package:
+# Steps to install package:
 
-# Mac Os X through CMake + make
+## Mac Os X through CMake + make
 
 1.- Clone or download the repo.
 
@@ -62,28 +62,28 @@ List of platforms where it has been tested.
 	make	
 	sudo make install
 
-## Steps to uninstall package:
+# Steps to uninstall package:
 
-# Mac Os X
+## Mac Os X
 
 1.- Remove the following directories
 
 	usr/local/lib/CPString
 	usr/local/include/CPString
 
-## Steps to install as an Arduino Library:
+# Steps to install as an Arduino Library:
 
-### a) download zip file
+## a) download zip file
 
 If you downlaoded the zip file containing this repository extract ists contents and move the CPVector_vX.X.X to your current Arduino Project library directory.
 
 Even though you did not installed through git you can update the package through it.
 
-### b) clone through git
+## b) clone through git
 
 Note that you must have git installed on your computer. 
 
-# To istall git through homebrew on Mac Os X:
+### To istall git through homebrew on Mac Os X:
 
 	brew install git
 
@@ -100,4 +100,4 @@ Note that you must have git installed on your computer.
 	cd CPString
 	git pull
 
-## Steps to install as a PSoC Creator Library:
+# Steps to install as a PSoC Creator Library:
