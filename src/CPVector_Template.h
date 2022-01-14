@@ -3,6 +3,7 @@
 
     #include "CPVector_BuildSettings.h"
     #include "Sorting/CPVector_Sorting.h"
+    #include <stdlib.h>
 
     namespace CPVector
     {
@@ -285,12 +286,12 @@
                                         tmp[i] = _Buffer[i];
                                     }
 
-                                    free(tmp);
 
+                                    free(_Buffer);
                                     _Buffer = tmp;
                                     _Size = NewSize;
-                                    return 1;
                                 }
+                                return 1;
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -596,8 +597,8 @@
                         pivot = _CustomSort_Partition(CompareFunction,lower,upper,pivot);
                         
                         // Recursive calls
-                        if(pivot > 0){_CustomSort_Helper(CompareFunction,lower,pivot-1);}
-                        if(pivot < upper)_CustomSort_Helper(CompareFunction,pivot+1,upper);
+                        if(pivot > lower+1){_CustomSort_Helper(CompareFunction,lower,pivot-1);}
+                        if(pivot < upper-1)_CustomSort_Helper(CompareFunction,pivot+1,upper);
                     }
                     
                     unsigned int _CustomSort_Partition(int8_t (*CompareFunction)(const T& a, const T& b), unsigned int lower, unsigned int upper, unsigned int pivot)
@@ -612,7 +613,7 @@
                         for(int i = lower ; i < upper; i++)
                         {
                             // Comparing the n'th element against the pivot 
-                            if(CompareFunction((*this)[i],(*this)[upper]) == 1)
+                            if(CompareFunction((*this)[i],(*this)[upper]) == CPVector::Sorting::Swap)
                             {
                                 // If the element at the n'th position is lower compared to the Pivot,
                                 // then it is swapped to its new place and the the index counter increases.
@@ -633,32 +634,32 @@
                         {
                             unsigned int tmp = lower;
                             lower = upper;
-                            upper = lower;
+                            upper = tmp;
                         }
 
-                        // Calculate new Pivot
+                        // Sort and get new pivot index
                         unsigned int pivot = lower;
                         pivot = _CustomSort_Partition(SortingArray,lower,upper,lower);
-                        
+
                         // Recursive calls
-                        if(pivot > 0){_CustomSort_Helper(SortingArray,lower,pivot-1);}
-                        if(pivot < upper)_CustomSort_Helper(SortingArray,pivot+1,upper);
+                        if(pivot > lower+1){_CustomSort_Helper(SortingArray,lower,pivot-1);}
+                        if(pivot < upper-1)_CustomSort_Helper(SortingArray,pivot+1,upper);
                         
                     }
                     
                     unsigned int _CustomSort_Partition(Sorting::SortingArray<T> CompareVector, unsigned int lower, unsigned int upper, unsigned int pivot)
                     {
                         // Store Pivot value at the Highest index (upper limit)
-                        swap(pivot,upper);
+                        swap(pivot, upper);
                         
                         // Initialize the exchange index at the lower limit
                         int index = lower;
 
                         // Cycle through each element
-                        for(int i = lower ; i < upper; i++)
+                        for(unsigned int i = lower ; i < upper; i++)
                         {
                             // Comparing the n'th element against the pivot 
-                            if(CompareVector.Evaluate((*this)[i],(*this)[upper]) == 1)
+                            if(CompareVector.Evaluate((*this)[i],(*this)[upper]) == CPVector::Sorting::Swap)
                             {
                                 // If the element at the n'th position is lower compared to the Pivot,
                                 // then it is swapped to its new place and the the index counter increases.

@@ -19,7 +19,6 @@ void setup()
   
   for(uint16_t i = 0; i < myVector1.size(); i++)
   {
-    myVector1[i] = rand();
     Serial.print(myVector1[i]);
     if(i < myVector1.size()-1){Serial.print(", ");}
     else{Serial.println();}

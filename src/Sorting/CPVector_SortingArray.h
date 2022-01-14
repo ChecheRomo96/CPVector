@@ -44,7 +44,7 @@
 
                     int8_t Evaluate(const T& a, const T& b)
                     {
-                        if(buffer.size() == 0){return Sorting::Equal;}
+                         if(buffer.size() == 0){return Sorting::Equal;}
                         
                         uint8_t index = 0;
                         int8_t result = Sorting::Equal;

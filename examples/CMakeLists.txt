@@ -1,3 +1,4 @@
-add_subdirectory(1.BuildTest)
-add_subdirectory(2.AppendingData)
-add_subdirectory(3.SortingData)
+add_subdirectory(1_BuildTest)
+add_subdirectory(2_AppendingData)
+add_subdirectory(3_SortingData)
+add_subdirectory(4_SortingArray)
