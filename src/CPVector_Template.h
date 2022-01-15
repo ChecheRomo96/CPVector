@@ -319,7 +319,7 @@
                         // Arduino and PSoC
 
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
-                                delete[] _Buffer;
+                                free(_Buffer);
                                 _Buffer = NULL;
                                 _Size = 0;
                             #endif
@@ -365,7 +365,7 @@
                         // std::vector
 
                             #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                return _Vector.push_back(data);
+                                _Vector.push_back(data);
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -373,7 +373,7 @@
 
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
                                 resize(size() + 1);
-                                (*this)[size() - 1] = data;
+                                _Buffer[size() - 1] = data;
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -589,7 +589,7 @@
                         {
                             unsigned int tmp = lower;
                             lower = upper;
-                            upper = lower;
+                            upper = tmp;
                         }
 
                         // Calculate new Pivot
@@ -610,7 +610,7 @@
                         int index = lower;
 
                         // Cycle through each element
-                        for(int i = lower ; i < upper; i++)
+                        for(unsigned int i = lower ; i < upper; i++)
                         {
                             // Comparing the n'th element against the pivot 
                             if(CompareFunction((*this)[i],(*this)[upper]) == CPVector::Sorting::Swap)

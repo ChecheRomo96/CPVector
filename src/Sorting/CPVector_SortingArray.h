@@ -58,16 +58,6 @@
 
                         return result;
                     }
-
-                    /*const (int8_t&)(const T& a, const T& b) FunctionPointer(uint8_t index) const
-                    {
-                        if(index < buffer.size())
-                        {
-                            return buffer[index];
-                        }
-                        
-                        return NULL;
-                    }*/        
             };
         }
     }
