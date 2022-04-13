@@ -10,10 +10,9 @@
 	# Project Name Version and Languaje, print and add preprocessor flag
 		
 		project(CPVector VERSION 0.0.1 LANGUAGES CXX)
-		message(STATUS "Building ${CMAKE_PROJECT_NAME} Version = ${CMAKE_PROJECT_VERSION}...")
+		message(STATUS "Building ${PROJECT_NAME} Version = ${PROJECT_VERSION}...")
 
-		string(TOUPPER ${CMAKE_PROJECT_NAME} PROJECT_NAME_UPPER)
-		add_definitions( -D${PROJECT_NAME_UPPER}_VERSION="${CMAKE_PROJECT_VERSION}" )
+		string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)
 	#
 	##################################################################################################
 	# Set up C++ Version
@@ -24,14 +23,22 @@
 	##################################################################################################
 #
 ######################################################################################################
+# Compile Configuration
+
+	set(CPVECTOR_BUILD_EXAMPLES TRUE CACHE BOOL "Build CPVector Examples")
+#
+######################################################################################################
 # Append Source
 
 	add_subdirectory(src)
+	target_compile_definitions(CPVector INTERFACE ${PROJECT_NAME_UPPER}_VERSION="${PROJECT_VERSION}" )
+
 #
 ######################################################################################################
 # Append Examples
 
 	if( CPVECTOR_BUILD_EXAMPLES  STREQUAL "ON")
+		message("Building ${CMAKE_PROJECT_NAME} Examples...")
 		add_subdirectory(examples)
 	endif()
 #
