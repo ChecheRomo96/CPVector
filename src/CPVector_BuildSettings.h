@@ -6,7 +6,14 @@
 
         #if defined(ARDUINO)
             #include <Arduino.h>
-            #define PROGMEM_MACRO PROGMEM
+
+            #if defined(__avr__)
+                #include <avr/pgmspace.h>
+                #define PROGMEM_MACRO PROGMEM
+            #elif defined(ESP32)
+                #define PROGMEM_MACRO 
+            #endif
+
             #define CPVECTOR_VERSION "0.0.1"
         #endif
     //
