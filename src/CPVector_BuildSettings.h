@@ -19,7 +19,6 @@
     // AVR 
  
         #if defined(__avr__)
-            
             #include <avr/pgmspace.h>
             
             #ifndef PROGMEM_MACRO
