@@ -290,8 +290,9 @@
                                         tmp[i] = T();
                                     }
 
-
-                                    free(_Buffer);
+                                    if(_Buffer != NULL)
+                                    {free(_Buffer);}
+                                
                                     _Buffer = tmp;
                                     _Size = NewSize;
                                 }
