@@ -285,6 +285,10 @@
                                     {
                                         tmp[i] = _Buffer[i];
                                     }
+                                    for(unsigned int i = min; i < NewSize; i++)
+                                    {
+                                        tmp[i] = T();
+                                    }
 
 
                                     free(_Buffer);

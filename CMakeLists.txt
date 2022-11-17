@@ -37,7 +37,7 @@
 ######################################################################################################
 # Append Examples
 
-	if( CPVECTOR_BUILD_EXAMPLES  STREQUAL "ON")
+	if( ${CPVECTOR_BUILD_EXAMPLES} )
 		message("Building ${CMAKE_PROJECT_NAME} Examples...")
 		add_subdirectory(examples)
 	endif()
