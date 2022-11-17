@@ -283,6 +283,7 @@
                                     
                                     for(unsigned int i = 0; i < min; i++)
                                     {
+                                        tmp[i] = T();
                                         tmp[i] = _Buffer[i];
                                     }
                                     for(unsigned int i = min; i < NewSize; i++)
