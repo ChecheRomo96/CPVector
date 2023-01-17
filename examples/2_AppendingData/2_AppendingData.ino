@@ -18,7 +18,7 @@ void setup()
   myVector1.clear();
   
   CPVector::vector<uint16_t> myVector2;
-  myVector2.resize(15);
+  myVector2.resize(17);
 
   for(uint8_t i = 0; i < myVector2.size(); i++)
   {
