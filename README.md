@@ -6,10 +6,10 @@ This library complies with the Arduino Library Specification. To achieve this, a
 
 List of platforms where it has been tested.
 
-	Mac Os X thorugh cmake + make
-	Windows 10 thorugh cmake 
-	Arduino IDE
-	PSoC Creator IDE
+	XCode 14 thorugh cmake gui
+	Microsoft Visual Studio thorugh cmake gui
+	Arduino IDE ( Arduino Uno, Arduino Mega, ESP32 )
+	PSoC Creator IDE ( CY8CKIT-059 )
 
 # Steps to compile package:
 
