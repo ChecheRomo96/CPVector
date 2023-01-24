@@ -1,5 +1,5 @@
-# CPVector
- 
+# Cross-Platform Vector
+
 Library for unifiying Vectors across multiple systems. These subdirectories contain a CMake build system. You can install the package with make to make it available in your computer, also you can "add" this subdirectory with cmake to compile the library when building your project. 
 
 This library complies with the Arduino Library Specification. To achieve this, a library.properties file has been included. Also there is a keywords.txt file so the IDE knows how to color keywords, examples are in the directory examples.
