@@ -257,7 +257,7 @@
                         //  std::vector
 
                             #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                return _Vector.size();
+                                return (uint32_t)_Vector.size();
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////

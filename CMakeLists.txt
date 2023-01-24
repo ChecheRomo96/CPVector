@@ -9,7 +9,7 @@
 	##################################################################################################
 	# Project Name Version and Languaje, print and add preprocessor flag
 		
-		project(CPVector VERSION 0.0.1 LANGUAGES CXX)
+		project(CPVector VERSION 1.0.0 LANGUAGES CXX)
 		message(STATUS "Building ${PROJECT_NAME} Version = ${PROJECT_VERSION}...")
 
 		string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)

@@ -5,7 +5,7 @@
     // CPVector Version
 
         #ifndef CPVECTOR_VERSION
-            #define CPVECTOR_VERSION "0.0.1"
+            #define CPVECTOR_VERSION "1.0.0"
         #endif
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
