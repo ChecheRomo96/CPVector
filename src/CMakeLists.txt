@@ -23,7 +23,7 @@ target_include_directories(
 )
 
 # CPVector install process
-if( INSTALL STREQUAL "ON")
+if( CPVECTOR_INSTALL STREQUAL "ON")
 
 	install(
 		FILES ${HEADERS_LIST} 
