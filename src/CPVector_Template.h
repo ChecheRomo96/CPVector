@@ -524,9 +524,9 @@
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
                                 if(Position < _Size)
                                 {
-                                    for(unsigned int i = 0; i < _Size - Position - 1;i++)
+                                    for(unsigned int i = Position; i < _Size ;i++)
                                     {
-                                        (*this)[Position] = (*this)[Position+1];
+                                        (*this)[i] = (*this)[i+1];
                                     }
                                     resize(size()-1);
                                 }
