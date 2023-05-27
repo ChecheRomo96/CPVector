@@ -274,7 +274,7 @@
 
                                 _Buffer = realloc(_Buffer, sizeof(T)*NewSize);
 
-                                if(tmp==NULL){return 0;}
+                                if(_Buffer==NULL){return 0;}
                                 else
                                 {
                                     unsigned int min = (_Size<NewSize) ? _Size : NewSize;
