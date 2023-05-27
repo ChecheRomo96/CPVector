@@ -281,7 +281,7 @@
                                     
                                     for(unsigned int i = 0; i < NewSize; i++)
                                     {
-                                        tmp[i] = T();
+                                        _Buffer[i] = T();
                                     }
 
                                     _Size = NewSize;
