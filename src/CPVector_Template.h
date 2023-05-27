@@ -272,7 +272,7 @@
 
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
 
-                                _Buffer = realloc(_Buffer, sizeof(T)*NewSize);
+                                _Buffer = (T*)realloc(_Buffer, sizeof(T)*NewSize);
 
                                 if(_Buffer==NULL){return 0;}
                                 else
