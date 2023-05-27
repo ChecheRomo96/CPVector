@@ -271,19 +271,29 @@
                         // Arduino and PSoC
 
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                
+                                T* tmp = NULL;
+                                tmp = (T*) malloc(sizeof(T)*NewSize);
 
-                                _Buffer = (T*)realloc(_Buffer, sizeof(T)*NewSize);
-
-                                if(_Buffer==NULL){return 0;}
+                                if(tmp==NULL){return 0;}
                                 else
                                 {
-                                    unsigned int min = (_Size<NewSize) ? _Size : NewSize;
+                                    unsigned int min = NewSize;
+                                    if(_Size<NewSize){min = size();}
                                     
-                                    for(unsigned int i = 0; i < NewSize; i++)
+                                    for(unsigned int i = 0; i < min; i++)
                                     {
-                                        _Buffer[i] = T();
+                                        tmp[i] = T();
+                                        tmp[i] = _Buffer[i];
+                                    }
+                                    for(unsigned int i = min; i < NewSize; i++)
+                                    {
+                                        tmp[i] = T();
                                     }
 
+                                    if(_Buffer != NULL){free(_Buffer);}
+
+                                    _Buffer = tmp;
                                     _Size = NewSize;
                                 }
                                 return 1;
