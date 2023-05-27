@@ -279,16 +279,10 @@
                                 {
                                     unsigned int min = (_Size<NewSize) ? _Size : NewSize;
                                     
-                                    /*for(unsigned int i = 0; i < min; i++)
+                                    for(unsigned int i = 0; i < NewSize; i++)
                                     {
                                         tmp[i] = T();
-                                        tmp[i] = _Buffer[i];
                                     }
-                                    for(unsigned int i = min; i < NewSize; i++)
-                                    {
-                                        tmp[i] = T();
-                                    }*/
-
 
                                     _Size = NewSize;
                                 }
