@@ -273,7 +273,7 @@
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
                                 
                                 T* tmp = NULL;
-                                Serial.println("1");delay(500);
+                                Serial.print("1: ");Serial.println(sizeof(T)*NewSize);delay(500);
                                 tmp = (T*) malloc(sizeof(T)*NewSize);
                                 Serial.println("2");delay(500);
 
