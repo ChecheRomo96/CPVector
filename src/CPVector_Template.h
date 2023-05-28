@@ -272,6 +272,8 @@
 
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
                                 
+                                if(NewSize == 0){ clear(); return 1;}
+
                                 Serial.print("1: ");
                                 Serial.print(sizeof(T));
                                 Serial.print(" - ");
