@@ -278,7 +278,7 @@
                                 if(tmp==NULL){return 0;}
                                 else
                                 {   
-                                    auto min = (_Size<NewSize) ? _Size NewSize;
+                                    auto min = (_Size<NewSize) ? _Size : NewSize;
                                     
                                     for(unsigned int i = 0; i < min; i++)
                                     {
