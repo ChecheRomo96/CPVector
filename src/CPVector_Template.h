@@ -292,19 +292,12 @@
                                 {   
                                     auto min = (_Size<NewSize) ? _Size : NewSize;
                                     
-                                    for(unsigned int i = 0; i < min; i++)
-                                    {
-                                        tmp[i] = T();
-                                        tmp[i] = _Buffer[i];
-                                    }
+                                    
                                     for(unsigned int i = min; i < NewSize; i++)
                                     {
-                                        tmp[i] = T();
+                                        _Buffer[i] = T();
                                     }
 
-                                    if(_Buffer != NULL){free(_Buffer);}
-
-                                    _Buffer = tmp;
                                     _Size = NewSize;
                                 }
                                 return 1;
