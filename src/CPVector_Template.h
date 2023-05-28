@@ -281,10 +281,15 @@
                                 Serial.println(sizeof(T)*NewSize);
                                 delay(500);
                                 
-                                tmp = (T*) malloc(sizeof(T)*NewSize);
+                                tmp = (T*)malloc(sizeof(T)*NewSize);
+                                
                                 Serial.println("2");delay(500);
 
-                                if(tmp==NULL){Serial.println("Error Alocating"); return 0;}
+                                if(realloc(_Buffer,NewSize)==NULL)
+                                {
+                                    Serial.println("Error Alocating"); 
+                                    return 0;
+                                }
                                 else
                                 {   
                                     auto min = (_Size<NewSize) ? _Size : NewSize;
