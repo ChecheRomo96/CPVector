@@ -280,9 +280,7 @@
                                 Serial.print(NewSize);
                                 Serial.print(" - ");
                                 Serial.println(sizeof(T)*NewSize);
-                                delay(500);
                                 
-                                Serial.println("2");delay(500);
 
                                 if(realloc(_Buffer,NewSize) == NULL)
                                 {
