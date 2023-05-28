@@ -275,7 +275,7 @@
                                 T* tmp = NULL;
                                 tmp = (T*) malloc(sizeof(T)*NewSize);
 
-                                if(tmp==NULL){Serial.println("Error Alocating");return 0;}
+                                if(tmp==NULL){Serial.println("Error Alocating"); return 0;}
                                 else
                                 {   
                                     auto min = (_Size<NewSize) ? _Size : NewSize;
