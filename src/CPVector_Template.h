@@ -273,7 +273,9 @@
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
                                 
                                 T* tmp = NULL;
+                                Serial.println("1");delay(500);
                                 tmp = (T*) malloc(sizeof(T)*NewSize);
+                                Serial.println("2");delay(500);
 
                                 if(tmp==NULL){Serial.println("Error Alocating"); return 0;}
                                 else
