@@ -290,6 +290,7 @@
                                 }
                                 else
                                 {   
+                                    Serial.println("Alocation ok"); 
                                     auto min = (_Size<NewSize) ? _Size : NewSize;
                                     
                                     
