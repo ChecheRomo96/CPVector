@@ -290,7 +290,6 @@
                                 }
                                 else
                                 {   
-                                    Serial.println("Alocation ok"); 
                                     auto min = (_Size<NewSize) ? _Size : NewSize;
                                     
                                     
@@ -300,6 +299,7 @@
                                     }
 
                                     _Size = NewSize;
+                                    Serial.println("Alocation ok"); 
                                 }
                                 return 1;
                             #endif
