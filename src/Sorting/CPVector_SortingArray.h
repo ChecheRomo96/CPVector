@@ -42,7 +42,7 @@
                         }
                     }
 
-                    int8_t Evaluate(const T& a, const T& b)
+                    int8_t Evaluate(const T& a, const T& b) const
                     {
                          if(buffer.size() == 0){return Sorting::Equal;}
                         
