@@ -14,7 +14,7 @@
             // Arduino and PSoC
 
                 #if defined(ARDUINO) || defined(PSOC_CREATOR)
-                    unsigned int _Size;
+                    uint _Size;
                     T* _Buffer;
                 #endif
             //
@@ -56,7 +56,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
                     
-                    vector(unsigned int Size)
+                    vector(uint Size)
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Initialization 
