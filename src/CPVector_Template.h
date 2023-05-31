@@ -567,7 +567,7 @@
                         _CustomSort_Helper(CompareFunction, 0, size()-1);
                     }
                     
-                    void Sort(Sorting::SortingArray<T> SortingArray)
+                    void Sort(const Sorting::SortingArray<T>& SortingArray)
                     {
                         _CustomSort_Helper(SortingArray, 0, size()-1);
                     }
@@ -624,7 +624,7 @@
                         return index;
                     }
                     
-                    void _CustomSort_Helper(Sorting::SortingArray<T> SortingArray, unsigned int lower, unsigned int upper)
+                    void _CustomSort_Helper(const Sorting::SortingArray<T>& SortingArray, unsigned int lower, unsigned int upper)
                     {
                         // Limits check
                         if(lower > upper)
@@ -644,7 +644,7 @@
                         
                     }
                     
-                    unsigned int _CustomSort_Partition(Sorting::SortingArray<T> CompareVector, unsigned int lower, unsigned int upper, unsigned int pivot)
+                    unsigned int _CustomSort_Partition(const Sorting::SortingArray<T>& CompareVector, unsigned int lower, unsigned int upper, unsigned int pivot)
                     {
                         // Store Pivot value at the Highest index (upper limit)
                         swap(pivot, upper);
