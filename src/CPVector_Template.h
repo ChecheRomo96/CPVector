@@ -3,7 +3,7 @@
 
     #include "CPVector_BuildSettings.h"
     #include "Sorting/CPVector_Sorting.h"
-    #include <cstdint>
+    #include <cstdint.h>
 
     namespace CPVector
     {
@@ -206,7 +206,6 @@
                             //
                             ////////////////////////////////////////////////////////////////////////////////////////////
                         }
-
                     //
                     ///////////////////////////////////////////////////////////////////
                     // Compare Operators
@@ -274,7 +273,7 @@
                                 
                                 if(NewSize == 0){ clear(); return 1;}
                                 
-                                if(realloc(_Buffer,NewSize) == NULL)
+                                if((_Buffer = realloc(_Buffer,NewSize) )== NULL)
                                 {
                                     _Size = 0;
                                     return 0;
@@ -282,7 +281,7 @@
                                 else
                                 {   
                                     auto min = (_Size<NewSize) ? _Size : NewSize;
-                                    
+
                                     for(uint32_t i = min; i < NewSize; i++)
                                     {
                                         _Buffer[i] = T();
