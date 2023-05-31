@@ -273,25 +273,15 @@
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
                                 
                                 if(NewSize == 0){ clear(); return 1;}
-
-                                Serial.print("1: ");
-                                Serial.print(sizeof(T));
-                                Serial.print(" - ");
-                                Serial.print(NewSize);
-                                Serial.print(" - ");
-                                Serial.println(sizeof(T)*NewSize);
                                 
-
                                 if(realloc(_Buffer,NewSize) == NULL)
                                 {
                                     _Size = 0;
-                                    Serial.println("Error Alocating"); 
                                     return 0;
                                 }
                                 else
                                 {   
                                     auto min = (_Size<NewSize) ? _Size : NewSize;
-                                    
                                     
                                     for(unsigned int i = min; i < NewSize; i++)
                                     {
@@ -299,7 +289,6 @@
                                     }
 
                                     _Size = NewSize;
-                                    Serial.println("Alocation ok"); 
                                 }
                                 return 1;
                             #endif
