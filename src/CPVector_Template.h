@@ -283,7 +283,7 @@
                                 {   
                                     auto min = (_Size<NewSize) ? _Size : NewSize;
                                     
-                                    for(unsigned int i = min; i < NewSize; i++)
+                                    for(uint32_t i = min; i < NewSize; i++)
                                     {
                                         _Buffer[i] = T();
                                     }
