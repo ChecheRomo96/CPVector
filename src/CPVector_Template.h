@@ -3,7 +3,6 @@
 
     #include "CPVector_BuildSettings.h"
     #include "Sorting/CPVector_Sorting.h"
-    #include <cstdint.h>
 
     namespace CPVector
     {
