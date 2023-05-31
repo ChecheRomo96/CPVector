@@ -3,6 +3,7 @@
 
     #include "CPVector_BuildSettings.h"
     #include "Sorting/CPVector_Sorting.h"
+    #include <cstdlib>
 
     namespace CPVector
     {
@@ -272,7 +273,7 @@
                                 
                                 if(NewSize == 0){ clear(); return 1;}
                                 
-                                if((_Buffer = realloc(_Buffer,NewSize) )== NULL)
+                                if((_Buffer = (T*)realloc(_Buffer,NewSize) )== NULL)
                                 {
                                     _Size = 0;
                                     return 0;
