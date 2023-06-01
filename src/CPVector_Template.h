@@ -152,12 +152,14 @@
                         {
                             if(this == &source){return *this;}
                             
-                            resize(source.size());
-                            
-                            for(unsigned int i = 0; i < size(); i++)
+                            if(resize(source.size()))
                             {
-                                (*this)[i] = source[i];
+                                for(unsigned int i = 0; i < size(); i++)
+                                {
+                                    (*this)[i] = source[i];
+                                }
                             }
+                                
                             return *this;
                         }
                     //
@@ -272,13 +274,18 @@
                                 
                                 if(NewSize == 0){ clear(); return 1;}
                                 
-                                if((_Buffer = (T*)realloc(_Buffer,NewSize) )== NULL)
+                                T* ptr = NULL;
+                                
+                                if((ptr = (T*)realloc(_Buffer,NewSize) )== NULL)
                                 {
+                                    free(_Buffer);
                                     _Size = 0;
                                     return 0;
                                 }
                                 else
                                 {   
+                                    _Buffer = ptr;
+                                    
                                     auto min = (_Size<NewSize) ? _Size : NewSize;
 
                                     for(uint32_t i = min; i < NewSize; i++)
