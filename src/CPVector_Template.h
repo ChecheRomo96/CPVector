@@ -274,26 +274,48 @@
                                 
                                 if(NewSize == 0){ clear(); return 1;}
                                 
-                                T* ptr = NULL;
-                                
-                                if((ptr = (T*)realloc(_Buffer,NewSize) )== NULL)
+                                if(_Buffer == NULL)
                                 {
-                                    free(_Buffer);
-                                    _Size = 0;
-                                    return 0;
+                                    if((_Buffer = (T*)malloc(NewSize * sizeof(T)) )== NULL)
+                                    {
+                                        _Size = 0;
+                                        return 0;
+                                    }
+                                    else
+                                    {   
+                                        auto min = (_Size<NewSize) ? _Size : NewSize;
+
+                                        for(uint32_t i = min; i < NewSize; i++)
+                                        {
+                                            _Buffer[i] = T();
+                                        }
+
+                                        _Size = NewSize;
+                                    } 
                                 }
                                 else
-                                {   
-                                    _Buffer = ptr;
+                                {
+                                    T* ptr = NULL;
                                     
-                                    auto min = (_Size<NewSize) ? _Size : NewSize;
-
-                                    for(uint32_t i = min; i < NewSize; i++)
+                                    if((ptr = (T*)realloc(_Buffer,NewSize * sizeof(T)) )== NULL)
                                     {
-                                        _Buffer[i] = T();
+                                        free(_Buffer );
+                                        _Size = 0;
+                                        return 0;
                                     }
+                                    else
+                                    {   
+                                        _Buffer = ptr;
+                                        
+                                        auto min = (_Size<NewSize) ? _Size : NewSize;
 
-                                    _Size = NewSize;
+                                        for(uint32_t i = min; i < NewSize; i++)
+                                        {
+                                            _Buffer[i] = T();
+                                        }
+
+                                        _Size = NewSize;
+                                    }
                                 }
                                 return 1;
                             #endif

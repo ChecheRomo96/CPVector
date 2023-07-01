@@ -4,7 +4,7 @@ extern "C"{
 
 #include <stdio.h>
 #include<CPVector.h>
-#include "Matrix.h"
+#include "matrix.h"
 #include "NeuralNetwork.h"
 
 int main(void)
@@ -17,21 +17,19 @@ int main(void)
     
     char Buffer[50];
     
-    AI::NeuralNetwork<float> myNeuralNetwork;
-        
     
     CPVector::vector<uint8_t> NetworkDimensions;
-    NetworkDimensions.push_back(3);
-    NetworkDimensions.push_back(2);
-    NetworkDimensions.push_back(2);
-    NetworkDimensions.push_back(1);
+    NetworkDimensions.resize(3);
+    NetworkDimensions[0] = 3;
+    NetworkDimensions[1] = 2;
+    NetworkDimensions[2] = 1;
 
-
-    myNeuralNetwork.SetDimensions(NetworkDimensions);
-        
+    AI::NeuralNetwork<float> myNeuralNetwork;
     
     for(;;)
     {
+        
+        myNeuralNetwork.SetDimensions(NetworkDimensions);
         
         UART_1_PutString("Weight Matrices:\n\r");   
         for(uint8_t i = 0; i < myNeuralNetwork.WeightMatrixVector().size(); i++)
@@ -69,6 +67,7 @@ int main(void)
             UART_1_PutString("\n\r");
         }
         
+        myNeuralNetwork.clear();
 
         /*for(uint8_t i = 0; i < Network.BiasMatrixVector().size(); i++)
         {
