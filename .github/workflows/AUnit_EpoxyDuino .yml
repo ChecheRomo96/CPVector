@@ -16,6 +16,11 @@ jobs:
         git clone --depth 1 https://github.com/bxparks/EpoxyDuino
         git clone --depth 1 https://github.com/bxparks/AUnit
 
+    - name: Initialize and Update Submodules
+      run: |
+        git submodule init
+        git submodule update
+          
     - name: Verify examples
       run: |
         make -C examples
