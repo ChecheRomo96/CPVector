@@ -40,7 +40,7 @@ jobs:
             c_compiler: gcc
           - os: windows-latest
             c_compiler: clang
-          - os: linux-latest
+          - os: macos-latest
             c_compiler: gcc
         exclude:
           - os: ubuntu-latest
