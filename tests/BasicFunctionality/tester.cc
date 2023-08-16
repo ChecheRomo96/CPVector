@@ -36,7 +36,6 @@ TEST(CPVectorTests, resize) {
 	}
 }
 
-
 // resize_initialization
 TEST(CPVectorTests, resize_initialization) {
 
@@ -48,5 +47,20 @@ TEST(CPVectorTests, resize_initialization) {
 		ASSERT_EQ(MemoryAllocationStatus,1);
 		EXPECT_EQ(myVector.size(),i);
 		EXPECT_EQ(myVector[i-1],(uint8_t)0u);
+	}
+}
+
+// resize
+TEST(CPVectorTests, resize) {
+
+	CPVector::vector<uint8_t> myVector;
+	ASSERT_EQ(myVector.size(),0);
+
+	for(uint8_t i = 0; i < UINT8_MAX; i++ )
+	{
+		myVector.resize(i);
+		ASSERT_EQ(myVector.size(),i);
+		myVector.clear();
+		ASSERT_EQ(myVector.size(),0);
 	}
 }
