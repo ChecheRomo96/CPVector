@@ -76,5 +76,5 @@ TEST(CPVectorTests, new_delete) {
 
 	ASSERT_NE(myVector,NULL);
 
-	EXPECT_EQ(myVector->size(),12)
+	EXPECT_EQ(myVector->size(),12);
 }
