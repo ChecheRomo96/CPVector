@@ -436,7 +436,10 @@
                         // std::vector
 
                             #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                return _Vector.pop_first();
+                                T ret = _Vector[0];
+                                _Vector.erase(_Vector.begin());
+                                
+                                return ret;
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////

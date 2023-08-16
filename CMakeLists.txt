@@ -23,9 +23,15 @@
 	##################################################################################################
 #
 ######################################################################################################
+# Store this directory as a variable called MCC_SRC_DIRECTORY to reference in deeper directories
+
+	set( ${PROJECT_NAME_UPPER}_ROOT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR})
+#
+######################################################################################################
 # Compile Configuration
 
 	set(CPVECTOR_BUILD_EXAMPLES TRUE CACHE BOOL "Build CPVector Examples")
+	set(CPVECTOR_BUILD_TESTS TRUE CACHE BOOL "Build CPVector Examples")
 #
 ######################################################################################################
 # Append Source
@@ -40,6 +46,28 @@
 	if( ${CPVECTOR_BUILD_EXAMPLES} )
 		message("Building ${CMAKE_PROJECT_NAME} Examples...")
 		add_subdirectory(examples)
+	endif()
+#
+######################################################################################################
+# Append Tests
+
+	if( ${CPVECTOR_BUILD_TESTS} )
+		message("Building ${CMAKE_PROJECT_NAME} Tests...")
+
+		include(FetchContent)
+
+		FetchContent_Declare(
+		  googletest
+		  URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+		)
+		# For Windows: Prevent overriding the parent project's compiler/linker settings
+		set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+		FetchContent_MakeAvailable(googletest)
+
+		enable_testing()
+		include(GoogleTest)
+		set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${${PROJECT_NAME_UPPER}_ROOT_DIRECTORY}/bin")
+		add_subdirectory(tests)
 	endif()
 #
 ######################################################################################################
