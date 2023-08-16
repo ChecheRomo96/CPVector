@@ -64,7 +64,7 @@
 		ASSERT_NE(myVectorptr,nullptr);
 
 		EXPECT_EQ(myVectorptr->size(),12);
-		
+
 		delete(myVectorptr);
 	}
 //
@@ -77,7 +77,7 @@
 
 		EXPECT_EQ((void*)myVectorptr,nullptr);
 		
-		myVectorptr = new CPVector::vector<uint8_t>*(12);
+		myVectorptr = new CPVector::vector<uint8_t>*[12];
 
 		ASSERT_NE(myVectorptr,nullptr);
 		ASSERT_EQ(sizeof(myVectorptr) / sizeof(CPVector::vector<uint8_t>*),12);
