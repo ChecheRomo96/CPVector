@@ -56,6 +56,9 @@ jobs:
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
+    - name: Install C++ Compiler
+      run: brew install gcc
+  
     - name: Initialize and Update Submodules
       run: |
         git submodule init
@@ -71,7 +74,6 @@ jobs:
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         -S ${{ github.workspace }}
         
-        cmake -S . -B build -D CMAKE_C_COMPILER=$(brew --prefix llvm)/bin/clang -D CMAKE_CXX_COMPILER=$(brew --prefix llvm)/bin/clang++
 
 
     - name: Build
