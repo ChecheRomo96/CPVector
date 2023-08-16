@@ -63,8 +63,7 @@ jobs:
         elif [[ "${{ matrix.os }}" == "macos-latest" ]]; then
           export CXX="clang++"
         elif [[ "${{ matrix.os }}" == "windows-latest" ]]; then
-          export CXX="g++"
-          export CC="gcc"
+          export CXX="cl"
         fi
   
     - name: Initialize and Update Submodules
