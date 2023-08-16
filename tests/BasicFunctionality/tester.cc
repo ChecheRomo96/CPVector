@@ -96,11 +96,6 @@
 			EXPECT_EQ(myVectorptr[i/2][i%2], i);
 		}
 		
-		for(uint8_t i = 0; i < 2; i++)
-		{
-			delete(myVectorptr[i]);
-		}
-
 		delete(myVectorptr);
 	}
 //
