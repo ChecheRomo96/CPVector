@@ -373,7 +373,8 @@
 
                             if(Resize == 1){resize(len);}
                             
-                            unsigned int min = (size()<len)?size():len;
+                            unsigned int min = ((size()<len)?size():len) + offset;
+
                             
                             for(unsigned int i = offset; i < min; i++)
                             {
