@@ -94,7 +94,7 @@
 
 		for(uint8_t i = 0; i < 4; i++)
 		{
-			EXPECT_EQ(myVectorptr[i/2][i%2], i);
+			EXPECT_EQ((*myVectorptr[i/2])[i%2], i);
 		}
 		
 	}
