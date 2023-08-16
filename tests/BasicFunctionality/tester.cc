@@ -27,13 +27,17 @@ TEST(CPVectorTests, push_back) {
 TEST(CPVectorTests, resize) {
 
 	CPVector::vector<uint8_t> myVector;
+	ASSERT_EQ(myVector.size(),0);
 
 	for(uint8_t i = 0; i < UINT8_MAX; i++ )
 	{
 		myVector.resize(i);
-		ASSERT_EQ(myVector.size(),i+1);
-		std::cout<<(uint16_t)i<<" - "<<(uint16_t)myVector[i]<<std::endl;
-		EXPECT_EQ(myVector[i],0);
+		ASSERT_EQ(myVector.size(),i);
+		
+		if(i > 0)
+		{
+			std::cout<<(uint16_t)i<<" - "<<(uint16_t)myVector[i]<<std::endl;
+			EXPECT_EQ(myVector[i],0);
+		}
 	}
-
 }
