@@ -85,7 +85,9 @@
 		{
 			myVectorptr[i] = nullptr;
 			myVectorptr[i] = new CPVector::vector<uint8_t>(2);
+			
 			ASSERT_NE(myVectorptr[i],nullptr);
+			ASSERT_EQ(myVectorptr[i].size(),2);
 
 			myVectorptr[i][0] = (2*i);
 			myVectorptr[i][1] = (2*i) + 1;
