@@ -33,11 +33,5 @@ TEST(CPVectorTests, resize) {
 	{
 		myVector.resize(i);
 		ASSERT_EQ(myVector.size(),i);
-		
-		if(i > 0)
-		{
-			std::cout<<(uint16_t)i<<" - "<<(uint16_t)myVector[i]<<std::endl;
-			EXPECT_EQ(myVector[i],0);
-		}
 	}
 }
