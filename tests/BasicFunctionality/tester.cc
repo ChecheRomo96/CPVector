@@ -50,8 +50,8 @@ TEST(CPVectorTests, resize_initialization) {
 	}
 }
 
-// resize
-TEST(CPVectorTests, resize) {
+// clear
+TEST(CPVectorTests, clear) {
 
 	CPVector::vector<uint8_t> myVector;
 	ASSERT_EQ(myVector.size(),0);
