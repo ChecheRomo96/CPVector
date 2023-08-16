@@ -51,9 +51,9 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// new_delete
+// dynamicAllocation1
 
-	TEST(CPVectorTests, new_delete) {
+	TEST(CPVectorTests, dynamicAllocation1) {
 
 		CPVector::vector<uint8_t>* myVectorptr = nullptr;
 
@@ -69,9 +69,9 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// new_delete
+// dynamicAllocation2
 
-	TEST(CPVectorTests, new_delete2) {
+	TEST(CPVectorTests, dynamicAllocation2) {
 
 		CPVector::vector<uint8_t>* myVectorptr = nullptr;
 
@@ -99,7 +99,18 @@
 		        EXPECT_EQ(myVectorptr[i][j], (8*i) + j);
 		    }
 		}
-		
+
+		delete(myVectorptr);
+	}
+//
+//////////////////////////////////////////////////////////////////////////////////
+// dynamicAllocation3
+
+	TEST(CPVectorTests, dynamicAllocation3) {
+
+		CPVector::vector<CPVector::vector<uint8_t>> myVector(8);
+
+		ASSERT_EQ(myVector.size(),8);
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
