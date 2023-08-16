@@ -83,7 +83,6 @@
 
 		for(uint8_t i = 0; i < 2; i++)
 		{
-			myVectorptr[i] = nullptr;
 			myVectorptr[i] = new CPVector::vector<uint8_t>(2);
 
 			ASSERT_NE(myVectorptr[i],nullptr);
