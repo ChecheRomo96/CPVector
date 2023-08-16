@@ -70,6 +70,9 @@ jobs:
         -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         -S ${{ github.workspace }}
+        
+        cmake -S . -B build -D CMAKE_C_COMPILER=$(brew --prefix llvm)/bin/clang -D CMAKE_CXX_COMPILER=$(brew --prefix llvm)/bin/clang++
+
 
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
