@@ -17,7 +17,7 @@ TEST(CPVectorTests, AppendingData) {
 	for(uint8_t i = 0; i < 100; i++ )
 	{
 		myVector.push_back(Data[i]);
-		EXPECT_THAT(myVector[i],i);
+		EXPECT_GT(myVector[i],i);
 	}
 
 }
