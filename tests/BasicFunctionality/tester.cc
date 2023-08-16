@@ -64,6 +64,35 @@
 		ASSERT_NE(myVectorptr,nullptr);
 
 		EXPECT_EQ(myVectorptr->size(),12);
+		
+		delete(myVectorptr);
+	}
+//
+//////////////////////////////////////////////////////////////////////////////////
+// new_delete
+
+	TEST(CPVectorTests, new_delete2) {
+
+		CPVector::vector<uint8_t>** myVectorptr = nullptr;
+
+		EXPECT_EQ((void*)myVectorptr,nullptr);
+		
+		myVectorptr = new CPVector::vector<uint8_t>*(12);
+
+		ASSERT_NE(myVectorptr,nullptr);
+		ASSERT_EQ(sizeof(myVectorptr) / sizeof(CPVector::vector<uint8_t>*),12);
+
+		for(uint8_t i = 0; i < 12; i++)
+		{
+			myVectorptr[i] = NULL;
+			myVectorptr[i] = new CPVector::vector<uint8_t>(i);
+			ASSERT_NE(myVectorptr,nullptr);
+			ASSERT_EQ(sizeof(myVectorptr) / sizeof(CPVector::vector<uint8_t>*),12);
+
+			delete(myVectorptr[i]);
+		}
+		
+		delete(myVectorptr);
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
