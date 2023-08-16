@@ -366,18 +366,14 @@
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // API
                 
-                    void copy(const T* source, unsigned int len, unsigned int offset = 0, bool copyLength = 0)
+                    void copy(const T* source, unsigned int len, unsigned int offset = 0, bool Resize = 0)
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Cross Compatible Code
 
-                            if(copyLength == 1){resize(len);}
+                            if(Resize == 1){resize(len);}
                             
-                            unsigned int min = len;
-                            if(size()<len)
-                            {
-                                min = size();
-                            }
+                            unsigned int min = (size()<len)?size():len;
                             
                             for(unsigned int i = offset; i < min; i++)
                             {
