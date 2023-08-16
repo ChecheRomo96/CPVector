@@ -77,24 +77,26 @@
 
 		EXPECT_EQ((void*)myVectorptr,nullptr);
 		
-		myVectorptr = new CPVector::vector<uint8_t>[2];
+		myVectorptr = new CPVector::vector<uint8_t>[8];
 
 		ASSERT_NE(myVectorptr,nullptr);
 
-		for(uint8_t i = 0; i < 2; i++)
+		for(uint8_t i = 0; i < 8; i++)
 		{
-			myVectorptr[i] = CPVector::vector<uint8_t>(2);
-			ASSERT_EQ(myVectorptr[i].size(), 2);
+			myVectorptr[i] = CPVector::vector<uint8_t>(8);
+			ASSERT_EQ(myVectorptr[i].size(), 8);
 
-			myVectorptr[i][0] = (2*i);
-			myVectorptr[i][1] = (2*i) + 1;
+		    for(uint8_t j = 0; j < 8; j++) 
+		    {    
+				myVectorptr[i][j] = (8*i) + j;
+		    }
 		}
-
 		
-		for(uint8_t i = 0; i < 2; i++)
+		for(uint8_t i = 0; i < 8; i++)
 		{
-		    for(uint8_t j = 0; j < 2; j++) {
-		        EXPECT_EQ(myVectorptr[i][j], (2*i) + j);
+		    for(uint8_t j = 0; j < 8; j++) 
+		    {
+		        EXPECT_EQ(myVectorptr[i][j], (8*i) + j);
 		    }
 		}
 		
