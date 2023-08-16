@@ -58,12 +58,8 @@ jobs:
     
     - name: Set up C++ Compiler
       run: |
-        if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
-          export CXX="g++"
-        elif [[ "${{ matrix.os }}" == "macos-latest" ]]; then
+        if [[ "${{ matrix.os }}" == "macos-latest" ]]; then
           export CXX="clang++"
-        elif [[ "${{ matrix.os }}" == "windows-latest" ]]; then
-          export CXX="cl"
         fi
   
     - name: Initialize and Update Submodules
