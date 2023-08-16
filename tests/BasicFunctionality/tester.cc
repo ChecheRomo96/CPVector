@@ -35,3 +35,16 @@ TEST(CPVectorTests, resize) {
 		ASSERT_EQ(myVector.size(),i);
 	}
 }
+
+
+// resize_initialization
+TEST(CPVectorTests, resize_initialization) {
+
+	CPVector::vector<uint8_t> myVector;
+
+	for(uint8_t i = 1; i < UINT8_MAX; i++ )
+	{
+		myVector.resize(i);
+		EXPECT_EQ(myVector[i],0u);
+	}
+}
