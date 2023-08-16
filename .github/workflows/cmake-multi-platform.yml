@@ -55,9 +55,16 @@ jobs:
       shell: bash
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
-
-    - name: Install C++ Compiler
-      run: brew install gcc
+    
+    - name: Set up C++ Compiler
+      run: |
+        if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
+          export CXX="g++"
+        elif [[ "${{ matrix.os }}" == "macos-latest" ]]; then
+          export CXX="clang++"
+        elif [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+          export CXX="cl"
+        fi
   
     - name: Initialize and Update Submodules
       run: |
