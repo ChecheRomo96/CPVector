@@ -77,7 +77,7 @@
 
 		EXPECT_EQ((void*)myVectorptr,nullptr);
 		
-		myVectorptr = new CPVector::vector<uint8_t>[2];
+		myVectorptr = new CPVector::vector<uint8_t>* [2];
 
 		ASSERT_NE(myVectorptr,nullptr);
 
