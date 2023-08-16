@@ -354,7 +354,10 @@
                         //  std::vector
 
                             #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                _Vector.resize(0);
+                                if(_Vector.size() != 0)
+                                {
+                                    _Vector.resize(0);
+                                }
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
