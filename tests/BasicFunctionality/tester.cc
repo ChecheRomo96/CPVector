@@ -61,6 +61,20 @@ TEST(CPVectorTests, clear) {
 		myVector.resize(i);
 		ASSERT_EQ(myVector.size(),i);
 		myVector.clear();
-		ASSERT_EQ(myVector.size(),0);
+		EXPECT_EQ(myVector.size(),0);
 	}
+}
+
+// new_delete
+TEST(CPVectorTests, new_delete) {
+
+	CPVector::vector<uint8_t>* myVectorptr = NULL;
+
+	EXPECT_EQ(myVector,NULL);
+	
+	myVector = new CPVector::vector<uint8_t>(12);
+
+	ASSERT_NE(myVector,NULL);
+
+	EXPECT_EQ(myVector->size(),12)
 }
