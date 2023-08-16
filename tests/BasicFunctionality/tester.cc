@@ -2,7 +2,7 @@
 #include <CPVector.h>
 #include <iostream>
 
-// Demonstrate some basic assertions.
+// push_back
 TEST(CPVectorTests, push_back) {
 
 	uint8_t Data[UINT8_MAX] = {};
@@ -19,6 +19,21 @@ TEST(CPVectorTests, push_back) {
 		ASSERT_EQ(myVector.size(),i+1);
 		std::cout<<(uint16_t)i<<" - "<<(uint16_t)myVector[i]<<std::endl;
 		EXPECT_EQ(myVector[i],i);
+	}
+
+}
+
+// resize
+TEST(CPVectorTests, resize) {
+
+	CPVector::vector<uint8_t> myVector;
+
+	for(uint8_t i = 0; i < UINT8_MAX; i++ )
+	{
+		myVector.resize(i);
+		ASSERT_EQ(myVector.size(),i+1);
+		std::cout<<(uint16_t)i<<" - "<<(uint16_t)myVector[i]<<std::endl;
+		EXPECT_EQ(myVector[i],0);
 	}
 
 }

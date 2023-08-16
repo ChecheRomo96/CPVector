@@ -1,1 +1,1 @@
-add_subdirectory(AppendingData_Test)
+add_subdirectory(BasicFunctionality)
