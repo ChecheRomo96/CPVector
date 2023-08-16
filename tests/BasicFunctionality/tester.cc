@@ -1,6 +1,28 @@
 #include <gtest/gtest.h>
+#include <crtdbg.h>
 #include <CPVector.h>
 #include <iostream>
+
+class MemoryLeakDetector
+{
+	public:
+	    MemoryLeakDetector() {
+	        _CrtMemCheckpoint(&memState_);
+	    }
+
+	    ~MemoryLeakDetector() {
+	        _CrtMemState stateNow, stateDiff;
+	        _CrtMemCheckpoint(&stateNow);
+	        int diffResult = _CrtMemDifference(&stateDiff, &memState_, &stateNow);
+	        if (diffResult)
+	            reportFailure(stateDiff.lSizes[1]);
+	    }
+	private:
+	    void reportFailure(unsigned int unfreedBytes) {
+	        FAIL() << "Memory leak of " << unfreedBytes << " byte(s) detected.";
+	    }
+	    _CrtMemState memState_;
+};
 
 //////////////////////////////////////////////////////////////////////////////////
 // resize
@@ -55,6 +77,8 @@
 
 	TEST(CPVectorTests, dynamicAllocation1) {
 
+		MemoryLeakDetector leakDetector;
+
 		CPVector::vector<uint8_t>* myVectorptr = nullptr;
 
 		EXPECT_EQ((void*)myVectorptr,nullptr);
@@ -72,6 +96,8 @@
 // dynamicAllocation2
 
 	TEST(CPVectorTests, dynamicAllocation2) {
+
+		MemoryLeakDetector leakDetector;
 
 		CPVector::vector<uint8_t>* myVectorptr = nullptr;
 
@@ -108,6 +134,7 @@
 
 	TEST(CPVectorTests, dynamicAllocation3) {
 
+		MemoryLeakDetector leakDetector;
 		CPVector::vector<CPVector::vector<uint8_t>> myVector(8);
 
 		ASSERT_EQ(myVector.size(),8);
@@ -135,7 +162,7 @@
 			}
 			myVector[i].clear();
 		}
-		
+
 		myVector.clear();
 	}
 //
