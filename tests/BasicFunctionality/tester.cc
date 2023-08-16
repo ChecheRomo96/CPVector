@@ -68,13 +68,13 @@ TEST(CPVectorTests, clear) {
 // new_delete
 TEST(CPVectorTests, new_delete) {
 
-	CPVector::vector<uint8_t>* myVectorptr = NULL;
+	CPVector::vector<uint8_t>* myVectorptr = nullptr;
 
-	EXPECT_EQ((void*)myVectorptr,NULL);
+	EXPECT_EQ((void*)myVectorptr,nullptr);
 	
 	myVectorptr = new CPVector::vector<uint8_t>(12);
 
-	ASSERT_NE(myVectorptr,NULL);
+	ASSERT_NE(myVectorptr,nullptr);
 
 	EXPECT_EQ(myVectorptr->size(),12);
 }
