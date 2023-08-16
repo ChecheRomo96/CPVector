@@ -70,11 +70,11 @@ TEST(CPVectorTests, new_delete) {
 
 	CPVector::vector<uint8_t>* myVectorptr = NULL;
 
-	EXPECT_EQ(myVector,NULL);
+	EXPECT_EQ(myVectorptr,NULL);
 	
-	myVector = new CPVector::vector<uint8_t>(12);
+	myVectorptr = new CPVector::vector<uint8_t>(12);
 
-	ASSERT_NE(myVector,NULL);
+	ASSERT_NE(myVectorptr,NULL);
 
-	EXPECT_EQ(myVector->size(),12);
+	EXPECT_EQ(myVectorptr->size(),12);
 }
