@@ -47,6 +47,6 @@ TEST(CPVectorTests, resize_initialization) {
 		bool MemoryAllocationStatus = myVector.resize(i);
 		ASSERT_EQ(MemoryAllocationStatus,1);
 		EXPECT_EQ(myVector.size(),i);
-		EXPECT_EQ(myVector[i],(uint8_t)0u);
+		EXPECT_EQ(myVector[i-1],(uint8_t)0u);
 	}
 }
