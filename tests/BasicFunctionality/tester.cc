@@ -83,7 +83,7 @@
 
 		for(uint8_t i = 0; i < 2; i++)
 		{
-			myVectorptr[i] = new CPVector::vector<uint8_t>;
+			myVectorptr[i] = CPVector::vector<uint8_t>();
 			ASSERT_EQ(myVectorptr[i]->size(), 2);
 
 			myVectorptr[i][0] = (2*i);
