@@ -42,9 +42,9 @@ jobs:
             c_compiler: clang
           - os: macos-latest
             c_compiler: gcc
-        exclude:
           - os: ubuntu-latest
             c_compiler: cl
+        exclude:
 
     steps:
     - uses: actions/checkout@v3
