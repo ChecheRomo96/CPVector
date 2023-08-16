@@ -66,6 +66,15 @@ jobs:
     
         # Set the C++ compiler path
         export CXX="/usr/local/opt/llvm/bin/clang++"
+
+    - name: Configure environment for Clang
+      if: matrix.os == 'macos-latest'
+      run: |
+        echo 'export PATH="/usr/local/opt/llvm/bin:$PATH"' >> $HOME/.bash_profile 
+        echo 'export LDFLAGS="-L/usr/local/opt/llvm/lib"' >> $HOME/.bash_profile
+        echo 'export CPPFLAGS="-I/usr/local/opt/llvm/include"' >> $HOME/.bash_profile
+        source $HOME/.bash_profile
+        
   
     - name: Initialize and Update Submodules
       run: |
