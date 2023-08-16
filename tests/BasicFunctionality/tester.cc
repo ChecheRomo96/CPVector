@@ -160,7 +160,7 @@ class MemoryLeakDetector
 				myVector[i][j] = (8*i) + j;
 				EXPECT_EQ(myVector[i][j], (8*i) + j);
 			}
-			myVector[i].clear();
+			//myVector[i].clear();
 		}
 
 		myVector.clear();
