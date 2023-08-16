@@ -57,15 +57,15 @@ jobs:
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
     
   
-    - name: Set up C++ Compiler
+
+    - name: Install C++ Compiler on macOS
+      if: matrix.os == 'macos-latest'
       run: |
-        if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
-          export CXX="g++"
-        elif [[ "${{ matrix.os }}" == "macos-latest" ]]; then
-          export CXX="clang++"
-        elif [[ "${{ matrix.os }}" == "windows-latest" ]]; then
-          export CXX="cl"
-        fi
+        # Install Clang as the C++ compiler
+        brew install llvm
+    
+        # Set the C++ compiler path
+        export CXX="/usr/local/opt/llvm/bin/clang++"
   
     - name: Initialize and Update Submodules
       run: |
