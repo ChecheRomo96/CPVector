@@ -70,7 +70,7 @@ TEST(CPVectorTests, new_delete) {
 
 	CPVector::vector<uint8_t>* myVectorptr = NULL;
 
-	EXPECT_EQ(myVectorptr,NULL);
+	EXPECT_EQ((void*)myVectorptr,NULL);
 	
 	myVectorptr = new CPVector::vector<uint8_t>(12);
 
