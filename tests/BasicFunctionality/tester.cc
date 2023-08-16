@@ -111,6 +111,32 @@
 		CPVector::vector<CPVector::vector<uint8_t>> myVector(8);
 
 		ASSERT_EQ(myVector.size(),8);
+
+		for(uint8_t i = 0; i < myVector.size(); i++)
+		{
+			ASSERT_EQ(myVector[i].size(),0);
+
+			myVector[i].resize(8);
+			ASSERT_EQ(myVector[i].size(),8);
+
+			for(uint8_t j = 0; j < myVector[i].size(); j++)
+			{
+				myVector[i][j] = (8*i) + j;
+				EXPECT_EQ(myVector[i][j], (8*i) + j);
+			}
+		}
+
+		for(uint8_t i = 0; i < myVector.size(); i++)
+		{
+			for(uint8_t j = 0; j < myVector[i].size(); j++)
+			{
+				myVector[i][j] = (8*i) + j;
+				EXPECT_EQ(myVector[i][j], (8*i) + j);
+			}
+			myVector[i].clear();
+		}
+		
+		myVector.clear();
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
