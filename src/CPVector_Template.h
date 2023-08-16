@@ -345,6 +345,12 @@
                         // Arduino and PSoC
 
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
+
+                                for(uint8_t i = 0; i < _Size; i++)
+                                {
+                                    _Buffer[i].~T();
+                                }
+
                                 free(_Buffer);
                                 _Buffer = NULL;
                                 _Size = 0;
