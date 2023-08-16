@@ -29,25 +29,35 @@ jobs:
         include:
           - os: ubuntu-latest
             cpp_compiler: g++
+            build_type: Release
           - os: ubuntu-latest
             cpp_compiler: clang++
+            build_type: Release
           - os: windows-latest
             cpp_compiler: cl
+            build_type: Release
           - os: macos-latest
             cpp_compiler: g++
+            build_type: Release
           - os: macos-latest
             cpp_compiler: clang++
+            build_type: Release
         exclude:
           - os: ubuntu-latest
             cpp_compiler: clang++
+            build_type: Release
           - os: ubuntu-latest
             cpp_compiler: cl
+            build_type: Release
           - os: macos-latest
             cpp_compiler: cl
+            build_type: Release
           - os: windows-latest
             cpp_compiler: clang++
+            build_type: Release
           - os: windows-latest
             cpp_compiler: gcc
+            build_type: Release
           
 
     steps:
