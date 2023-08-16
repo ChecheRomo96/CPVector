@@ -56,7 +56,7 @@ jobs:
             cpp_compiler: clang++
             build_type: Release
           - os: windows-latest
-            cpp_compiler: gcc
+            cpp_compiler: g++
             build_type: Release
           
 
