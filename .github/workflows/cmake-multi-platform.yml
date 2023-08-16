@@ -58,7 +58,7 @@ jobs:
     
     - name: Set up C++ Compiler
       run: |
-        if [[ "${{ matrix.os }}" == "macos-latest" ]]; then
+        if ([[ "${{ matrix.os }}" == "macos-latest" ]]); then
           export CXX="clang++"
         fi
   
