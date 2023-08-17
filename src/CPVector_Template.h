@@ -388,7 +388,6 @@
                             }
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
-
                     }
                     
                     void push_back(const T& data)
@@ -413,66 +412,23 @@
                     
                     T pop(unsigned int postion = 0)
                     {
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        //
-                            T x = (*this)[postion];
-                            for(unsigned int i = postion; i < size()-1; i++)
-                            {
-                                (*this)[i] = (*this)[i+1];
-                            }
-                            resize(size()-1);
-                            return x;
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        T x = (*this)[postion];
+                        for(unsigned int i = postion; i < size()-1; i++)
+                        {
+                            (*this)[i] = (*this)[i+1];
                         }
+                        resize(size()-1);
+                        return x;
+                    }
                     
                     T pop_first()
                     {
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // std::vector
-
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                T ret = _Vector[0];
-                                _Vector.erase(_Vector.begin());
-                                
-                                return ret;
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        //  PSoC Creator and Arduino IDE
-
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
-                                T x = (*this)[0];
-                                for(unsigned int i = 0; i < _Size-1; i++)
-                                {
-                                    (*this)[i] = (*this)[i+1];
-                                }
-                                resize(_Size-1);
-                                return x;
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        return pop(0);
                     }
 
                     T pop_back()
                     {
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // std::vector
-
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                return _Vector.pop_back();
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        //  PSoC Creator and Arduino IDE
-
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
-                                T x = (*this)[_Size-1];
-                                resize(_Size-1);
-                                return x;
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        return pop(size()-1);
                     }
                     
                     void emplace(T data, unsigned int position)
