@@ -53,8 +53,6 @@
 			Data[i] = i;
 
 		}
-		
-		Data[UINT8_MAX] = UINT8_MAX;
 
 		CPVector::vector<uint8_t> myVector(Data, UINT8_MAX);
 		ASSERT_EQ(myVector.size(),UINT8_MAX);
