@@ -285,12 +285,12 @@
 
 		for(uint8_t i = 0; i < 5; i++)
 		{
-			myVector.swap(i,9-i)
+			myVector.swap(i,9-i);
 		}
 
 		for(uint8_t i = 0; i < 10; i ++)
 		{
-			EXPECT_EQ(myVector[i],9-i)
+			EXPECT_EQ(myVector[i],9-i);
 		}
 	}
 //
