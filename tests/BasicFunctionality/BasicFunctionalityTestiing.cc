@@ -3,9 +3,72 @@
 #include <iostream>
 
 //////////////////////////////////////////////////////////////////////////////////
+// DefaultConstructor
+
+	TEST(ConstructorTesting, DefaultConstructor) {
+
+		CPVector::vector<uint8_t> myVector;
+		ASSERT_EQ(myVector.size(),0);
+	}
+//
+//////////////////////////////////////////////////////////////////////////////////
+// ResizeConstructor
+
+	TEST(ConstructorTesting, ResizeConstructor) {
+
+		CPVector::vector<uint8_t> myVector(20);
+		ASSERT_EQ(myVector.size(),20);
+	}
+//
+//////////////////////////////////////////////////////////////////////////////////
+// CopyConstructor
+
+	TEST(ConstructorTesting, CopyConstructor) {
+
+		CPVector::vector<uint8_t> myVector(20);
+		ASSERT_EQ(myVector.size(),20);
+
+		for(uint8_t i = 0; i < myVector.size(); i++)
+		{
+			myVector[i] = i;
+		}
+
+		CPVector::vector<uint8_t> myVector2(myVector);
+
+		for(uint8_t i = 0; i < myVector.size(); i++)
+		{
+			EXPECT_EQ(myVector[i], myVector2[i]);
+		}
+	}
+//
+//////////////////////////////////////////////////////////////////////////////////
+// CopyConstructor
+
+	TEST(ConstructorTesting, CopyConstructor) {
+
+		uint8_t Data[UINT8_MAX] = {};
+
+		for(uint8_t i = 0; i < UINT8_MAX; i++ )
+		{
+			Data[i] = i;
+
+		}
+		
+		Data[UINT8_MAX] = UINT8_MAX;
+
+		CPVector::vector<uint8_t> myVector(Data, UINT8_MAX);
+		ASSERT_EQ(myVector.size(),UINT8_MAX);
+
+		for(uint8_t i = 0; i < myVector.size(); i++)
+		{
+			EXPECT_EQ(myVector[i], i);
+		}
+	}
+//
+//////////////////////////////////////////////////////////////////////////////////
 // resize
 
-	TEST(CPVectorTests, resize) {
+	TEST(BasicFunctionalityTesting, resize) {
 
 		CPVector::vector<uint8_t> myVector;
 		ASSERT_EQ(myVector.size(),0);
@@ -20,7 +83,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // resize_initialization
 
-	TEST(CPVectorTests, resize_initialization) {
+	TEST(BasicFunctionalityTesting, resize_initialization) {
 
 		CPVector::vector<uint8_t> myVector;
 
@@ -36,7 +99,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // clear
 
-	TEST(CPVectorTests, clear) {
+	TEST(BasicFunctionalityTesting, clear) {
 
 		CPVector::vector<uint8_t> myVector;
 		ASSERT_EQ(myVector.size(),0);
@@ -53,7 +116,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // dynamicAllocation1
 
-	TEST(CPVectorTests, dynamicAllocation1) {
+	TEST(DynamicAllocationTesting, VectorPointerToObject) {
 
 		CPVector::vector<uint8_t>* myVectorptr = nullptr;
 
@@ -71,7 +134,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // dynamicAllocation2
 
-	TEST(CPVectorTests, dynamicAllocation2) {
+	TEST(DynamicAllocationTesting, VectorPointerToArray) {
 
 		CPVector::vector<uint8_t>* myVectorptr = nullptr;
 
@@ -106,7 +169,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // dynamicAllocation3
 
-	TEST(CPVectorTests, dynamicAllocation3) {
+	TEST(DynamicAllocationTesting, VectorOfVectors) {
 		CPVector::vector<CPVector::vector<uint8_t>> myVector(8);
 
 		ASSERT_EQ(myVector.size(),8);
@@ -141,7 +204,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // copy
 
-	TEST(CPVectorTests, copy) {
+	TEST(BasicFunctionalityTesting, copy) {
 
 		uint8_t Data[UINT8_MAX] = {};
 		for(uint8_t i = 0; i < UINT8_MAX; i++ )
@@ -164,7 +227,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // push_back
 
-	TEST(CPVectorTests, push_back) {
+	TEST(BasicFunctionalityTesting, push_back) {
 
 		uint8_t Data[UINT8_MAX] = {};
 		for(uint8_t i = 0; i < UINT8_MAX; i++ )
@@ -186,7 +249,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // pop
 
-	TEST(CPVectorTests, pop) {
+	TEST(BasicFunctionalityTesting, pop) {
 
 		uint8_t Data[UINT8_MAX] = {};
 		for(uint8_t i = 0; i < UINT8_MAX; i++ )
@@ -209,7 +272,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // pop_first
 
-	TEST(CPVectorTests, pop_first) {
+	TEST(BasicFunctionalityTesting, pop_first) {
 
 		uint8_t Data[UINT8_MAX] = {};
 		for(uint8_t i = 0; i < UINT8_MAX; i++ )
@@ -232,7 +295,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // pop_back
 
-	TEST(CPVectorTests, pop_back) {
+	TEST(BasicFunctionalityTesting, pop_back) {
 
 		uint8_t Data[UINT8_MAX] = {};
 		for(uint8_t i = 0; i < UINT8_MAX; i++ )
@@ -255,7 +318,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // emplace
 
-	TEST(CPVectorTests, emplace) {
+	TEST(BasicFunctionalityTesting, emplace) {
 
 		CPVector::vector<uint8_t> myVector;
 
@@ -272,7 +335,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // swap
 
-	TEST(CPVectorTests, swap) {
+	TEST(BasicFunctionalityTesting, swap) {
 
 		CPVector::vector<uint8_t> myVector;
 		EXPECT_EQ(myVector.size(),0);
@@ -297,7 +360,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // erase
 
-	TEST(CPVectorTests, erase) {
+	TEST(BasicFunctionalityTesting, erase) {
 
 		uint8_t Data[UINT8_MAX] = {};
 		for(uint8_t i = 0; i < UINT8_MAX; i++ )
