@@ -297,7 +297,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // erase
 
-	TEST(CPVectorTests, swap) {
+	TEST(CPVectorTests, erase) {
 
 		uint8_t Data[UINT8_MAX] = {};
 		for(uint8_t i = 0; i < UINT8_MAX; i++ )
