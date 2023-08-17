@@ -278,9 +278,9 @@
 		EXPECT_EQ(myVector.size(),0);
 
 		uint8_t counter = 0;
-		while(counter >= 10)
+		for(uint8_t i = 0; i < 10; i++)
 		{
-			myVector.push_back(counter++);
+			myVector.push_back(i);
 		}
 
 		for(uint8_t i = 0; i < 5; i++)
