@@ -31,7 +31,8 @@
 # Compile Configuration
 
 	set(CPVECTOR_BUILD_EXAMPLES TRUE CACHE BOOL "Build CPVector Examples")
-	set(CPVECTOR_BUILD_TESTS TRUE CACHE BOOL "Build CPVector Examples")
+	set(CPVECTOR_ENABLE_TESTING TRUE CACHE BOOL "CPVector Testing Enabled")	
+	set(CPVECTOR_SORTING_ENABLED CACHE BOOL "Compile CPVector::Sorting")
 #
 ######################################################################################################
 # Append Source

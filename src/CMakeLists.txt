@@ -1,13 +1,19 @@
-# Store this directory as a variable called CPVECTOR_SRC_DIRECTORY to reference in deeper directories
-set( CPVECTOR_SRC_DIRECTORY  ${CMAKE_CURRENT_LIST_DIR})
+######################################################################################################
+# Store this directory as a variable called MCC_SRC_DIRECTORY to reference in deeper directories
 
-# Initialize HEADER_LIST as an empty string list
-set( HEADERS_LIST "" )
+	set( CPVECTOR_SRC_DIRECTORY  ${CMAKE_CURRENT_LIST_DIR})
+#
+######################################################################################################
+# Initialize MCC_SOURCES and HEADER_LIST as an empty string list
 
-# Append Headers
-list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/CPVector.h")
-list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/CPVector_BuildSettings.h")
-list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/CPVector_Template.h")
+	set( HEADERS_LIST "" )
+#
+######################################################################################################
+# Append Sources and Headers
+
+	list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/CPVector.h")
+	list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/CPVector_BuildSettings.h")
+	list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/CPVector_Template.h")
 
 # Add Subdirectories
 add_subdirectory(Sorting)
