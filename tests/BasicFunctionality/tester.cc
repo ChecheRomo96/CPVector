@@ -245,7 +245,7 @@
 
 		ASSERT_EQ(myVector.size(),UINT8_MAX);
 
-		uint8_t counter = UINT8_MAX;
+		uint8_t counter = UINT8_MAX-1;
 		while(myVector.size() > 0)
 		{
 			EXPECT_EQ(myVector.pop_back(),counter--);
