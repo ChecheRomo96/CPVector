@@ -414,24 +414,14 @@
                     T pop(unsigned int postion = 0)
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
-                        // std::vector
-
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                return _Vector.pop(postion);
-                            #endif
                         //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        //  PSoC Creator and Arduino IDE
-
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
-                                T x = (*this)[postion];
-                                for(unsigned int i = postion; i < _Size-1; i++)
-                                {
-                                    (*this)[i] = (*this)[i+1];
-                                }
-                                resize(_Size-1);
-                                return x;
-                            #endif
+                            T x = (*this)[postion];
+                            for(unsigned int i = postion; i < _Size-1; i++)
+                            {
+                                (*this)[i] = (*this)[i+1];
+                            }
+                            resize(size()-1);
+                            return x;
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         }
