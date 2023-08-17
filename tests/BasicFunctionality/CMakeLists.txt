@@ -1,3 +1,3 @@
-add_executable( CPVector_BasicFunctionality tester.cc ) 
+add_executable( CPVector_BasicFunctionality BasicFunctionalityTestiing.cc ) 
 target_link_libraries( CPVector_BasicFunctionality PUBLIC CPVector PUBLIC GTest::gtest_main )
 gtest_discover_tests(CPVector_BasicFunctionality)
