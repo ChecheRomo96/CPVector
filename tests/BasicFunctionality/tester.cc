@@ -232,7 +232,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // pop_back
 
-	TEST(CPVectorTests, pop_first) {
+	TEST(CPVectorTests, pop_back) {
 
 		uint8_t Data[UINT8_MAX] = {};
 		for(uint8_t i = 0; i < UINT8_MAX; i++ )
