@@ -184,3 +184,26 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
+// pop
+
+	TEST(CPVectorTests, pop) {
+
+		uint8_t Data[UINT8_MAX] = {};
+		for(uint8_t i = 0; i < UINT8_MAX; i++ )
+		{
+			Data[i] = i;
+		}
+
+		CPVector::vector<uint8_t> myVector;
+		myVector.copy(Data,UINT8_MAX,0,1);
+
+		ASSERT_EQ(myVector.size(),UINT8_MAX);
+
+		uint8_t counter = 0;
+		while(myVector.size() > 0)
+		{
+			EXPECT_EQ(myVector.pop(),counter++);
+		}
+	}
+//
+//////////////////////////////////////////////////////////////////////////////////
