@@ -295,3 +295,26 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
+// erase
+
+	TEST(CPVectorTests, swap) {
+
+		uint8_t Data[UINT8_MAX] = {};
+		for(uint8_t i = 0; i < UINT8_MAX; i++ )
+		{
+			Data[i] = i;
+		}
+
+		CPVector::vector<uint8_t> myVector;
+		myVector.copy(Data,UINT8_MAX,0,1);
+
+		uint8_t counter = 0;
+		
+		while(myVector.size() > 0)
+		{
+			EXPECT_EQ(myVector[0],counter++);
+			myVector.erase(0);
+		}
+	}
+//
+//////////////////////////////////////////////////////////////////////////////////
