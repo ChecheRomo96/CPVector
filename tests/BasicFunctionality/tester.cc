@@ -253,3 +253,20 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
+// emplace
+
+	TEST(CPVectorTests, emplace) {
+
+		CPVector::vector<uint8_t> myVector;
+
+		EXPECT_EQ(myVector.size(),0);
+
+		uint8_t counter = 0;
+		while(myVector.size() > 0)
+		{
+			myVector.emplace(counter,0);
+			EXPECT_EQ(myVector[0],counter++);
+		}
+	}
+//
+//////////////////////////////////////////////////////////////////////////////////
