@@ -42,9 +42,9 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// CopyConstructor
+// CopyConstructor2
 
-	TEST(ConstructorTesting, CopyConstructor) {
+	TEST(ConstructorTesting, CopyConstructor2) {
 
 		uint8_t Data[UINT8_MAX] = {};
 
