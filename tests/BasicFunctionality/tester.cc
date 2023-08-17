@@ -270,3 +270,28 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
+// swap
+
+	TEST(CPVectorTests, swap) {
+
+		CPVector::vector<uint8_t> myVector;
+		EXPECT_EQ(myVector.size(),0);
+
+		uint8_t counter = 0;
+		while(counter > 10)
+		{
+			myVector.push_back(counter++);
+		}
+
+		for(uint8_t i = 0; i < 5; i++)
+		{
+			myVector.swap(i,9-i)
+		}
+
+		for(uint8_t i = 0; i < 10; i ++)
+		{
+			EXPECT_EQ(myVector[i],9-i)
+		}
+	}
+//
+//////////////////////////////////////////////////////////////////////////////////
