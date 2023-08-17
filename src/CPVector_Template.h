@@ -416,7 +416,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         //
                             T x = (*this)[postion];
-                            for(unsigned int i = postion; i < _Size-1; i++)
+                            for(unsigned int i = postion; i < size()-1; i++)
                             {
                                 (*this)[i] = (*this)[i+1];
                             }
