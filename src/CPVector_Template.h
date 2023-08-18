@@ -211,7 +211,7 @@
                     ///////////////////////////////////////////////////////////////////
                     // Compare Operators
 
-                        bool operator==(const vector& source) const
+                        bool operator==(const vector<T>& source) const
                         {
                             if(*this == source){return 1;}
                             
@@ -225,7 +225,7 @@
                             return 1;
                         }
 
-                        bool operator!=(const vector& source) const
+                        bool operator!=(const vector<T>& source) const
                         {
                             if(*this == source){return 0;}
                             
