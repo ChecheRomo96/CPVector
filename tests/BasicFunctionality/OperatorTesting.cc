@@ -35,7 +35,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Comparison Operators
 
-	TEST(OperatorTesting, SubscriptArray) {
+	TEST(OperatorTesting, Comparison) {
 
 		CPVector::vector<uint8_t> myVector1;
 		CPVector::vector<uint8_t> myVector2(5);
