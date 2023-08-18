@@ -27,7 +27,7 @@
 
 		for(uint8_t i = 0; i < myVector.size(); i++ )
 		{
-			myVector[i] = i
+			myVector[i] = i;
 			ASSERT_EQ(myVector[i],i);
 		}
 	}
