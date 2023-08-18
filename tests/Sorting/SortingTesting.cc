@@ -87,12 +87,17 @@
 		CPVector::Sorting::SortingArray<TestingStruct> SortConfig;
 		SortConfig.Append(TestingStruct_A_Ascending);
 		SortConfig.Append(TestingStruct_B_Ascending);
-		
+
 		myVector.Sort(SortConfig);
 
 		for(uint8_t i = 0; i < myVector.size()-1; i++ )
 		{
-			EXPECT_GE(myVector[i], myVector[i+1]);
+			EXPECT_GE(myVector[i].A, myVector[i+1].A);
+
+			if(myVector[i].A == myVector[i+1].A)
+			{
+				EXPECT_GE(myVector[i].B, myVector[i+1].B);
+			}
 		}
 	}
 //
