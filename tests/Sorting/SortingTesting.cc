@@ -20,7 +20,7 @@
 
 		for(uint8_t i = 0; i < myVector.size()-1; i++ )
 		{
-			EXPECCT_LE(myVector[i], myVector[i+1]);
+			EXPECT_LE(myVector[i], myVector[i+1]);
 		}
 	}
 //
