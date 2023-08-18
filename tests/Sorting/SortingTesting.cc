@@ -92,11 +92,11 @@
 
 		for(uint8_t i = 0; i < myVector.size()-1; i++ )
 		{
-			EXPECT_GE(myVector[i].A, myVector[i+1].A);
+			EXPECT_LE(myVector[i].A, myVector[i+1].A);
 
 			if(myVector[i].A == myVector[i+1].A)
 			{
-				EXPECT_GE(myVector[i].B, myVector[i+1].B);
+				EXPECT_LE(myVector[i].B, myVector[i+1].B);
 			}
 		}
 	}
