@@ -148,7 +148,7 @@
                     ///////////////////////////////////////////////////////////////////
                     // Assignment Operators
 
-                        vector& operator=(const vector<T>& source)
+                        vector& operator=(const vector& source)
                         {
                             if(this == &source){return *this;}
                             
@@ -209,11 +209,11 @@
                         }
                     //
                     ///////////////////////////////////////////////////////////////////
-                    // Compare Operators
+                    // Comparison Operators
 
-                        bool operator==(const vector<T>& source) const
+                        bool operator==(const vector& source) const
                         {
-                            if(*this == source){return 1;}
+                            if(this == &source){return 1;}
                             
                             if(size() != source.size()){return 0;}
                             
@@ -225,9 +225,9 @@
                             return 1;
                         }
 
-                        bool operator!=(const vector<T>& source) const
+                        bool operator!=(const vector& source) const
                         {
-                            if(*this == source){return 0;}
+                            if(this == &source){return 1;}
                             
                             if(size() != source.size()){return 1;}
                             

@@ -42,7 +42,7 @@
 
 		ASSERT_EQ(myVector1.size(),0);
 		ASSERT_EQ(myVector2.size(),5);
-		//EXPECT_EQ(myVector1!=myVector2,1);
+		EXPECT_EQ(myVector1!=myVector2,1);
 		//EXPECT_EQ(myVector1==myVector2,0);
 
 		myVector1.resize(5);
