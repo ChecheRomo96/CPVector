@@ -2,10 +2,6 @@
 #include <CPVector.h>
 #include <iostream>
 
-#include "ConstructorTesting.cc"
-#include "DynamicAllocationTesting.cc"
-#include "OperatorTesting.cc"
-
 //////////////////////////////////////////////////////////////////////////////////
 // resize
 
