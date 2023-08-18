@@ -148,7 +148,7 @@
                     ///////////////////////////////////////////////////////////////////
                     // Assignment Operators
 
-                        vector& operator=(const vector& source)
+                        vector& operator=(const vector<T>& source)
                         {
                             if(this == &source){return *this;}
                             
