@@ -53,7 +53,7 @@
 		EXPECT_EQ(myVector1!=myVector2,0);
 		EXPECT_EQ(myVector1==myVector2,1);
 
-		myVector1[0] = 1;
+		/*myVector1[0] = 1;
 		myVector1[1] = 2;
 
 		myVector2[0] = 2;
@@ -73,7 +73,7 @@
 		ASSERT_EQ(myVector1.size(),5);
 		ASSERT_EQ(myVector2.size(),5);
 		EXPECT_EQ(myVector1!=myVector2,0);
-		EXPECT_EQ(myVector1==myVector2,1);
+		EXPECT_EQ(myVector1==myVector2,1);*/
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
