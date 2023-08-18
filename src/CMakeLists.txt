@@ -18,7 +18,9 @@
 ######################################################################################################
 # Add Subdirectories
 
-	add_subdirectory(Sorting)
+	if( ${CPVECTOR_SORTING_ENABLED} )
+		add_subdirectory(Sorting)
+	endif()
 
 # Create the CPVector library (STATIC is not justified tho) and include the directories needed to compile
 add_library(CPVector INTERFACE)
