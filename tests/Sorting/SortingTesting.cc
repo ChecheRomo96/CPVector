@@ -5,7 +5,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // resize
 
-	TEST(SortingTesting, resize) {
+	TEST(SortingTesting, Ascending) {
 
 		
 		CPVector::vector<uint8_t> myVector(UINT8_MAX);
