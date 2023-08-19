@@ -74,9 +74,6 @@ jobs:
       run: |
         git submodule init
         git submodule update
-        
-    - name: Install Doxygen
-      run: sudo apt-get install -y doxygen
           
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
@@ -97,15 +94,3 @@ jobs:
       # Execute tests defined by the CMake configuration. Note that --build-config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ctest --build-config ${{ matrix.build_type }} --rerun-failed --output-on-failure
-
-    - name: Generate Documentation
-      run: doxygen Doxyfile
-
-    - name: Deploy to GitHub Pages
-      if: success()
-      uses: crazy-max/ghaction-github-pages@v3
-      with:
-        target_branch: gh-pages
-        build_dir: ./docs/html
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
