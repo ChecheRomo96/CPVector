@@ -3,7 +3,7 @@
 #include <iostream>
 
 //////////////////////////////////////////////////////////////////////////////////
-// resize
+// Ascending
 
 	TEST(SortingTesting, Ascending) {
 
@@ -25,7 +25,7 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// resize
+// Descending
 
 	TEST(SortingTesting, Descending) {
 
@@ -47,7 +47,7 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-//
+// SortingList
 	struct TestingStruct
 	{
 		public:
@@ -55,7 +55,6 @@
 			uint8_t A;
 			uint8_t B;
 	};
-
 
     int8_t TestingStruct_A_Ascending(const TestingStruct& Element, const TestingStruct& Pivot)
     {
