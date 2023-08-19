@@ -11,6 +11,10 @@ List of platforms where it has been tested.
 	Arduino IDE ( Arduino Uno, Arduino Mega, ESP32 )
 	PSoC Creator IDE ( CY8CKIT-059 )
 
+# Docs:
+
+Docs hosted at: https://checheromo96.github.io/CPVector/
+
 # Steps to compile package:
 
 ## Mac Os X through CMake + make
