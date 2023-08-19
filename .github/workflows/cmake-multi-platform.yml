@@ -101,8 +101,11 @@ jobs:
     - name: Generate Documentation
       run: doxygen Doxyfile
 
-    - name: Running the HTML dir to gh-pages Action
-      uses: uibcdf/action-html-dir-to-gh-pages@v1.0.0
+    - name: Deploy to GitHub Pages
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v3
       with:
-        branch: main
-        html_dir: docs/html
+        target_branch: gh-pages
+        build_dir: public
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
