@@ -1,0 +1,38 @@
+name: Arduino CI Workflow
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        board-fqbn:
+          - 'arduino:avr:uno'
+          - 'arduino:avr:mega'
+          - 'arduino:avr:nano'
+          - 'arduino:avr:leonardo'
+          - 'espressif:esp32:esp32'
+          
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Arduino CLI
+        uses: per1234/setup-arduino-cli@v2
+        with:
+          version: 0.18.3
+
+      #- name: Install library from GitHub
+      #  run: arduino-cli lib install <library-repo>
+
+      - name: Imprimir configuraciones
+        run: echo "Configuraciones generadas: ${{ join(matrix.board-fqbn, ', ') }}"
+        
+      - name: Build sketch and run tests
+        run: |
+          arduino-cli compile --fqbn <board-fqbn> <sketch-directory>
+          arduino-cli test --fqbn <board-fqbn> --test-port <serial-port>
