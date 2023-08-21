@@ -27,7 +27,12 @@ jobs:
       #- name: Install library from GitHub
       #  run: arduino-cli lib install <library-repo>
         
-      - name: Build sketch and run tests
+      #- name: Build sketch and run tests
+      #  run: |
+      #    arduino-cli compile --fqbn ${{matrix.board}} ./examples
+      #    #arduino-cli test --fqbn ${{matrix.board}}
+
+      - name: Compile Arduino Examples
         run: |
-          arduino-cli compile --fqbn ${{matrix.board}} ./examples
-          #arduino-cli test --fqbn ${{matrix.board}}
+         cd <directorio_principal_de_los_ejemplos>
+         find . -iname "*.ino" -exec arduino-cli compile --fqbn <board_package>:<board_architecture> {} \;
