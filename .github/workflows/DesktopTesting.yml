@@ -7,6 +7,26 @@ on:
     branches: [ "main" ]
 
 jobs:
+
+  build_and_test_Arduino:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        board:
+          - 'arduino:avr:uno'
+          - 'arduino:avr:mega'
+          #- 'arduino:avr:nano'
+          #- 'arduino:avr:leonardo'
+          - 'espressif:esp32:esp32'
+          
+    steps:
+         
+      - name: Compile Arduino Sketches
+        uses: arduino/compile-sketches@v1.1.0
+        with:
+          fqbn: ${{matrix.board}}# default is arduino:avr:uno
+
   build_and_test_Desktop:
     runs-on: ${{ matrix.os }}
 
@@ -80,21 +100,3 @@ jobs:
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
       run: ctest --build-config ${{ matrix.build_type }} --rerun-failed --output-on-failure
 
-  build_and_test_Arduino:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        board:
-          - 'arduino:avr:uno'
-          - 'arduino:avr:mega'
-          #- 'arduino:avr:nano'
-          #- 'arduino:avr:leonardo'
-          - 'espressif:esp32:esp32'
-          
-    steps:
-         
-      - name: Compile Arduino Sketches
-        uses: arduino/compile-sketches@v1.1.0
-        with:
-          fqbn: ${{matrix.board}}# default is arduino:avr:uno
