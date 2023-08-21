@@ -30,7 +30,7 @@ jobs:
      
       - name: Install this repo as a library
         run: |
-          arduino-cli lib install "${{ github.workspace }}/CPVector"
+          arduino-cli lib install "${{ github.workspace }}"
         
       - name: Install Platform
         run: |
