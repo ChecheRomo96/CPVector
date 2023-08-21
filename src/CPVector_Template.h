@@ -1,3 +1,7 @@
+/**
+ * @file CPVector_Template.h
+ * @brief CPVector::vector<> class template
+ */
 #ifndef CROSS_PLATFFORM_VECTOR_TEMPLATE_H
 #define CROSS_PLATFFORM_VECTOR_TEMPLATE_H
 
@@ -6,6 +10,16 @@
 
     namespace CPVector
     {
+        /**
+         * @brief Cross Platform Vector class. \n\n
+         * 
+         * CPVector::Vector<T> is a sequence container that encapsulates dynamic size arrays.
+         *
+         * The elements are stored contiguously, which means that elements can be accessed not only through iterators, but also using offsets to regular pointers to elements. This means that a pointer to an element of a vector may be passed to any function that expects a pointer to an element of an array.
+         * The storage of the vector is handled automatically, being expanded as needed. Vectors usually occupy more space than static arrays, because more memory is allocated to handle future growth. This way a vector does not need to reallocate each time an element is inserted, but only when the additional memory is exhausted. The total amount of allocated memory can be queried using capacity() function. Extra memory can be returned to the system via a call to shrink_to_fit()[1].
+         * Reallocations are usually costly operations in terms of performance. The reserve() function can be used to eliminate reallocations if the number of elements is known beforehand.
+         * @tparam T Data type to be used for the Dynamic Array
+         */
         template <class T>
         class  vector
         {
