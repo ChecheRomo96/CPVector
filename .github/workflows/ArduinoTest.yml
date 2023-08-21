@@ -25,6 +25,10 @@ jobs:
       - name: Install Arduino CLI
         uses: arduino/setup-arduino-cli@v1
         
+      - name: Install this repo as a library
+        run: |
+          arduino-cli lib install .
+        
       - name: Install Platform
         run: |
           arduino-cli core install arduino:avr
