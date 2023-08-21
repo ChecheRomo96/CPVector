@@ -30,4 +30,4 @@ jobs:
       - name: Build sketch and run tests
         run: |
           arduino-cli compile --fqbn <board-fqbn> <sketch-directory>
-          arduino-cli test --fqbn <board-fqbn> --test-port <serial-port>
+          arduino-cli test --fqbn ${{matrix.board-fqbn}}
