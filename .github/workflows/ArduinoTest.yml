@@ -28,7 +28,7 @@ jobs:
       - name: Install Platform
         run: |
           arduino-cli core install arduino:avr
-          arduino-cli core install espressif:esp32
+          arduino-cli core install esp32:esp32
 
       #- name: Install library from GitHub
       #  run: arduino-cli lib install <library-repo>
