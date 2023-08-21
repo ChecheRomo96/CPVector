@@ -19,33 +19,7 @@ jobs:
           
     steps:
          
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
-      - name: Install Arduino CLI
-        uses: arduino/setup-arduino-cli@v1
-        
-      - name: Print directory structure
-        run: ls -R ${{ github.workspace }}
-     
-      - name: Install this repo as a library
-        run: |
-          arduino-cli lib install "${{ github.workspace }}"
-        
-      - name: Install Platform
-        run: |
-          arduino-cli core install arduino:avr
-          arduino-cli core install esp32:esp32
-
-      #- name: Install library from GitHub
-      #  run: arduino-cli lib install <library-repo>
-        
-      #- name: Build sketch and run tests
-      #  run: |
-      #    arduino-cli compile --fqbn ${{matrix.board}} ./examples
-      #    #arduino-cli test --fqbn ${{matrix.board}}
-
-      - name: Compile Arduino Examples
-        run: |
-         cd ./examples
-         find . -iname "*.ino" -exec arduino-cli compile --fqbn ${{matrix.board}} {} \;
+      - name: Compile Arduino Sketches
+        uses: arduino/compile-sketches@v1.1.0
+        with:
+          fqbn: ${{matrix.board}}# default is arduino:avr:uno
