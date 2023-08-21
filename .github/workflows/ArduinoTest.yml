@@ -18,6 +18,13 @@ jobs:
           - 'espressif:esp32:esp32'
           
     steps:
+    
+
+      - name: Install Platform
+        run: |
+          arduino-cli core install arduino:avr
+          arduino-cli core install espressif:esp32
+         
       - name: Checkout code
         uses: actions/checkout@v2
         
