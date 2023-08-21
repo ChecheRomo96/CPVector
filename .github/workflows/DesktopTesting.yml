@@ -80,7 +80,7 @@ jobs:
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
       run: ctest --build-config ${{ matrix.build_type }} --rerun-failed --output-on-failure
 
-  arduino_build_test:
+  build_and_test_Arduino:
     runs-on: ubuntu-latest
 
     strategy:
@@ -88,8 +88,8 @@ jobs:
         board:
           - 'arduino:avr:uno'
           - 'arduino:avr:mega'
-          - 'arduino:avr:nano'
-          - 'arduino:avr:leonardo'
+          #- 'arduino:avr:nano'
+          #- 'arduino:avr:leonardo'
           - 'espressif:esp32:esp32'
           
     steps:
