@@ -18,18 +18,17 @@ jobs:
           - 'espressif:esp32:esp32'
           
     steps:
-    
-
-      - name: Install Platform
-        run: |
-          arduino-cli core install arduino:avr
-          arduino-cli core install espressif:esp32
          
       - name: Checkout code
         uses: actions/checkout@v2
         
       - name: Install Arduino CLI
         uses: arduino/setup-arduino-cli@v1
+        
+      - name: Install Platform
+        run: |
+          arduino-cli core install arduino:avr
+          arduino-cli core install espressif:esp32
 
       #- name: Install library from GitHub
       #  run: arduino-cli lib install <library-repo>
