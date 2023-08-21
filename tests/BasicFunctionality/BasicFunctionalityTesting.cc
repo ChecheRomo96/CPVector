@@ -5,7 +5,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // reserve
 
-	TEST(BasicFunctionalityTesting, resize) {
+	TEST(BasicFunctionalityTesting, reserve) {
 
 		CPVector::vector<uint8_t> myVector;
 		ASSERT_EQ(myVector.size(),0);
