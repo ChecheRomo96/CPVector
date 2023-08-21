@@ -34,5 +34,5 @@ jobs:
 
       - name: Compile Arduino Examples
         run: |
-         cd <directorio_principal_de_los_ejemplos>
-         find . -iname "*.ino" -exec arduino-cli compile --fqbn <board_package>:<board_architecture> {} \;
+         cd ./examples
+         find . -iname "*.ino" -exec arduino-cli compile --fqbn ${{matrix.board}} {} \;
