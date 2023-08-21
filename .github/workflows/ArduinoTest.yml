@@ -20,11 +20,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+        
       - name: Install Arduino CLI
-        uses: per1234/setup-arduino-cli@v2
-        with:
-          version: 0.18.3
+        uses: arduino/setup-arduino-cli@v1
 
       #- name: Install library from GitHub
       #  run: arduino-cli lib install <library-repo>
