@@ -26,6 +26,7 @@
 
                 #if defined(ARDUINO) || defined(PSOC_CREATOR)
                     unsigned int _Size;
+                    unsigned int _Capacity;
                     T* _Buffer;
                 #endif
             //
@@ -53,6 +54,7 @@
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
                                 _Buffer = NULL;
                                 _Size = 0;
+                                _Capacity = 0;
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -77,6 +79,7 @@
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
                                 _Buffer = NULL;
                                 _Size = 0;
+                                _Capacity = 0;
                             #endif
                         //
                         ///////////////// ///////////////////////////////////////////////////////////////////////////
@@ -101,6 +104,7 @@
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
                                 _Buffer = NULL;
                                 _Size = 0;
+                                _Capacity = 0;
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -130,6 +134,7 @@
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
                                 _Buffer = NULL;
                                 _Size = 0;
+                                _Capacity = 0;
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -275,6 +280,52 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
+                    void reserve(uint32_t NewSize)
+                    {
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Arduino and PSoC
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+
+                                if(NewSize < _Size){ return;}
+                                if(NewSize == 0){ clear(); return;}
+
+                                if(_Buffer == NULL)
+                                {
+                                    if((_Buffer = (T*)malloc(NewSize * sizeof(T)) )== NULL)
+                                    {
+                                        _Size = 0;
+                                        _Capacity = 0;
+                                        return 0;
+                                    }
+                                }
+                                else
+                                {
+                                    T* ptr = NULL;
+                                    
+                                    if((ptr = (T*)malloc(NewSize * sizeof(T)) )== NULL)
+                                    {
+                                        free(_Buffer );
+                                        _Size = 0;
+                                        _Capacity = 0;
+                                        return 0;
+                                    }
+                                    else
+                                    {   
+                                        _Buffer = ptr;
+                                    }
+                                }
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        //  std::vector
+
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                _Vector.reserve(NewSize);
+                            #endif
+                        //
+                    }
+
                     bool resize(uint32_t NewSize)
                     {
                         if(size() == NewSize){return 1;}
@@ -285,50 +336,25 @@
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
                                 
                                 if(NewSize == 0){ clear(); return 1;}
+
+                                if(NewSize > _Capacity)
+                                { 
+                                    reserve(NewSize); 
+                                    if(NewSize < _Capacity)
+                                    {
+                                        return 0;
+                                    }
+                                }
+
+                                auto min = (_Size<NewSize) ? _Size : NewSize;
+
+                                for(uint32_t i = min; i < NewSize; i++)
+                                {
+                                    _Buffer[i] = T();
+                                }
+
+                                _Size = NewSize;
                                 
-                                if(_Buffer == NULL)
-                                {
-                                    if((_Buffer = (T*)malloc(NewSize * sizeof(T)) )== NULL)
-                                    {
-                                        _Size = 0;
-                                        return 0;
-                                    }
-                                    else
-                                    {   
-                                        auto min = (_Size<NewSize) ? _Size : NewSize;
-
-                                        for(uint32_t i = min; i < NewSize; i++)
-                                        {
-                                            _Buffer[i] = T();
-                                        }
-
-                                        _Size = NewSize;
-                                    } 
-                                }
-                                else
-                                {
-                                    T* ptr = NULL;
-                                    
-                                    if((ptr = (T*)realloc(_Buffer,NewSize * sizeof(T)) )== NULL)
-                                    {
-                                        free(_Buffer );
-                                        _Size = 0;
-                                        return 0;
-                                    }
-                                    else
-                                    {   
-                                        _Buffer = ptr;
-                                        
-                                        auto min = (_Size<NewSize) ? _Size : NewSize;
-
-                                        for(uint32_t i = min; i < NewSize; i++)
-                                        {
-                                            _Buffer[i] = T();
-                                        }
-
-                                        _Size = NewSize;
-                                    }
-                                }
                                 return 1;
                             #endif
                         //
