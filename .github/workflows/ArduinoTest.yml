@@ -15,7 +15,7 @@ jobs:
           - 'arduino:avr:mega'
           - 'arduino:avr:nano'
           - 'arduino:avr:leonardo'
-          - 'espressif:esp32:esp32'
+          - 'esp32:esp32:esp32'
           
     steps:
          
