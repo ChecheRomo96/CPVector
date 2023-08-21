@@ -3,6 +3,38 @@
 #include <iostream>
 
 //////////////////////////////////////////////////////////////////////////////////
+// reserve
+
+	TEST(BasicFunctionalityTesting, resize) {
+
+		CPVector::vector<uint8_t> myVector;
+		ASSERT_EQ(myVector.size(),0);
+		ASSERT_EQ(myVector.capacity(),0);
+
+		for(uint8_t i = 0; i < UINT8_MAX; i++ )
+		{
+			myVector.resize(i);
+			ASSERT_EQ(myVector.size(),i);
+			ASSERT_EQ(myVector.capacity(),i);
+		}
+
+		myVector.clear();
+		ASSERT_EQ(myVector.size(),0);
+		ASSERT_EQ(myVector.capacity(),0);
+
+		myVector.reserve(UINT8_MAX);
+		ASSERT_EQ(myVector.size(),0);
+		ASSERT_EQ(myVector.capacity(),UINT8_MAX);
+
+		for(uint8_t i = 0; i < UINT8_MAX; i++ )
+		{
+			myVector.resize(i);
+			ASSERT_EQ(myVector.size(),i);
+			ASSERT_EQ(myVector.capacity(),UINT8_MAX);
+		}
+	}
+//
+//////////////////////////////////////////////////////////////////////////////////
 // resize
 
 	TEST(BasicFunctionalityTesting, resize) {
