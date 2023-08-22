@@ -368,6 +368,41 @@
                         //
                     }
 
+                    void shrink_to_fit()
+                    {
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Arduino and PSoC
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                if(_Capacity > _Size)
+                                {
+                                    T* ptr = NULL;
+                                    
+                                    if((ptr = (T*)malloc(_Size * sizeof(T)) ) != NULL)
+                                    {
+
+                                        for(uint32_t i = 0; i < _Size; i++)
+                                        {
+                                            ptr[i] = _Buffer[i];
+                                        }
+
+                                        free(_Buffer );
+                                        _Buffer = ptr;
+                                        _Capacity = _Size;
+                                    }
+                                }
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        //  std::vector
+
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                _Vector.shrink_to_fit();
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                    }
+
                     bool resize(uint32_t new_size, const T& Value = T())
                     {
                         if(size() == new_size){return 1;}
