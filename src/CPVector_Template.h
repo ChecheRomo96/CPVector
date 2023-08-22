@@ -298,19 +298,19 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
-                    void reserve(uint32_t NewSize)
+                    void reserve(uint32_t new_cap)
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
 
-                                if(NewSize < _Size){ return;}
-                                if(NewSize == 0){ clear(); return;}
+                                if(new_cap < _Size){ return;}
+                                if(new_cap == 0){ clear(); return;}
 
                                 if(_Buffer == NULL)
                                 {
-                                    if((_Buffer = (T*)malloc(NewSize * sizeof(T)) )== NULL)
+                                    if((_Buffer = (T*)malloc(new_cap * sizeof(T)) )== NULL)
                                     {
                                         _Size = 0;
                                         _Capacity = 0;
@@ -321,7 +321,7 @@
                                 {
                                     T* ptr = NULL;
                                     
-                                    if((ptr = (T*)malloc(NewSize * sizeof(T)) )== NULL)
+                                    if((ptr = (T*)malloc(new_cap * sizeof(T)) )== NULL)
                                     {
                                         free(_Buffer );
                                         _Size = 0;
@@ -339,39 +339,39 @@
                         //  std::vector
 
                             #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                _Vector.reserve(NewSize);
+                                _Vector.reserve(new_cap);
                             #endif
                         //
                     }
 
-                    bool resize(uint32_t NewSize)
+                    bool resize(uint32_t new_size)
                     {
-                        if(size() == NewSize){return 1;}
+                        if(size() == new_size){return 1;}
                         
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
                                 
-                                if(NewSize == 0){ clear(); return 1;}
+                                if(new_size == 0){ clear(); return 1;}
 
-                                if(NewSize > _Capacity)
+                                if(new_size > _Capacity)
                                 { 
-                                    reserve(NewSize); 
-                                    if(NewSize < _Capacity)
+                                    reserve(new_size); 
+                                    if(new_size < _Capacity)
                                     {
                                         return 0;
                                     }
                                 }
 
-                                auto min = (_Size<NewSize) ? _Size : NewSize;
+                                auto min = (_Size<new_size) ? _Size : new_size;
 
-                                for(uint32_t i = min; i < NewSize; i++)
+                                for(uint32_t i = min; i < new_size; i++)
                                 {
                                     _Buffer[i] = T();
                                 }
 
-                                _Size = NewSize;
+                                _Size = new_size;
                                 
                                 return 1;
                             #endif
@@ -383,14 +383,14 @@
                                 
                                 auto OldSize = _Vector.size();
 
-                                _Vector.resize(NewSize);
+                                _Vector.resize(new_size);
 
-                                if(OldSize > NewSize)
+                                if(OldSize > new_size)
                                 {
                                     _Vector.shrink_to_fit();
                                 }
 
-                                if(_Vector.size() == NewSize)
+                                if(_Vector.size() == new_size)
                                 {
                                     return 1;
                                 }
