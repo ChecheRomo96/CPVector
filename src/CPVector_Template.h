@@ -45,9 +45,9 @@
                 // Constructors, Destructor
                 
                     /**
-                     * @brief Default Constructor.
+                     * @brief Default Constructor
                      * 
-                     * Initializes the vector to have size = 0, the Capacity value is undefined, it's value is only bigger than size at all times. In order to reduce the capacity of the vector see shrink_to_fit() or clear()
+                     * Initializes the vector to have size() = 0, the Capacity value is undefined, it's value is only bigger than size at all times. In order to reduce the capacity of the vector see shrink_to_fit() or clear()
                      */
                     vector()
                     {
@@ -74,7 +74,16 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
                     
-                    vector(unsigned int Size)
+                    /**
+                     * @brief Resize Constructor
+                     * Resizes the container to contain count elements, does nothing if count == size().\n\n
+                     * If the current size is greater than count, the container is reduced to its first count elements.\n
+                     * If the current size is less than count, then:\n
+                     * 1) additional default-inserted elements are appended
+                     * 2) additional copies of value are appended.                     * @tparam count New size of the conatainer
+                     * @tparam value The value to initialize the elements with
+                     */
+                    vector(unsigned int count, const T& value = T())
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Initialization 
@@ -93,12 +102,19 @@
                         // Resizing
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Cross Compatible Code
-                                
-                            resize(Size);
+                            
+                            if(new_cap > new_size){reserve(new_cap);}
+                            resize(new_size);
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
                     
+                    /**
+                     * @brief Resize Constructor
+                     * 
+                     * Initializes the vector to have size() = new_size, the Capacity value is undefined, it's value is only bigger than size at all times. In order to reduce the capacity of the vector see shrink_to_fit() or clear()
+                     * @tparam new_size Number of elements in the vector
+                     */
                     vector(const vector<T>& Source)
                     {            
                         ////////////////////////////////////////////////////////////////////////////////////////////
