@@ -47,7 +47,7 @@
                     /**
                      * @brief Default Constructor.
                      * 
-                     * The vector to have size = 0, _Capacity value is undefined, it's value is only bigger than size at all times. In order to reduce the capacity of the vector see shirnk_to_size() or clear()
+                     * The vector to have size = 0, _Capacity value is undefined, it's value is only bigger than size at all times. In order to reduce the capacity of the vector see shrink_to_fit() or clear()
                      */
                     vector()
                     {
@@ -435,7 +435,7 @@
                                     _Vector.resize(0);
                                 }
                                 
-                                _Vector.shrink_to_size();
+                                _Vector.shrink_to_fit();
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
