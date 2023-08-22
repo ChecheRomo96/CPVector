@@ -283,9 +283,7 @@
                     // Comparison Operators
 
                         /**
-                         * @brief Eqwal to
-                         * 
-                         * Checks if both vectors are equal in size and in contents, it is important that the class T has defined == amd != operators.
+                         * @brief Equal to.\nChecks if both vectors are equal in size and in contents, it is important that the class T has defined == amd != operators.
                          * @tparam source Another container of the same type.
                          */
                         bool operator==(const vector& source) const
