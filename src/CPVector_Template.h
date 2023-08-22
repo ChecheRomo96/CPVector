@@ -76,6 +76,7 @@
                     
                     /**
                      * @brief Resize constructor
+                     * 
                      * Resizes the container to contain count elements, does nothing if count == size().\n\n
                      * If the current size is greater than count, the container is reduced to its first count elements.\n\n
                      * If the current size is less than count, then:\n
@@ -112,6 +113,7 @@
                     
                     /**
                      * @brief Copy constructor
+                     * 
                      * Constructs the container with the copy of the contents of other
                      * @tparam other another container to be used as source to initialize the elements of the container with
                      */
