@@ -45,7 +45,7 @@
                 // Constructors, Destructor
                 
                     /**
-                     * @brief Default Constructor
+                     * @brief Default constructor
                      * 
                      * Initializes the vector to have size() = 0, the Capacity value is undefined, it's value is only bigger than size at all times. In order to reduce the capacity of the vector see shrink_to_fit() or clear()
                      */
@@ -75,7 +75,7 @@
                     }
                     
                     /**
-                     * @brief Resize Constructor
+                     * @brief Resize constructor
                      * Resizes the container to contain count elements, does nothing if count == size().\n\n
                      * If the current size is greater than count, the container is reduced to its first count elements.\n\n
                      * If the current size is less than count, then:\n
@@ -111,12 +111,11 @@
                     }
                     
                     /**
-                     * @brief Resize Constructor
-                     * 
-                     * Initializes the vector to have size() = new_size, the Capacity value is undefined, it's value is only bigger than size at all times. In order to reduce the capacity of the vector see shrink_to_fit() or clear()
-                     * @tparam new_size Number of elements in the vector
+                     * @brief Copy constructor
+                     * Constructs the container with the copy of the contents of other
+                     * @tparam other another container to be used as source to initialize the elements of the container with
                      */
-                    vector(const vector<T>& Source)
+                    vector(const vector<T>& other)
                     {            
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Initialization 
@@ -136,11 +135,11 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Cross Compatible Code
                                 
-                            resize(Source.size());
+                            resize(other.size());
                             
                             for(unsigned int i = 0; i < size(); i++)
                             {
-                                (*this)[i] = Source[i];
+                                (*this)[i] = other[i];
                             }
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
