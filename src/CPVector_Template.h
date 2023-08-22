@@ -47,7 +47,7 @@
                     /**
                      * @brief Default Constructor.
                      * 
-                     * The vector to have size = 0, _Capacity value is undefined, it's value is only bigger than size at all times. In order to reduce the capacity of the vector see shrink_to_fit() or clear()
+                     * Initializes the vector to have size = 0, the Capacity value is undefined, it's value is only bigger than size at all times. In order to reduce the capacity of the vector see shrink_to_fit() or clear()
                      */
                     vector()
                     {
@@ -315,26 +315,29 @@
 
                                 if(_Buffer == NULL)
                                 {
-                                    if((_Buffer = (T*)malloc(new_cap * sizeof(T)) )== NULL)
+                                {
+                                    if((_Buffer = (T*)malloc(new_cap * sizeof(T)) ) == NULL)
                                     {
                                         _Size = 0;
                                         _Capacity = 0;
-                                        return 0;
                                     }
+
+                                    _Capacity = new_cap;
                                 }
                                 else
                                 {
                                     T* ptr = NULL;
                                     
-                                    if((ptr = (T*)malloc(new_cap * sizeof(T)) )== NULL)
+                                    if((ptr = (T*)malloc(new_cap * sizeof(T)) ) != NULL)
                                     {
+
+
+                                        for(uint32_t i = 0; i < _Size; i++)
+                                        {
+                                            ptr[i] = _Buffer[i];
+                                        }
+
                                         free(_Buffer );
-                                        _Size = 0;
-                                        _Capacity = 0;
-                                        return 0;
-                                    }
-                                    else
-                                    {   
                                         _Buffer = ptr;
                                     }
                                 }
