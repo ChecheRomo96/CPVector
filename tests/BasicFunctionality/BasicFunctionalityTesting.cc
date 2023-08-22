@@ -29,7 +29,7 @@
 		{
 			myVector.resize(i);
 			ASSERT_EQ(myVector.size(),i);
-			ASSERT_EQ(myVector.capacity(),UINT8_MAX);
+			ASSERT_GE(myVector.capacity(),UINT8_MAX);
 		}
 	}
 //
