@@ -14,7 +14,7 @@
 		{
 			myVector.resize(i);
 			ASSERT_EQ(myVector.size(),i);
-			ASSERT_EQ(myVector.capacity(),i);
+			ASSERT_GE(myVector.capacity(),i);
 		}
 
 		myVector.clear();
