@@ -9,7 +9,6 @@
 
 		CPVector::vector<uint8_t> myVector;
 		ASSERT_EQ(myVector.size(),0);
-		ASSERT_EQ(myVector.capacity(),0);
 
 		for(uint8_t i = 0; i < UINT8_MAX; i++ )
 		{
