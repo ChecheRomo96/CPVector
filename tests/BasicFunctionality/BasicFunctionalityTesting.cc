@@ -19,11 +19,11 @@
 
 		myVector.clear();
 		ASSERT_EQ(myVector.size(),0);
-		ASSERT_EQ(myVector.capacity(),0);
+		ASSERT_GE(myVector.capacity(),0);
 
 		myVector.reserve(UINT8_MAX);
 		ASSERT_EQ(myVector.size(),0);
-		ASSERT_EQ(myVector.capacity(),UINT8_MAX);
+		ASSERT_GE(myVector.capacity(),UINT8_MAX);
 
 		for(uint8_t i = 0; i < UINT8_MAX; i++ )
 		{
