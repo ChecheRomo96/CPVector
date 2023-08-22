@@ -44,6 +44,11 @@
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // Constructors, Destructor
                 
+                    /**
+                     * @brief Default Constructor.
+                     * 
+                     * The vector to have size = 0, _Capacity value is undefined, it's value is only bigger than size at all times. In order to reduce the capacity of the vector see shirnk_to_size() 
+                     */
                     vector()
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
