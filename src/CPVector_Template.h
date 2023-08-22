@@ -103,8 +103,8 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Cross Compatible Code
                             
-                            if(new_cap > new_size){reserve(new_cap);}
-                            resize(new_size);
+                            resize(new_size, value);
+
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
@@ -300,6 +300,7 @@
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
+
                     uint32_t size() const
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -367,7 +368,7 @@
                         //
                     }
 
-                    bool resize(uint32_t new_size)
+                    bool resize(uint32_t new_size, const T& Value = T())
                     {
                         if(size() == new_size){return 1;}
                         
@@ -391,7 +392,7 @@
 
                                 for(uint32_t i = min; i < new_size; i++)
                                 {
-                                    _Buffer[i] = T();
+                                    _Buffer[i] = Value;
                                 }
 
                                 _Size = new_size;
@@ -406,7 +407,7 @@
                                 
                                 auto OldSize = _Vector.size();
 
-                                _Vector.resize(new_size);
+                                _Vector.resize(new_size, Value);
 
                                 if(OldSize > new_size)
                                 {
