@@ -77,10 +77,11 @@
                     /**
                      * @brief Resize Constructor
                      * Resizes the container to contain count elements, does nothing if count == size().\n\n
-                     * If the current size is greater than count, the container is reduced to its first count elements.\n
+                     * If the current size is greater than count, the container is reduced to its first count elements.\n\n
                      * If the current size is less than count, then:\n
-                     * 1) additional default-inserted elements are appended
-                     * 2) additional copies of value are appended.                     * @tparam count New size of the conatainer
+                     * 1) additional default-inserted elements are appended\n
+                     * 2) additional copies of value are appended.\n                     
+                     * @tparam count New size of the conatainer
                      * @tparam value The value to initialize the elements with
                      */
                     vector(unsigned int count, const T& value = T())
