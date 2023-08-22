@@ -147,7 +147,14 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
                 
-                    vector(const T* Source, unsigned int Size)
+                    /**
+                     * @brief Copy constructor
+                     * 
+                     * Constructs the container with the copy of the contents of other
+                     * @tparam pointer location of the data to copy
+                     * @tparam len number of elements to copy
+                     */
+                    vector(const T* pointer, unsigned int len)
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Initialization 
@@ -167,16 +174,21 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Cross Compatible Code
                                 
-                            resize(Size);
+                            resize(len);
                             
                             for(unsigned int i = 0; i < size(); i++)
                             {
-                                (*this)[i] = Source[i];
+                                (*this)[i] = pointer[i];
                             }
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
-                    
+                
+                    /**
+                     * @brief Destructor
+                     * 
+                     * Destroys all the elements amd changes the size and capacity to 0
+                     */
                     ~vector()
                     {
                         clear();
