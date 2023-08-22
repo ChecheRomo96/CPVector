@@ -315,7 +315,6 @@
 
                                 if(_Buffer == NULL)
                                 {
-                                {
                                     if((_Buffer = (T*)malloc(new_cap * sizeof(T)) ) == NULL)
                                     {
                                         _Size = 0;
