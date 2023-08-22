@@ -380,7 +380,15 @@
                         //  std::vector
 
                             #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                
+                                auto OldSize = _Vector.size();
+
                                 _Vector.resize(NewSize);
+
+                                if(OldSize > NewSize)
+                                {
+                                    _Vector.shrink_to_fit();
+                                }
 
                                 if(_Vector.size() == NewSize)
                                 {
