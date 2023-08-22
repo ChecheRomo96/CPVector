@@ -187,7 +187,7 @@
                     /**
                      * @brief Destructor
                      * 
-                     * Destroys all the elements amd changes the size and capacity to 0
+                     * Destroys all the elements amd changes the size and capacity to 0. (Releases the used memory)
                      */
                     ~vector()
                     {
@@ -200,6 +200,13 @@
                     ///////////////////////////////////////////////////////////////////
                     // Assignment Operators
 
+                        /**
+                         * @brief Assignment operator
+                         * 
+                         * This operator is used to assign new contents to the container by replacing the existing contents. \n
+                         * It also modifies the size according to the new contents.
+                         * @tparam source Another container of the same type.
+                         */
                         vector& operator=(const vector& source)
                         {
                             if(this == &source){return *this;}
@@ -218,7 +225,13 @@
                     ///////////////////////////////////////////////////////////////////
                     // Subscript Array Operators
                     
-                        T& operator[](unsigned int x)
+                        /**
+                         * @brief Subscript Array operator
+                         * 
+                         * This operator is used to reference the element present at position given inside the operator. It is similar to the at() function, the only difference is that the at() function throws an out-of-range exception when the position is not in the bounds of the size of vector, while this operator causes undefined behavior.
+                         * @tparam position Position of the element to be fetched.
+                         */
+                        T& operator[](unsigned int position)
                         {
                             ////////////////////////////////////////////////////////////////////////////////////////////
                             // Cast Operator 
@@ -226,19 +239,25 @@
                             // Arduino and PSoC
 
                                 #if defined(ARDUINO) || defined(PSOC_CREATOR)
-                                     return _Buffer[x];
+                                     return _Buffer[position];
                                 #endif
                             //
                             ////////////////////////////////////////////////////////////////////////////////////////////
                             //  std::vector
 
                                 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                    return _Vector[x];
+                                    return _Vector[position];
                                 #endif
                             //
                             ////////////////////////////////////////////////////////////////////////////////////////////
                         }
 
+                        /**
+                         * @brief Subscript Array operator
+                         * 
+                         * This operator is used to reference the element present at position given inside the operator. It is similar to the at() function, the only difference is that the at() function throws an out-of-range exception when the position is not in the bounds of the size of vector, while this operator causes undefined behavior.
+                         * @tparam position Position of the element to be fetched.
+                         */
                         const T& operator[](unsigned int x) const
                         {
                             ////////////////////////////////////////////////////////////////////////////////////////////
@@ -263,6 +282,12 @@
                     ///////////////////////////////////////////////////////////////////
                     // Comparison Operators
 
+                        /**
+                         * @brief Eqwal to
+                         * 
+                         * Checks if both vectors are equal in size and in contents, it is important that the class T has defined == amd != operators.
+                         * @tparam source Another container of the same type.
+                         */
                         bool operator==(const vector& source) const
                         {
                             if(this == &source){return 1;}
@@ -277,6 +302,12 @@
                             return 1;
                         }
 
+                        /**
+                         * @brief Not Equal
+                         * 
+                         * Checks that both vectors doesn't have the same contents, it is important that the class T has defined == amd != operators.
+                         * @tparam source Another container of the same type.
+                         */
                         bool operator!=(const vector& source) const
                         {
                             if(this == &source){return 1;}
@@ -296,6 +327,14 @@
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // Size And Resize API
                 
+                    /**
+                     * @brief Capacity
+                     * 
+                     * Returns the size of the storage space currently allocated for the vector, expressed in terms of elements.
+                     * This capacity is not necessarily equal to the vector size. It can be equal or greater, with the extra space allowing to accommodate for growth without the need to reallocate on each insertion.
+                     * Notice that this capacity does not suppose a limit on the size of the vector. When this capacity is exhausted and more is needed, it is automatically expanded by the container (reallocating it storage space). The theoretical limit on the size of a vector is given by member max_size.
+                     * The capacity of a vector can be explicitly altered by calling member vector::reserve.
+                     */
                     uint32_t capacity() const
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -315,6 +354,12 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
+                    /**
+                     * @brief size
+                     * 
+                     * Returns the number of elements in the vector.\n 
+                     * This is the number of actual objects held in the vector, which is not necessarily equal to its storage capacity.
+                     */
                     uint32_t size() const
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -334,6 +379,14 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
+                    /**
+                     * @brief reserve
+                     * 
+                     * Increase the capacity of the vector (the total number of elements that the vector can hold without requiring reallocation) to a value that's greater or equal to new_cap. If new_cap is greater than the current capacity(), new storage is allocated, otherwise the function does nothing.\n
+                     * reserve() does not change the size of the vector.\n
+                     * If after the operation the new size() is greater than old capacity() a reallocation takes place, in which case all iterators (including the end() iterator) and all references to the elements are invalidated. Otherwise, no iterators or references are invalidated.\n
+                     * After a call to reserve(), insertions will not trigger reallocation unless the insertion would make the size of the vector greater than the value of capacity().\n
+                     */
                     void reserve(uint32_t new_cap)
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
