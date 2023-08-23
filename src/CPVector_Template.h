@@ -804,7 +804,8 @@
                      * @brief Swaps the elements at index_a and index_b
                      *
                      * The element is constructed through std::allocator_traits::construct, which typically uses placement-new to construct the element in-place at a location provided by the container. However, if the required location has been occupied by an existing element, the inserted element is constructed at another location at first, and then move assigned into the required location.
-                     * @tparam value the value of the element to append.
+                     * @tparam index_a the value of the first element to swap.
+                     * @tparam index_b the value of the second element to swap.
                      */
                     void swap(unsigned int index_a, unsigned int index_b)
                     {
@@ -861,7 +862,8 @@
                      * @brief Erases the elements between both given indices
                      *
                      * The elements are destroyed and erased. The elemnts erased include (this*)[first] and (this*)[last]. If (last<=first) or (first>=size()) the method does nothing.
-                     * @tparam index The index of the element to be erased.
+                     * @tparam first The index of the first element to be erased.
+                     * @tparam last The index of the last element to be erased.
                      */
                     void erase(unsigned int first, unsigned int last)
                     {
@@ -906,11 +908,21 @@
                     // In order for these to work the class T must have declared the <, >, and the == operators.
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //
+                        /**
+                         * @brief Sorts the contents of the container from smallest to largest
+                         *
+                         * The elements are moved based on CPVector::Sorting::Asscending<T>.
+                         */
                         void SortAscending()
                         {
                             Sort(Sorting::Ascending);
                         }
                         
+                        /**
+                         * @brief Sorts the contents of the container from largest to smallest
+                         *
+                         * The elements are moved based on CPVector::Sorting::Descending<T>.
+                         */
                         void SortDescending()
                         {
                             Sort(Sorting::Descending);
@@ -918,11 +930,23 @@
                     //
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     
+                    /**
+                     * @brief Sorts the contents of the container based on the compare function recieved.
+                     *
+                     * The elements are moved based on CompareFunction, in order to see an example definition of a comparing function see CPVector::Sorting::Descending<T> and CPVector::Sorting::Ascending<T>.
+                     * @tparam CompareFunction Function to be used to compare values.
+                     */
                     void Sort(int8_t (*CompareFunction)(const T& a, const T& b))
                     {
                         _CustomSort_Helper(CompareFunction, 0, size()-1);
                     }
                     
+                    /**
+                     * @brief Sorts the contents of the container based on the CPVector::Sorting::SortingArray<T> recieved.
+                     *
+                     * The elements are moved based on a CPVector::Sorting::SortingArray<T>, which is an ordered list of comparing functions, this to achieve multi level sorting.
+                     * @tparam laSortingArrayst Ordered list containing the sort configuration.
+                     */
                     void Sort(const Sorting::SortingArray<T>& SortingArray)
                     {
                         _CustomSort_Helper(SortingArray, 0, size()-1);
