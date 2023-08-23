@@ -711,7 +711,7 @@
                         // std::vector
                                 
                             #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                _Vector.erase(myvector.begin() + index);
+                                _Vector.erase(_Vector.begin() + index);
                             #endif
                         //
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -737,7 +737,7 @@
                         // std::vector
                                 
                             #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                _Vector.erase(myvector.begin());
+                                _Vector.erase(_Vector.begin());
                             #endif
                         //
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
