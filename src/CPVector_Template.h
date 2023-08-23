@@ -776,7 +776,8 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Cross Compatible Code
 
-                            if((index_a == index_b) || (index_a>=_Size) || (index_b>=_Size) ){return;}
+                            auto sz = size();
+                            if((index_a == index_b) || (index_a>=sz) || (index_b>=sz) ){return;}
                             _ReturnBuffer = (*this)[index_a];
                             (*this)[index_a] = (*this)[index_b];
                             (*this)[index_b] = _ReturnBuffer;
