@@ -510,7 +510,7 @@
                                 
                                 auto OldSize = _Vector.size();
 
-                                _Vector.resize(new_size, Value);
+                                _Vector.resize(new_size, value);
 
                                 if(OldSize > new_size)
                                 {
