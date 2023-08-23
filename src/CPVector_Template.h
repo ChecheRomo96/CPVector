@@ -859,7 +859,7 @@
                         //  PSoC Creator and Arduino IDE
 
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
-                                if(Position < _Size)
+                                if(first < _Size)
                                 {
                                     auto end = (_Size<last)?_Size:last;
 
