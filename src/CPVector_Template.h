@@ -66,7 +66,7 @@
                 // std::vector
 
                     #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                        std::vector<T>& stdVec() const
+                        std::vector<T>& stdVec()
                         {
                             return _Vector;
                         }
