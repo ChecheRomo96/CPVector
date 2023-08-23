@@ -145,7 +145,8 @@
 		uint8_t counter = 0;
 		while(myVector.size() > 0)
 		{
-			EXPECT_EQ(myVector.pop(),counter++);
+			EXPECT_EQ(myVector[0],counter++);
+			myVector.pop(0);
 		}
 	}
 //
@@ -168,7 +169,8 @@
 		uint8_t counter = 0;
 		while(myVector.size() > 0)
 		{
-			EXPECT_EQ(myVector.pop_first(),counter++);
+			EXPECT_EQ(myVector[0],counter++);
+			myVector.pop_first();
 		}
 	}
 //
@@ -191,7 +193,8 @@
 		uint8_t counter = UINT8_MAX-1;
 		while(myVector.size() > 0)
 		{
-			EXPECT_EQ(myVector.pop_back(),counter--);
+			EXPECT_EQ(myVector[myVector.size()-1],counter--);
+			myVector.pop_back();
 		}
 	}
 //
