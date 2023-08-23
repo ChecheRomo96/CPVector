@@ -533,6 +533,7 @@
 
                     /**
                      * @brief Removes all elements from the vector (which are destroyed), leaving the container with a size and capacity of 0.
+                     *
                      * if ( capacity > 0 ) A reallocation is guaranteed to happen, and the vector capacity is guaranteed to change due to calling this function.                     
                      */
                     void clear()
