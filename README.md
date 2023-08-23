@@ -1,8 +1,8 @@
 # Cross-Platform Vector
 
-Library for unifiying Vectors across multiple systems. These subdirectories contain a CMake build system. You can install the package with make to make it available in your computer, also you can "add" this subdirectory with cmake to compile the library when building your project. 
+Library for unifiying Vectors across multiple systems. These library contains a CMake build system. You can install the package with cmake to make it available in your computer, also you can "add" this subdirectory with cmake to compile the library when building your project. 
 
-This library complies with the Arduino Library Specification. To achieve this, a library.properties file has been included. Also there is a keywords.txt file so the IDE knows how to color keywords, examples are in the directory examples.
+This library complies with the Arduino Library Specification. To achieve this, a library.properties file has been included. Also there is a keywords.txt file so the IDE knows how to color keywords, examples are in the directory examples. The exaples are automatically discovered by Arduino IDE due to the file structure. Examples can also be compiled via cmake by adding the cache variable CPVECTOR_BUILD_EXAMPLES = ON.
 
 List of platforms where it has been tested.
 
@@ -36,30 +36,6 @@ Docs hosted at: https://checheromo96.github.io/CPVector/
 4.2.- To compile examples and turn them into executables, run: 
 	
 	cmake .. -DBUILD_EXAMPLES="ON"
-
-5.- Run 
-	
-	make	
-	sudo make install
-
-
-# Steps to install package:
-
-## Mac Os X through CMake + make
-
-1.- Clone or download the repo.
-
-2.- Open terminal and go to the the download directory (Replace "<path_to_directory>" with the path to the directory you downloaded) 
-
-    cd <path_to_directory>/CPVector
-
-3.- Run 
-
-	mkdir build && cd build
-
-4.1.- To compile run: 
-	
-	cmake .. -DINSTALL="ON"
 
 5.- Run 
 	
@@ -103,5 +79,3 @@ Note that you must have git installed on your computer.
 
 	cd CPString
 	git pull
-
-# Steps to install as a PSoC Creator Library:
