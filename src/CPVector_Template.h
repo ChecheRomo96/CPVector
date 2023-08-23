@@ -642,7 +642,7 @@
                      * The vector can call resize(len) is Resize = 1. If after the operation the new size() is greater than old capacity() a reallocation takes place, in which case all iterators (including the end() iterator) and all references to the elements are invalidated. Otherwise only the end() iterator is invalidated.
                      * @tparam source pointer to the first element to copy.
                      * @tparam len The number of elements to copy.
-                     * @tparam Resize Tells if the vector should resize to make size() = len.
+                     * @tparam Resize if Resize = 1, the vector resizes to make size() = len.
                      */
                     void copy(const T* source, unsigned int len, bool Resize = 0)
                     {
@@ -820,22 +820,33 @@
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
-                    void erase(unsigned int Position)
+                    /**
+                     * @brief Deletes the element at the given index from the list, if index >= size the method does nothing.
+                     *
+                     * The element is destroyed and erased.
+                     * @tparam index The index of the element to be erased.
+                     */
+                    void erase(unsigned int index)
                     {
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        // Cross Compatible code
+
+                            if(index>=_Size){return;}
+                        //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // std::vector
 
                             #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                _Vector.erase(_Vector.begin()+Position);
+                                _Vector.erase(_Vector.begin()+index);
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         //  PSoC Creator and Arduino IDE
 
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
-                                if(Position < _Size)
+                                if(index < _Size)
                                 {
-                                    for(unsigned int i = Position; i < _Size ;i++)
+                                    for(unsigned int i = index; i < _Size ;i++)
                                     {
                                         (*this)[i] = (*this)[i+1];
                                     }
@@ -846,8 +857,20 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
+                    /**
+                     * @brief Erases the elements between both given indices
+                     *
+                     * The elements are destroyed and erased. The elemnts erased include (this*)[first] and (this*)[last]. If (last<=first) or (first>=size()) the method does nothing.
+                     * @tparam index The index of the element to be erased.
+                     */
                     void erase(unsigned int first, unsigned int last)
                     {
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        // Cross Compatible code
+
+                            if((last<=first) || (first>=_Size)){return;}
+                            if(last>=_Size){last = _Size-1;}
+                        //
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         // std::vector
 
