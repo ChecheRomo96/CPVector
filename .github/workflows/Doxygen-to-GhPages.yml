@@ -35,7 +35,7 @@ jobs:
       run: brew install doxygen
       
     - name: Install Graphviz
-      run: sudo apt-get update && sudo apt-get install -y graphviz
+      run: brew install graphviz
       
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
