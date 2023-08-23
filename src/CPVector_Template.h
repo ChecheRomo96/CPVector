@@ -44,11 +44,6 @@
                     #endif
                 //
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                // Buffer used for the pop method
-
-                    static T _ReturnBuffer;
-                //
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             
             protected:
 
@@ -697,17 +692,29 @@
                      *
                      * When you call this method with index >= size(), it leads to undefined behavior. The C++ standard does not specify what should happen in this scenario. Attempting to remove an element from an empty container is an error and can cause the program to crash or produce incorrect results.
                      * @tparam value the value of the element to append.
-                     * @return Returns the poped value
                      */
-                    T pop(unsigned int index)
+                    void pop(unsigned int index)
                     {
-                        _ReturnBuffer = (*this)[index];
-                        for(unsigned int i = index; i < size()-1; i++)
-                        {
-                            (*this)[i] = (*this)[i+1];
-                        }
-                        resize(size()-1);
-                        return _ReturnBuffer;
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Arduino and PSoC
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                
+                                for(unsigned int i = index; i < size()-1; i++)
+                                {
+                                    (*this)[i] = (*this)[i+1];
+                                }
+                                resize(size()-1);
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // std::vector
+                                
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                _Vector.erase(myvector.begin() + index);
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                     }
                     
                     /**
@@ -717,9 +724,23 @@
                      * @tparam value the value of the element to append.
                      * @return Returns the poped value
                      */
-                    T pop_first()
+                    void pop_first()
                     {
-                        return pop(0);
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Arduino and PSoC
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                pop(0);
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // std::vector
+                                
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                _Vector.erase(myvector.begin());
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
                     /**
@@ -729,9 +750,23 @@
                      * @tparam value The value of the element to append.
                      * @return Returns the poped value
                      */
-                    T pop_back()
+                    void pop_back()
                     {
-                        return pop(size()-1);
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Arduino and PSoC
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                pop(size()-1);
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // std::vector
+                                
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                _Vector.pop_back();
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
                     /**
