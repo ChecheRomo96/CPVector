@@ -94,7 +94,7 @@
 
 		CPVector::vector<uint8_t> myVector;
 
-		myVector.copy(Data, 10, 10, 1);
+		myVector.copy(Data + 10, 10, 1);
 		ASSERT_EQ(myVector.size(), 10);
 		
 		for(uint8_t i = 0; i < 10; i++ )
@@ -138,7 +138,7 @@
 		}
 
 		CPVector::vector<uint8_t> myVector;
-		myVector.copy(Data,UINT8_MAX,0,1);
+		myVector.copy(Data,UINT8_MAX,1);
 
 		ASSERT_EQ(myVector.size(),UINT8_MAX);
 
@@ -161,7 +161,7 @@
 		}
 
 		CPVector::vector<uint8_t> myVector;
-		myVector.copy(Data,UINT8_MAX,0,1);
+		myVector.copy(Data,UINT8_MAX,1);
 
 		ASSERT_EQ(myVector.size(),UINT8_MAX);
 
@@ -184,7 +184,7 @@
 		}
 
 		CPVector::vector<uint8_t> myVector;
-		myVector.copy(Data,UINT8_MAX,0,1);
+		myVector.copy(Data,UINT8_MAX,1);
 
 		ASSERT_EQ(myVector.size(),UINT8_MAX);
 
@@ -249,7 +249,7 @@
 		}
 
 		CPVector::vector<uint8_t> myVector;
-		myVector.copy(Data,UINT8_MAX,0,1);
+		myVector.copy(Data,UINT8_MAX,1);
 
 		uint8_t counter = 0;
 		
