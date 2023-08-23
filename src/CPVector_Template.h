@@ -22,24 +22,63 @@
         template <class T>
         class  vector
         {
-            ////////////////////////////////////////////////////////////////////////////////////////////
-            // Arduino and PSoC
 
-                #if defined(ARDUINO) || defined(PSOC_CREATOR)
-                    unsigned int _Size;
-                    unsigned int _Capacity;
-                    T* _Buffer;
-                #endif
-            //
-            ////////////////////////////////////////////////////////////////////////////////////////////
-            // Desktop C++
+
+
+            private:
+
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // Arduino and PSoC
+
+                    #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                        unsigned int _Size;
+                        unsigned int _Capacity;
+                        T* _Buffer;
+                    #endif
+                //
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // std::vector
+                
+                    #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                        std::vector<T> _Vector;
+                    #endif
+                //
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // Buffer used for the pop method
+
+                    static T _ReturnBuffer;
+                //
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             
-                #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                    std::vector<T> _Vector;
-                #endif
-            //
-            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            
+            protected:
+
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // Arduino and PSoC
+
+                    #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                        T* Buffer() const
+                        {
+                            return _Buffer;
+                        }
+
+                        void Buffer_SetNull()
+                        {
+                            _Buffer = NULL;
+                        }
+                    #endif
+                //
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // std::vector
+
+                    #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                        std::vector<T>& stdVec() const
+                        {
+                            return _Vector;
+                        }
+                    #endif
+                //
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
             public:
                 
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -174,6 +213,34 @@
                             {
                                 (*this)[i] = pointer[i];
                             }
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                    }
+                
+                    /**
+                     * @brief Move constructor. Constructs the container with the copy of the contents of other
+                     * @tparam pointer location of the data to copy
+                     * @tparam len number of elements to copy
+                     */
+                    vector(vector<T>&& source)
+                    {
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // Arduino and PSoC
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                _Buffer = source.Buffer();
+                                _Size = source.size();
+                                _Capacity = source.capacity();
+                                source.Buffer_SetNull();
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // std::vector
+                                
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                clear();
+                                _Vector.swap(source.stdVec());
+                            #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
@@ -491,6 +558,11 @@
                                     }
                                 }
 
+                                for(uint32_t i = new_size; i < _Size; i++)
+                                {
+                                    _Buffer[i].~T();
+                                }
+
                                 auto min = (_Size<new_size) ? _Size : new_size;
 
                                 for(uint32_t i = min; i < new_size; i++)
@@ -517,14 +589,11 @@
                                     _Vector.shrink_to_fit();
                                 }
 
-                                if(_Vector.size() == new_size)
-                                {
-                                    return 1;
-                                }
-                                else
-                                {
-                                    return 0;
-                                }
+                                if(_Vector.size() == new_size){return 1;}
+                                else{return 0;}
+
+                                return ((_Vector.size() == new_size) ? true : false );
+
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -599,16 +668,17 @@
                     
                     /**
                      * @brief Appends the given element value to the end of the container.
+                     *
                      * If after the operation the new size() is greater than old capacity() a reallocation takes place.
-                     * @tparam value The value to initialize the new elements with.
+                     * @tparam value the value of the element to append.
                      */
-                    void push_back(const T& data)
+                    void push_back(const T& value)
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // std::vector
 
                             #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                _Vector.push_back(data);
+                                _Vector.push_back(value);
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -616,40 +686,68 @@
 
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
                                 resize(size() + 1);
-                                _Buffer[size() - 1] = data;
+                                _Buffer[size() - 1] = value;
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
                     
-                    T pop(unsigned int postion = 0)
+                    /**
+                     * @brief Delete the element at a given index
+                     *
+                     * When you call this method with index >= size(), it leads to undefined behavior. The C++ standard does not specify what should happen in this scenario. Attempting to remove an element from an empty container is an error and can cause the program to crash or produce incorrect results.
+                     * @tparam value the value of the element to append.
+                     * @return Returns the poped value
+                     */
+                    T pop(unsigned int index)
                     {
-                        T x = (*this)[postion];
-                        for(unsigned int i = postion; i < size()-1; i++)
+                        _ReturnBuffer = (*this)[index];
+                        for(unsigned int i = index; i < size()-1; i++)
                         {
                             (*this)[i] = (*this)[i+1];
                         }
                         resize(size()-1);
-                        return x;
+                        return _ReturnBuffer;
                     }
                     
+                    /**
+                     * @brief Delete the first elemnt
+                     *
+                     * When you call this method on an empty vector, it leads to undefined behavior. The C++ standard does not specify what should happen in this scenario. Attempting to remove an element from an empty container is an error and can cause the program to crash or produce incorrect results.
+                     * @tparam value the value of the element to append.
+                     * @return Returns the poped value
+                     */
                     T pop_first()
                     {
                         return pop(0);
                     }
 
+                    /**
+                     * @brief Delete the last elemnt
+                     *
+                     * When you call this method on an empty vector, it leads to undefined behavior. The C++ standard does not specify what should happen in this scenario. Attempting to remove an element from an empty container is an error and can cause the program to crash or produce incorrect results.
+                     * @tparam value The value of the element to append.
+                     * @return Returns the poped value
+                     */
                     T pop_back()
                     {
                         return pop(size()-1);
                     }
-                    
-                    void emplace(T data, unsigned int position)
+
+                    /**
+                     * @brief Inserts a new element into the container directly before pos.
+                     *
+                     * The element is inserted 
+                     * @tparam value The value of the element to append.
+                     * @tparam pos Index where the element will be appended append.
+                     */
+                    void emplace(const T& value, unsigned int pos)
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // std::vector
 
                             #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                _Vector.emplace(_Vector.begin()+position,data);
+                                _Vector.emplace(_Vector.begin()+pos,data);
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -657,25 +755,31 @@
 
                             #if defined(ARDUINO) || defined(PSOC_CREATOR)
                                 resize(_Size+1);
-                                for(unsigned int i = 0 ; i < (_Size - position - 1) ; i++)
+                                for(unsigned int i = _Size-1 ; i > pos ; i--)
                                 {
-                                    (*this)[position+i+1] = (*this)[position+i];
+                                    (*this)[i] = (*this)[i-1];
                                 }
-                                (*this)[position] = data;
+                                (*this)[pos] = value;
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
-                    void swap(unsigned int a, unsigned int b)
+                    /**
+                     * @brief Swaps the elements at index_a and index_b
+                     *
+                     * The element is constructed through std::allocator_traits::construct, which typically uses placement-new to construct the element in-place at a location provided by the container. However, if the required location has been occupied by an existing element, the inserted element is constructed at another location at first, and then move assigned into the required location.
+                     * @tparam value the value of the element to append.
+                     */
+                    void swap(unsigned int index_a, unsigned int index_b)
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Cross Compatible Code
 
-                            if(a == b){return;}
-                            T c = (*this)[a];
-                            (*this)[a] = (*this)[b];
-                            (*this)[b] = c;
+                            if((index_a == index_b) || (index_a>=_Size) || (index_b>=_Size) ){return;}
+                            _ReturnBuffer = (*this)[index_a];
+                            (*this)[index_a] = (*this)[index_b];
+                            (*this)[index_b] = _ReturnBuffer;
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
@@ -696,6 +800,34 @@
                                 if(Position < _Size)
                                 {
                                     for(unsigned int i = Position; i < _Size ;i++)
+                                    {
+                                        (*this)[i] = (*this)[i+1];
+                                    }
+                                    resize(size()-1);
+                                }
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                    }
+
+                    void erase(unsigned int first, unsigned int last)
+                    {
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // std::vector
+
+                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                _Vector.erase(_Vector.begin()+first, _Vector.begin()+last);
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        //  PSoC Creator and Arduino IDE
+
+                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                if(Position < _Size)
+                                {
+                                    auto end = (_Size<last)?_Size:last;
+
+                                    for(unsigned int i = Position; i < end ; i++)
                                     {
                                         (*this)[i] = (*this)[i+1];
                                     }
