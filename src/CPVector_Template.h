@@ -747,7 +747,7 @@
                         // std::vector
 
                             #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-                                _Vector.emplace(_Vector.begin()+pos,data);
+                                _Vector.emplace(_Vector.begin()+pos,value);
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
