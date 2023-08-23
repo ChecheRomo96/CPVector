@@ -461,7 +461,17 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
-                    bool resize(uint32_t new_size, const T& Value = T())
+
+                    /**
+                     * @brief Resizes the container to contain new_size elements, does nothing if new_size == size().
+                     * 
+                     * If the current size is greater than new_size, the container is reduced to to fit new_size elements.\n
+                     * If the current size is less than count and value parameter is unused, then additional default-inserted elements are appended.
+                     * If the current size is less than count and value parameter is used, then additional copies of value are appended.
+                     * @tparam new_size New size of the container.
+                     * @tparam value The value to initialize the new elements with.
+                     */
+                    bool resize(uint32_t new_size, const T& value = T())
                     {
                         if(size() == new_size){return 1;}
                         
@@ -485,7 +495,7 @@
 
                                 for(uint32_t i = min; i < new_size; i++)
                                 {
-                                    _Buffer[i] = Value;
+                                    _Buffer[i] = value;
                                 }
 
                                 _Size = new_size;
@@ -520,6 +530,11 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
+
+                    /**
+                     * @brief Removes all elements from the vector (which are destroyed), leaving the container with a size and capacity of 0.
+                     * if ( capacity > 0 ) A reallocation is guaranteed to happen, and the vector capacity is guaranteed to change due to calling this function.                     
+                     */
                     void clear()
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -555,25 +570,37 @@
                 //
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // API
-                
-                    void copy(const T* source, unsigned int len, unsigned int offset = 0, bool Resize = 0)
+                    
+                    /**
+                     * @brief Copies len data elements from a buffer passed by pointer.
+                     *
+                     * The vector can call resize(len) is Resize = 1. If after the operation the new size() is greater than old capacity() a reallocation takes place, in which case all iterators (including the end() iterator) and all references to the elements are invalidated. Otherwise only the end() iterator is invalidated.
+                     * @tparam source pointer to the first element to copy.
+                     * @tparam len The number of elements to copy.
+                     * @tparam Resize Tells if the vector should resize to make size() = len.
+                     */
+                    void copy(const T* source, unsigned int len, bool Resize = 0)
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Cross Compatible Code
 
                             if(Resize == 1){resize(len);}
                             
-                            unsigned int min = ((size()<len)?size():len) + offset;
-
+                            unsigned int StopCondition = ((size()<len)?size():len);
                             
-                            for(unsigned int i = offset; i < min; i++)
+                            for(unsigned int i = 0; i < StopCondition; i++)
                             {
-                                (*this)[i-offset] = source[i];
+                                (*this)[i] = source[i];
                             }
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
                     
+                    /**
+                     * @brief Appends the given element value to the end of the container.
+                     * If after the operation the new size() is greater than old capacity() a reallocation takes place.
+                     * @tparam value The value to initialize the new elements with.
+                     */
                     void push_back(const T& data)
                     {
                         ////////////////////////////////////////////////////////////////////////////////////////////
