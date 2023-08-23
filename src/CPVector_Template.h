@@ -863,7 +863,7 @@
                                 {
                                     auto end = (_Size<last)?_Size:last;
 
-                                    for(unsigned int i = Position; i < end ; i++)
+                                    for(unsigned int i = first; i < end ; i++)
                                     {
                                         (*this)[i] = (*this)[i+1];
                                     }
