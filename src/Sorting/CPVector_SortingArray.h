@@ -42,10 +42,10 @@
 	        	////////////////////////////////////////////////////////////////
 	        	// API
 
-                    //void copy(const CompareResult(*Fn[])(const T& a, const T& b), unsigned int len, bool Resize = 0)
-	                //{
-	                //	buffer.copy(Fn,len,Resize);
-	                //}
+                    void copy(const CompareResult(*(*Fn))(const T& a, const T& b), unsigned int len, bool Resize = 0)
+	                {
+	                	buffer.copy(Fn,len,Resize);
+	                }
 
 	                void push_back(CompareResult(*Fn)(const T& a, const T& b))
 	                {
