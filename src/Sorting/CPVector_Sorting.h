@@ -9,7 +9,7 @@
 	    	typedef int8_t CompareResult;
 
 	    	template<class T>
-	    	using CompareCallback<T> = CompareResult(*)(const T&, const T&);
+	    	using CompareCallback = CompareResult(*)(const T&, const T&);
 	    //
 		////////////////////////////////////////////////////////////////////////
 		// Definitions
