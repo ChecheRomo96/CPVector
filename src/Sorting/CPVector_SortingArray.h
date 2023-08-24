@@ -54,6 +54,11 @@
 	                {
 	                	buffer.swap(a,b);
 	                }
+
+	                void emplace(unsigned int a, unsigned int b)
+	                {
+	                	buffer.swap(a,b);
+	                }
 	            
 	                void erase(unsigned int n)
 	                {
