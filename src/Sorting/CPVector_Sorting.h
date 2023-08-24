@@ -8,7 +8,6 @@
 
 	    	typedef int8_t Result;
 
-
 	    	template<class T>
 	    	using Callback = Result(*)(const T&, const T&);
 	    //
@@ -19,14 +18,6 @@
 			static constexpr Result Equal = 0;
 			static constexpr Result Ignore = -1;
 		//
-        ////////////////////////////////////////////////////////////////////////
-        // Comparing functions templates
-			
-			#define CPVector::Sorting::CompareFunction(Name) 	\
-	        template <class T>									\
-	        Result Name(const T& Element, const T& Pivot)		\
-
-		// 
         ////////////////////////////////////////////////////////////////////////
         // Comparing functions templates
 
