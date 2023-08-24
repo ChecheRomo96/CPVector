@@ -899,55 +899,62 @@
                     }
                 //
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                // Sorting
+                // Sorting - In order for these to work the class T must have declared the <, >, and the == operators.
 
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    // In order for these to work the class T must have declared the <, >, and the == operators.
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //
-                        /**
-                         * @brief Sorts the contents of the container from smallest to largest
-                         *
-                         * The elements are moved based on CPVector::Sorting::Asscending<T>.
-                         */
-                        void sortAscending()
-                        {
-                            sort(Sorting::Ascending);
-                        }
-                        
-                        /**
-                         * @brief Sorts the contents of the container from largest to smallest
-                         *
-                         * The elements are moved based on CPVector::Sorting::Descending<T>.
-                         */
-                        void sortDescending()
-                        {
-                            sort(Sorting::Descending);
-                        }
-                    //
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    
-                    /**
-                     * @brief Sorts the contents of the container based on the compare function recieved.
-                     *
-                     * The elements are moved based on CompareFunction, in order to see an example definition of a comparing function see CPVector::Sorting::Descending<T> and CPVector::Sorting::Ascending<T>.
-                     * @tparam CompareFunction Function to be used to compare values.
-                     */
-                    void sort(Sorting::Callback<T> CompareFunction)
-                    {
-                        _CustomSort_Helper(CompareFunction, 0, size()-1);
-                    }
-                    
-                    /**
-                     * @brief Sorts the contents of the container based on the CPVector::Sorting::SortingArray<T> recieved.
-                     *
-                     * The elements are moved based on a CPVector::Sorting::SortingArray<T>, which is an ordered list of comparing functions, this to achieve multi level sorting.
-                     * @tparam laSortingArrayst Ordered list containing the sort configuration.
-                     */
-                    void sort(const Sorting::SortingArray<T>& SortingArray)
-                    {
-                        _CustomSort_Helper(SortingArray, 0, size()-1);
-                    }
+                    #if defined(CPVECTOR_SORTING_ENABLED)
+
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //
+                            /**
+                             * @brief Sorts the contents of the container based on the compare function recieved.
+                             *
+                             * The elements are moved based on CompareFunction, in order to see an example definition of a comparing function see CPVector::Sorting::Descending<T> and CPVector::Sorting::Ascending<T>.
+                             * @tparam CompareFunction Function to be used to compare values.
+                             */
+                            void sort(const Sorting::Callback<T> CompareFunction)
+                            {
+                                _CustomSort_Helper(CompareFunction, 0, size()-1);
+                            }
+                        //    
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //
+                            /**
+                             * @brief Sorts the contents of the container based on the CPVector::Sorting::SortingArray<T> recieved.
+                             *
+                             * The elements are moved based on a CPVector::Sorting::SortingArray<T>, which is an ordered list of comparing functions, this to achieve multi level sorting.
+                             * @tparam laSortingArrayst Ordered list containing the sort configuration.
+                             */
+                            void sort(const Sorting::SortingArray<T>& SortingArray)
+                            {
+                                _CustomSort_Helper(SortingArray, 0, size()-1);
+                            }
+                        //
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //
+                            /**
+                             * @brief Sorts the contents of the container from smallest to largest
+                             *
+                             * The elements are moved based on CPVector::Sorting::Asscending<T>.
+                             */
+                            void sortAscending()
+                            {
+                                sort(Sorting::Ascending);
+                            }
+                        //
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //
+                            /**
+                             * @brief Sorts the contents of the container from largest to smallest
+                             *
+                             * The elements are moved based on CPVector::Sorting::Descending<T>.
+                             */
+                            void sortDescending()
+                            {
+                                sort(Sorting::Descending);
+                            }
+                        //
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    #endif
                 //
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -956,96 +963,99 @@
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // Sorting Helpers
 
-                    void _CustomSort_Helper(int8_t (*CompareFunction)(const T& a, const T& b), unsigned int lower, unsigned int upper)
-                    {
-                        // Limits check
-                        if(lower > upper)
-                        {
-                            unsigned int tmp = lower;
-                            lower = upper;
-                            upper = tmp;
-                        }
+                    #if defined(CPVECTOR_SORTING_ENABLED)
 
-                        // Calculate new Pivot
-                        unsigned int pivot = lower;
-                        pivot = _CustomSort_Partition(CompareFunction,lower,upper,pivot);
-                        
-                        // Recursive calls
-                        if(pivot > lower+1){_CustomSort_Helper(CompareFunction,lower,pivot-1);}
-                        if(pivot < upper-1)_CustomSort_Helper(CompareFunction,pivot+1,upper);
-                    }
-                    
-                    unsigned int _CustomSort_Partition(int8_t (*CompareFunction)(const T& a, const T& b), unsigned int lower, unsigned int upper, unsigned int pivot)
-                    {
-                        // Store Pivot value at the Highest index (upper limit)
-                        swap(pivot,upper);
-                        
-                        // Initialize the exchange index at the lower limit
-                        int index = lower;
-
-                        // Cycle through each element
-                        for(unsigned int i = lower ; i < upper; i++)
+                        void _CustomSort_Helper(const Sorting::Callback<T> CompareFunction, unsigned int lower, unsigned int upper)
                         {
-                            // Comparing the n'th element against the pivot 
-                            if(CompareFunction((*this)[i],(*this)[upper]) == CPVector::Sorting::Swap)
+                            // Limits check
+                            if(lower > upper)
                             {
-                                // If the element at the n'th position is lower compared to the Pivot,
-                                // then it is swapped to its new place and the the index counter increases.
-                                swap(index,i);
-                                index++;
+                                unsigned int tmp = lower;
+                                lower = upper;
+                                upper = tmp;
                             }
+
+                            // Calculate new Pivot
+                            unsigned int pivot = lower;
+                            pivot = _CustomSort_Partition(CompareFunction,lower,upper,pivot);
+                            
+                            // Recursive calls
+                            if(pivot > lower+1){_CustomSort_Helper(CompareFunction,lower,pivot-1);}
+                            if(pivot < upper-1)_CustomSort_Helper(CompareFunction,pivot+1,upper);
                         }
-
-                        // Move the pivot element back to it's place
-                        swap(index,upper);
-                        return index;
-                    }
-                    
-                    void _CustomSort_Helper(const Sorting::SortingArray<T>& SortingArray, unsigned int lower, unsigned int upper)
-                    {
-                        // Limits check
-                        if(lower > upper)
-                        {
-                            unsigned int tmp = lower;
-                            lower = upper;
-                            upper = tmp;
-                        }
-
-                        // Sort and get new pivot index
-                        unsigned int pivot = lower;
-                        pivot = _CustomSort_Partition(SortingArray,lower,upper,lower);
-
-                        // Recursive calls
-                        if(pivot > lower+1){_CustomSort_Helper(SortingArray,lower,pivot-1);}
-                        if(pivot < upper-1)_CustomSort_Helper(SortingArray,pivot+1,upper);
                         
-                    }
-                    
-                    unsigned int _CustomSort_Partition(const Sorting::SortingArray<T>& CompareVector, unsigned int lower, unsigned int upper, unsigned int pivot)
-                    {
-                        // Store Pivot value at the Highest index (upper limit)
-                        swap(pivot, upper);
-                        
-                        // Initialize the exchange index at the lower limit
-                        int index = lower;
-
-                        // Cycle through each element
-                        for(unsigned int i = lower ; i < upper; i++)
+                        unsigned int _CustomSort_Partition(int8_t (*CompareFunction)(const T& a, const T& b), unsigned int lower, unsigned int upper, unsigned int pivot)
                         {
-                            // Comparing the n'th element against the pivot 
-                            if(CompareVector.compare((*this)[i],(*this)[upper]) == CPVector::Sorting::Swap)
+                            // Store Pivot value at the Highest index (upper limit)
+                            swap(pivot,upper);
+                            
+                            // Initialize the exchange index at the lower limit
+                            int index = lower;
+
+                            // Cycle through each element
+                            for(unsigned int i = lower ; i < upper; i++)
                             {
-                                // If the element at the n'th position is lower compared to the Pivot,
-                                // then it is swapped to its new place and the the index counter increases.
-                                swap(index,i);
-                                index++;
+                                // Comparing the n'th element against the pivot 
+                                if(CompareFunction((*this)[i],(*this)[upper]) == CPVector::Sorting::Swap)
+                                {
+                                    // If the element at the n'th position is lower compared to the Pivot,
+                                    // then it is swapped to its new place and the the index counter increases.
+                                    swap(index,i);
+                                    index++;
+                                }
                             }
-                        }
 
-                        // Move the pivot element back to it's place
-                        swap(index,upper);
-                        return index;
-                    }
+                            // Move the pivot element back to it's place
+                            swap(index,upper);
+                            return index;
+                        }
+                        
+                        void _CustomSort_Helper(const Sorting::SortingArray<T>& SortingArray, unsigned int lower, unsigned int upper)
+                        {
+                            // Limits check
+                            if(lower > upper)
+                            {
+                                unsigned int tmp = lower;
+                                lower = upper;
+                                upper = tmp;
+                            }
+
+                            // Sort and get new pivot index
+                            unsigned int pivot = lower;
+                            pivot = _CustomSort_Partition(SortingArray,lower,upper,lower);
+
+                            // Recursive calls
+                            if(pivot > lower+1){_CustomSort_Helper(SortingArray,lower,pivot-1);}
+                            if(pivot < upper-1)_CustomSort_Helper(SortingArray,pivot+1,upper);
+                            
+                        }
+                        
+                        unsigned int _CustomSort_Partition(const Sorting::SortingArray<T>& CompareVector, unsigned int lower, unsigned int upper, unsigned int pivot)
+                        {
+                            // Store Pivot value at the Highest index (upper limit)
+                            swap(pivot, upper);
+                            
+                            // Initialize the exchange index at the lower limit
+                            int index = lower;
+
+                            // Cycle through each element
+                            for(unsigned int i = lower ; i < upper; i++)
+                            {
+                                // Comparing the n'th element against the pivot 
+                                if(CompareVector.compare((*this)[i],(*this)[upper]) == CPVector::Sorting::Swap)
+                                {
+                                    // If the element at the n'th position is lower compared to the Pivot,
+                                    // then it is swapped to its new place and the the index counter increases.
+                                    swap(index,i);
+                                    index++;
+                                }
+                            }
+
+                            // Move the pivot element back to it's place
+                            swap(index,upper);
+                            return index;
+                        }
+                    #endif
                 //
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         };
