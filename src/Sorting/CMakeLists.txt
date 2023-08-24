@@ -3,6 +3,7 @@ set( HEADERS_LIST "" )
 
 # Append Headers
 list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/CPVector_Sorting.h")
+list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/CPVector_SortingArray.h")
 
 # CPVector install process
 if( INSTALL STREQUAL "ON")
