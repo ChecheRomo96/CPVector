@@ -22,9 +22,9 @@
         ////////////////////////////////////////////////////////////////////////
         // Comparing functions templates
 			
-			#define CPVector::Sorting::CompareFunction(Name) 						\
+			#define CPVector::Sorting::CompareFunction(Name) 	\
 	        template <class T>									\
-	        Result Name(const T& Element, const T& Pivot)
+	        Result Name(const T& Element, const T& Pivot)		\
 
 		// 
         ////////////////////////////////////////////////////////////////////////
