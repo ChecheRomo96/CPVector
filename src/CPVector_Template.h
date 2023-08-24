@@ -1035,7 +1035,7 @@
                         for(unsigned int i = lower ; i < upper; i++)
                         {
                             // Comparing the n'th element against the pivot 
-                            if(CompareVector.Evaluate((*this)[i],(*this)[upper]) == CPVector::Sorting::Swap)
+                            if(CompareVector.compare((*this)[i],(*this)[upper]) == CPVector::Sorting::Swap)
                             {
                                 // If the element at the n'th position is lower compared to the Pivot,
                                 // then it is swapped to its new place and the the index counter increases.
