@@ -47,6 +47,12 @@
 	                	buffer.copy(Fn,len,Resize);
 	                }
 
+                    void copy(const CPVector::vector<CompareCallback>& vector, unsigned int len, bool Resize = 0)
+	                {
+	                	auto min = (vector.size()<len)?vector.size():len;
+	                	buffer.copy(vector[0],min,Resize);
+	                }
+
 	                void push_back(CompareResult(*Fn)(const T& a, const T& b))
 	                {
 	                    if(Fn != NULL)
