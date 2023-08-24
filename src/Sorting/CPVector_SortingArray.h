@@ -81,7 +81,7 @@
 	                    buffer.erase(first, last);
                     }
 	            
-	                void erase(CompareCallback)
+	                void erase(CompareCallback<T> Fn)
 	                {
 	                	for(uint8_t i = 0; i < buffer.size(); i++)
 	                	{
