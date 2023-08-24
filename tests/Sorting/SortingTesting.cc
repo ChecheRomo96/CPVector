@@ -16,7 +16,7 @@
 			myVector[i] = rand();
 		}
 
-		myVector.SortAscending();
+		myVector.sortAscending();
 
 		for(uint8_t i = 0; i < myVector.size()-1; i++ )
 		{
@@ -38,7 +38,7 @@
 			myVector[i] = rand();
 		}
 
-		myVector.SortDescending();
+		myVector.sortDescending();
 
 		for(uint8_t i = 0; i < myVector.size()-1; i++ )
 		{
