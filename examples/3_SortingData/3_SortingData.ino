@@ -15,7 +15,7 @@ void setup()
     else{Serial.println();}
   }
 
-  myVector1.SortAscending();
+  myVector1.sortAscending();
   
   for(uint16_t i = 0; i < myVector1.size(); i++)
   {
