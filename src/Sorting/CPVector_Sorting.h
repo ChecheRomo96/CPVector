@@ -6,6 +6,11 @@
 		////////////////////////////////////////////////////////////////////////
 		// type used as return type for comparing functions
 
+            /**
+             * @brief return type for comparing functions
+             *
+             * Any Result that is not Swap, Equal, or Ignore, will have no efect on the sorting functionality of the vector. 
+             */
 	    	typedef int8_t Result;
 
 	    	template<class T>
