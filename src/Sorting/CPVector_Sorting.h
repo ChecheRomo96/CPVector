@@ -1,5 +1,12 @@
 #ifndef CROSS_PLATFORM_VECTOR_SORTING_H
 #define CROSS_PLATFORM_VECTOR_SORTING_H
+	
+	namespace CPVector
+	{
+        template <class T>
+        class vector;
+	}
+
 
 	namespace CPVector::Sorting
 	{
