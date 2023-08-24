@@ -20,7 +20,7 @@
 	            ////////////////////////////////////////////////////////////////
 	            // Compare Function Vector
 
-	            	CPVector::vector<int8_t(*)(const T& a, const T& b)> buffer;
+	            	CPVector::vector<CompareResult(*)(const T& a, const T& b)> buffer;
 	            //
 	            ////////////////////////////////////////////////////////////////
 
@@ -42,12 +42,12 @@
 	        	////////////////////////////////////////////////////////////////
 	        	// API
 
-                    void copy(const int8_t(*Fn[])(const T& a, const T& b), unsigned int len, bool Resize = 0)
+                    void copy(const CompareResult(*Fn[])(const T& a, const T& b), unsigned int len, bool Resize = 0)
 	                {
 	                	buffer.copy(Fn,len,Resize);
 	                }
 
-	                void push_back(int8_t(*Fn)(const T& a, const T& b))
+	                void push_back(CompareResult(*Fn)(const T& a, const T& b))
 	                {
 	                    if(Fn != NULL)
 	                    {
@@ -75,7 +75,7 @@
 	                    buffer.erase(first, last);
                     }
 	            
-	                void erase(int8_t(*Fn)(const T& a, const T& b))
+	                void erase(CompareResult(*Fn)(const T& a, const T& b))
 	                {
 	                	for(uint8_t i = 0; i < buffer.size(); i++)
 	                	{
