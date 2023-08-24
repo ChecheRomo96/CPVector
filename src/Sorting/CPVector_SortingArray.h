@@ -88,12 +88,12 @@
 
 	                CompareResult compare(const T& a, const T& b) const
 	                {
-	             		if(buffer.size() == 0){return Sorting::Equal;}
+	             		if(buffer.size() == 0){return CPVector::Sorting::Equal;}
 	                    
 	                    uint8_t index = 0;
-	                    CompareResult result = Sorting::Equal;
+	                    CompareResult result = CPVector::Sorting::Equal;
 	                    
-	                    while(result == Sorting::Equal)
+	                    while(result == CPVector::Sorting::Equal)
 	                    {
 	                        result = buffer[index](a,b);
 	                        index++;
