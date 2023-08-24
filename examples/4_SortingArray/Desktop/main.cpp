@@ -25,7 +25,7 @@ int main()
 		else { std::cout << std::endl; }
 	}
 	
-	myVector1.Sort(SortConfig);
+	myVector1.sort(SortConfig);
 
 	for (uint16_t i = 0; i < myVector1.size(); i++)
 	{
