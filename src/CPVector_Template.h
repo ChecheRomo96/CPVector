@@ -914,7 +914,7 @@
                          */
                         void sortAscending()
                         {
-                            Sort(Sorting::Ascending);
+                            sort(Sorting::Ascending);
                         }
                         
                         /**
@@ -924,7 +924,7 @@
                          */
                         void sortDescending()
                         {
-                            Sort(Sorting::Descending);
+                            sort(Sorting::Descending);
                         }
                     //
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
