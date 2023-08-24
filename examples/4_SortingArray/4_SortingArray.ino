@@ -24,9 +24,9 @@ void setup()
 
 
     CPVector::Sorting::SortingArray<uint8_t> SortConfig;
-    SortConfig.Append(Sorting_EvenFirst);
-    SortConfig.Append(CPVector::Sorting::Ascending);
-    myVector1.Sort(SortConfig);
+    SortConfig.push_back(Sorting_EvenFirst);
+    SortConfig.push_back(CPVector::Sorting::Ascending);
+    myVector1.sort(SortConfig);
 
     for(uint16_t i = 0; i < myVector1.size(); i++)
     {
