@@ -912,7 +912,7 @@
                          *
                          * The elements are moved based on CPVector::Sorting::Asscending<T>.
                          */
-                        void SortAscending()
+                        void sortAscending()
                         {
                             Sort(Sorting::Ascending);
                         }
@@ -922,7 +922,7 @@
                          *
                          * The elements are moved based on CPVector::Sorting::Descending<T>.
                          */
-                        void SortDescending()
+                        void sortDescending()
                         {
                             Sort(Sorting::Descending);
                         }
@@ -935,7 +935,7 @@
                      * The elements are moved based on CompareFunction, in order to see an example definition of a comparing function see CPVector::Sorting::Descending<T> and CPVector::Sorting::Ascending<T>.
                      * @tparam CompareFunction Function to be used to compare values.
                      */
-                    void Sort(int8_t (*CompareFunction)(const T& a, const T& b))
+                    void sort(int8_t (*CompareFunction)(const T& a, const T& b))
                     {
                         _CustomSort_Helper(CompareFunction, 0, size()-1);
                     }
@@ -946,7 +946,7 @@
                      * The elements are moved based on a CPVector::Sorting::SortingArray<T>, which is an ordered list of comparing functions, this to achieve multi level sorting.
                      * @tparam laSortingArrayst Ordered list containing the sort configuration.
                      */
-                    void Sort(const Sorting::SortingArray<T>& SortingArray)
+                    void sort(const Sorting::SortingArray<T>& SortingArray)
                     {
                         _CustomSort_Helper(SortingArray, 0, size()-1);
                     }
