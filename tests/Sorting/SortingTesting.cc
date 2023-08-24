@@ -84,10 +84,10 @@
 
 
 		CPVector::Sorting::SortingArray<TestingStruct> SortConfig;
-		SortConfig.Append(TestingStruct_A_Ascending);
-		SortConfig.Append(TestingStruct_B_Ascending);
+		SortConfig.push_back(TestingStruct_A_Ascending);
+		SortConfig.push_back(TestingStruct_B_Ascending);
 
-		myVector.Sort(SortConfig);
+		myVector.sort(SortConfig);
 
 		for(uint8_t i = 0; i < myVector.size()-1; i++ )
 		{
