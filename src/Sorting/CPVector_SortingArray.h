@@ -42,7 +42,12 @@
 	        	////////////////////////////////////////////////////////////////
 	        	// API
 
-	                void append(int8_t(*Fn)(const T& a, const T& b))
+                    void copy(const int8_t(*Fn[])(const T& a, const T& b), unsigned int len, bool Resize = 0)
+	                {
+	                	buffer.copy(Fn,len,Resize);
+	                }
+
+	                void push_back(int8_t(*Fn)(const T& a, const T& b))
 	                {
 	                    if(Fn != NULL)
 	                    {
@@ -62,11 +67,13 @@
 	            
 	                void erase(unsigned int n)
 	                {
-	                    if(n<buffer.size())
-	                    {
-	                        buffer.erase(n);
-	                    }
+	                    buffer.erase(n);
 	                }
+
+                    void erase(unsigned int first, unsigned int last)
+                    {
+	                    buffer.erase(first, last);
+                    }
 	            
 	                void erase(int8_t(*Fn)(const T& a, const T& b))
 	                {
