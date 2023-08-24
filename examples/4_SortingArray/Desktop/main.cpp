@@ -11,8 +11,8 @@ int8_t Sorting_EvenFirst(const uint8_t& Element, const uint8_t& Pivot)
 int main()
 {
 	CPVector::Sorting::SortingArray<uint8_t> SortConfig;
-	SortConfig.Append(Sorting_EvenFirst);
-	SortConfig.Append(CPVector::Sorting::Ascending);
+	SortConfig.push_back(Sorting_EvenFirst);
+	SortConfig.push_back(CPVector::Sorting::Ascending);
 
     CPVector::vector<uint8_t> myVector1;
 	myVector1.resize(20);
