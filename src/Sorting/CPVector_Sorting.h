@@ -6,23 +6,32 @@
 		////////////////////////////////////////////////////////////////////////
 		// type used as return type for comparing functions
 
-	    	typedef int8_t CompareResult;
+	    	typedef int8_t Result;
+
 
 	    	template<class T>
-	    	using CompareCallback = CompareResult(*)(const T&, const T&);
+	    	using Callback = Result(*)(const T&, const T&);
 	    //
 		////////////////////////////////////////////////////////////////////////
 		// Definitions
 
-			static constexpr CompareResult Swap = 1;
-			static constexpr CompareResult Equal = 0;
-			static constexpr CompareResult Ignore = -1;
+			static constexpr Result Swap = 1;
+			static constexpr Result Equal = 0;
+			static constexpr Result Ignore = -1;
 		//
+        ////////////////////////////////////////////////////////////////////////
+        // Comparing functions templates
+			
+			#define CPVector::Sorting::CompareFunction(Name) 						\
+	        template <class T>									\
+	        Result Name(const T& Element, const T& Pivot)
+
+		// 
         ////////////////////////////////////////////////////////////////////////
         // Comparing functions templates
 
 	        template <class T>
-	        CompareResult Ascending(const T& Element, const T& Pivot)
+	        Result Ascending(const T& Element, const T& Pivot)
 	        {
 	            if(Element==Pivot){return Sorting::Equal;}
 	            else if(Element<Pivot){return Sorting::Swap;}
@@ -30,7 +39,7 @@
 	        }
 	        
 	        template <class T>
-	        CompareResult Descending(const T& Element, const T& Pivot)
+	        Result Descending(const T& Element, const T& Pivot)
 	        {
 	            if(Element==Pivot){return Sorting::Equal;}
 	            else if(Element>Pivot){return Sorting::Swap;}

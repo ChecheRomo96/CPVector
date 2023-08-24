@@ -20,7 +20,7 @@
 	            ////////////////////////////////////////////////////////////////
 	            // Compare Function Vector
 
-	            	CPVector::vector<CompareResult(*)(const T& a, const T& b)> buffer;
+	            	CPVector::vector<Result(*)(const T& a, const T& b)> buffer;
 	            //
 	            ////////////////////////////////////////////////////////////////
 
@@ -42,18 +42,18 @@
 	        	////////////////////////////////////////////////////////////////
 	        	// API
 
-                    void copy(const CompareCallback<T>* Fn, unsigned int len, bool Resize = 0)
+                    void copy(const Sorting::Callback<T>* Callbacks, unsigned int len, bool Resize = 0)
 	                {
-	                	buffer.copy(Fn,len,Resize);
+	                	buffer.copy(Callbacks,len,Resize);
 	                }
 
-                    void copy(const CPVector::vector<CompareCallback<T>>& vector, unsigned int len, bool Resize = 0)
+                    void copy(const CPVector::vector<Sorting::Callback<T>>& vector, unsigned int len, bool Resize = 0)
 	                {
 	                	auto min = (vector.size()<len)?vector.size():len;
 	                	buffer.copy(vector[0],min,Resize);
 	                }
 
-	                void push_back(CompareResult(*Fn)(const T& a, const T& b))
+	                void push_back(Result(*Fn)(const T& a, const T& b))
 	                {
 	                    if(Fn != NULL)
 	                    {
@@ -81,7 +81,7 @@
 	                    buffer.erase(first, last);
                     }
 	            
-	                void erase(CompareCallback<T> Fn)
+	                void erase(Sorting::Callback<T> Fn)
 	                {
 	                	for(uint8_t i = 0; i < buffer.size(); i++)
 	                	{
@@ -92,12 +92,12 @@
 	                	}
 	                }
 
-	                CompareResult compare(const T& a, const T& b) const
+	                Result compare(const T& a, const T& b) const
 	                {
 	             		if(buffer.size() == 0){return CPVector::Sorting::Equal;}
 	                    
 	                    uint8_t index = 0;
-	                    CompareResult result = CPVector::Sorting::Equal;
+	                    Result result = CPVector::Sorting::Equal;
 	                    
 	                    while(result == CPVector::Sorting::Equal)
 	                    {

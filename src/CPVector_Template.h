@@ -935,7 +935,7 @@
                      * The elements are moved based on CompareFunction, in order to see an example definition of a comparing function see CPVector::Sorting::Descending<T> and CPVector::Sorting::Ascending<T>.
                      * @tparam CompareFunction Function to be used to compare values.
                      */
-                    void sort(int8_t (*CompareFunction)(const T& a, const T& b))
+                    void sort(CompareCallback<T> CompareFunction)
                     {
                         _CustomSort_Helper(CompareFunction, 0, size()-1);
                     }
