@@ -522,7 +522,6 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
 
-
                     /**
                      * @brief Resizes the container to contain new_size elements, does nothing if new_size == size().
                      * 
@@ -592,7 +591,6 @@
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                     }
-
 
                     /**
                      * @brief Removes all elements from the vector (which are destroyed), leaving the container with a size and capacity of 0.
@@ -935,7 +933,7 @@
                      * The elements are moved based on CompareFunction, in order to see an example definition of a comparing function see CPVector::Sorting::Descending<T> and CPVector::Sorting::Ascending<T>.
                      * @tparam CompareFunction Function to be used to compare values.
                      */
-                    void sort(CompareCallback<T> CompareFunction)
+                    void sort(Sorting::Callback<T> CompareFunction)
                     {
                         _CustomSort_Helper(CompareFunction, 0, size()-1);
                     }
