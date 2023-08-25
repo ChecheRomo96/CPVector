@@ -73,7 +73,7 @@ jobs:
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         -S ${{ github.workspace }}
         -DCPVECTOR_ENABLE_TESTING=TRUE
-        -DCPVECTOR_ENABLE_SORTING=TRUE
+        -DCPVECTOR_COMPILE_SORTING=TRUE
 
     - name: Build
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
