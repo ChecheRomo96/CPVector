@@ -1,6 +1,8 @@
 # Cross-Platform Vector
 
-Library for unifiying Vectors across multiple systems. These library contains a CMake build system. You can install the package with cmake to make it available in your system, also you can "add" this subdirectory with cmake to compile the library when building your project. 
+Library for unifiying Vectors across multiple systems. CPVector::vector<> is based on std::vector<> class and uses it on desktop (*WIN32*, *_WIN32*, *__WIN32__*, *__APPLE__*, *linux*), These library contains a CMake build system. You can install the package with cmake to make it available in your system, also you can "add" this subdirectory with cmake to compile the library when building your project.
+
+
 
 This library also complies with the Arduino Library Specification. To achieve this, a library.properties file has been included. Also there is a keywords.txt file so the IDE knows how to color keywords, examples are in the directory examples. The exaples are automatically discovered by Arduino IDE due to the file structure. Examples can also be compiled via cmake by adding the cache variable CPVECTOR_BUILD_EXAMPLES = ON.
 
@@ -14,6 +16,10 @@ List of platforms where it has been tested.
 # Docs:
 
 Docs hosted at: https://checheromo96.github.io/CPVector/
+
+#Introduction
+
+
 
 # Steps to compile package:
 
