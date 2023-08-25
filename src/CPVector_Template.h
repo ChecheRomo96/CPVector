@@ -29,7 +29,7 @@
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // Arduino and PSoC
 
-                    #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                    #if defined(__avr__) || defined(PSOC_CREATOR)
                         unsigned int _Size;
                         unsigned int _Capacity;
                         T* _Buffer;
@@ -38,7 +38,7 @@
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // std::vector
                 
-                    #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                    #if defined(CPVECTOR_USING_STD)
                         std::vector<T> _Vector;
                     #endif
                 //
@@ -49,7 +49,7 @@
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // Arduino and PSoC
 
-                    #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                    #if defined(__avr__) || defined(PSOC_CREATOR)
                         T* Buffer() const
                         {
                             return _Buffer;
@@ -66,7 +66,7 @@
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // std::vector
 
-                    #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                    #if defined(CPVECTOR_USING_STD)
                         std::vector<T>& stdVec()
                         {
                             return _Vector;
@@ -92,7 +92,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
                                 _Buffer = NULL;
                                 _Size = 0;
                                 _Capacity = 0;
@@ -125,7 +125,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
                                 _Buffer = NULL;
                                 _Size = 0;
                                 _Capacity = 0;
@@ -155,7 +155,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
                                 _Buffer = NULL;
                                 _Size = 0;
                                 _Capacity = 0;
@@ -190,7 +190,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
                                 _Buffer = NULL;
                                 _Size = 0;
                                 _Capacity = 0;
@@ -223,7 +223,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
                                 _Buffer = source.Buffer();
                                 _Size = source.size();
                                 _Capacity = source.capacity();
@@ -233,9 +233,9 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // std::vector
                                 
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                            #if defined(CPVECTOR_USING_STD)
                                 clear();
-                                _Vector.swap(source.stdVec());
+                                _Vector = std::move(source.stdVec());
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -275,6 +275,24 @@
                                 
                             return *this;
                         }
+
+                        /**
+                         * @brief Assignment operator. This operator is used to assign new contents to the container by replacing the existing contents.
+                         *
+                         * It also modifies the size according to the new contents.
+                         * @tparam source Another container of the same type.
+                         */
+                        vector& operator=(vector&& source)
+                        {
+                            if(this == &source){return *this;}
+                            
+                            clear();
+
+                            
+
+                                
+                            return *this;
+                        }
                     //
                     ///////////////////////////////////////////////////////////////////
                     // Subscript Array Operators
@@ -292,14 +310,14 @@
                             ////////////////////////////////////////////////////////////////////////////////////////////
                             // Arduino and PSoC
 
-                                #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                #if defined(__avr__) || defined(PSOC_CREATOR)
                                      return _Buffer[position];
                                 #endif
                             //
                             ////////////////////////////////////////////////////////////////////////////////////////////
                             //  std::vector
 
-                                #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                #if defined(CPVECTOR_USING_STD)
                                     return _Vector[position];
                                 #endif
                             //
@@ -319,14 +337,14 @@
                             ////////////////////////////////////////////////////////////////////////////////////////////
                             // Arduino and PSoC
 
-                                #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                                #if defined(__avr__) || defined(PSOC_CREATOR)
                                      return _Buffer[x];
                                 #endif
                             //
                             ////////////////////////////////////////////////////////////////////////////////////////////
                             //  std::vector
 
-                                #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                                #if defined(CPVECTOR_USING_STD)
                                     return _Vector[x];
                                 #endif
                             //
@@ -389,14 +407,14 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
                                 return _Capacity;
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         //  std::vector
 
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                            #if defined(CPVECTOR_USING_STD)
                                 return (uint32_t)_Vector.capacity();
                             #endif
                         //
@@ -413,14 +431,14 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
                                 return _Size;
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         //  std::vector
 
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                            #if defined(CPVECTOR_USING_STD)
                                 return (uint32_t)_Vector.size();
                             #endif
                         //
@@ -440,7 +458,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
 
                                 if(new_cap < _Size){ return;}
                                 if(new_cap == 0){ clear(); return;}
@@ -477,7 +495,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         //  std::vector
 
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                            #if defined(CPVECTOR_USING_STD)
                                 _Vector.reserve(new_cap);
                             #endif
                         //
@@ -494,7 +512,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
                                 if(_Capacity > _Size)
                                 {
                                     T* ptr = NULL;
@@ -517,7 +535,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         //  std::vector
 
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                            #if defined(CPVECTOR_USING_STD)
                                 _Vector.shrink_to_fit();
                             #endif
                         //
@@ -540,7 +558,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
                                 
                                 if(new_size == 0){ clear(); return 1;}
 
@@ -573,7 +591,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         //  std::vector
 
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                            #if defined(CPVECTOR_USING_STD)
                                 
                                 auto OldSize = _Vector.size();
 
@@ -604,7 +622,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
 
                                 for(uint8_t i = 0; i < _Size; i++)
                                 {
@@ -620,7 +638,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         //  std::vector
 
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                            #if defined(CPVECTOR_USING_STD)
                                 if(_Vector.size() != 0)
                                 {
                                     _Vector.resize(0);
@@ -671,14 +689,14 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // std::vector
 
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                            #if defined(CPVECTOR_USING_STD)
                                 _Vector.push_back(value);
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         //  PSoC Creator and Arduino IDE
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
                                 resize(size() + 1);
                                 _Buffer[size() - 1] = value;
                             #endif
@@ -697,7 +715,7 @@
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
                                 
                                 for(unsigned int i = index; i < size()-1; i++)
                                 {
@@ -709,7 +727,7 @@
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         // std::vector
                                 
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                            #if defined(CPVECTOR_USING_STD)
                                 _Vector.erase(_Vector.begin() + index);
                             #endif
                         //
@@ -728,14 +746,14 @@
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
                                 pop(0);
                             #endif
                         //
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         // std::vector
                                 
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                            #if defined(CPVECTOR_USING_STD)
                                 _Vector.erase(_Vector.begin());
                             #endif
                         //
@@ -754,14 +772,14 @@
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
                                 pop(size()-1);
                             #endif
                         //
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         // std::vector
                                 
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                            #if defined(CPVECTOR_USING_STD)
                                 _Vector.pop_back();
                             #endif
                         //
@@ -780,7 +798,7 @@
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         //  PSoC Creator and Arduino IDE
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
                                 resize(_Size+1);
                                 for(unsigned int i = _Size-1 ; i > pos ; i--)
                                 {
@@ -792,7 +810,7 @@
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         // std::vector
 
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                            #if defined(CPVECTOR_USING_STD)
                                 _Vector.emplace(_Vector.begin()+pos,value);
                             #endif
                         //
@@ -813,6 +831,7 @@
 
                             auto sz = size();
                             if((index_a == index_b) || (index_a>=sz) || (index_b>=sz) ){return;}
+
                             T tmp = (*this)[index_a];
                             (*this)[index_a] = (*this)[index_b];
                             (*this)[index_b] = tmp;
@@ -836,14 +855,14 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // std::vector
 
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                            #if defined(CPVECTOR_USING_STD)
                                 _Vector.erase(_Vector.begin()+index);
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         //  PSoC Creator and Arduino IDE
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
                                 if(index < _Size)
                                 {
                                     for(unsigned int i = index; i < _Size ;i++)
@@ -877,14 +896,14 @@
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         // std::vector
 
-                            #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
+                            #if defined(CPVECTOR_USING_STD)
                                 _Vector.erase(_Vector.begin()+first, _Vector.begin()+last);
                             #endif
                         //
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         //  PSoC Creator and Arduino IDE
 
-                            #if defined(ARDUINO) || defined(PSOC_CREATOR)
+                            #if defined(__avr__) || defined(PSOC_CREATOR)
                                 if(first < _Size)
                                 {
                                     auto end = (_Size<last)?_Size:last;
