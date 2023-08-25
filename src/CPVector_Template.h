@@ -252,10 +252,12 @@
                     ////////////////////////////////////////////////////////////////////////////////////////////////
                     // std::vector Specific Constructor
 
-                        vector(std::initializer_list<T> list) {
-                            resize(list.size());
-                            std::copy(list.begin(), list.end(), _Vector.begin());
-                        }
+                        #if defined(CPVECTOR_USING_STD)
+                            vector(std::initializer_list<T> list) {
+                                resize(list.size());
+                                std::copy(list.begin(), list.end(), _Vector.begin());
+                            }
+                        #endif
                     //
                     ////////////////////////////////////////////////////////////////////////////////////////////////
 
