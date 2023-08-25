@@ -301,9 +301,10 @@
                             
                             clear();
 
-                            
+                            #if defined(CPVECTOR_USING_STD)
+                                _Vector = std::move(source.stdVec());
+                            #endif
 
-                                
                             return *this;
                         }
                     //
