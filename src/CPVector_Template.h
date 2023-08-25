@@ -29,7 +29,7 @@
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // Arduino and PSoC
 
-                    #if defined(__avr__) || defined(PSOC_CREATOR)
+                    #if defined(CPVECTOR_USING_C)
                         unsigned int _Size;
                         unsigned int _Capacity;
                         T* _Buffer;
@@ -49,7 +49,7 @@
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // Arduino and PSoC
 
-                    #if defined(__avr__) || defined(PSOC_CREATOR)
+                    #if defined(CPVECTOR_USING_C)
                         T* Buffer() const
                         {
                             return _Buffer;
@@ -92,7 +92,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
                                 _Buffer = NULL;
                                 _Size = 0;
                                 _Capacity = 0;
@@ -125,7 +125,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
                                 _Buffer = NULL;
                                 _Size = 0;
                                 _Capacity = 0;
@@ -155,7 +155,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
                                 _Buffer = NULL;
                                 _Size = 0;
                                 _Capacity = 0;
@@ -190,7 +190,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
                                 _Buffer = NULL;
                                 _Size = 0;
                                 _Capacity = 0;
@@ -223,7 +223,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
                                 _Buffer = source.Buffer();
                                 _Size = source.size();
                                 _Capacity = source.capacity();
@@ -310,7 +310,7 @@
                             ////////////////////////////////////////////////////////////////////////////////////////////
                             // Arduino and PSoC
 
-                                #if defined(__avr__) || defined(PSOC_CREATOR)
+                                #if defined(CPVECTOR_USING_C)
                                      return _Buffer[position];
                                 #endif
                             //
@@ -337,7 +337,7 @@
                             ////////////////////////////////////////////////////////////////////////////////////////////
                             // Arduino and PSoC
 
-                                #if defined(__avr__) || defined(PSOC_CREATOR)
+                                #if defined(CPVECTOR_USING_C)
                                      return _Buffer[x];
                                 #endif
                             //
@@ -407,7 +407,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
                                 return _Capacity;
                             #endif
                         //
@@ -431,7 +431,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
                                 return _Size;
                             #endif
                         //
@@ -458,7 +458,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
 
                                 if(new_cap < _Size){ return;}
                                 if(new_cap == 0){ clear(); return;}
@@ -512,7 +512,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
                                 if(_Capacity > _Size)
                                 {
                                     T* ptr = NULL;
@@ -558,7 +558,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
                                 
                                 if(new_size == 0){ clear(); return 1;}
 
@@ -622,7 +622,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
 
                                 for(uint8_t i = 0; i < _Size; i++)
                                 {
@@ -696,7 +696,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         //  PSoC Creator and Arduino IDE
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
                                 resize(size() + 1);
                                 _Buffer[size() - 1] = value;
                             #endif
@@ -715,7 +715,7 @@
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
                                 
                                 for(unsigned int i = index; i < size()-1; i++)
                                 {
@@ -746,7 +746,7 @@
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
                                 pop(0);
                             #endif
                         //
@@ -772,7 +772,7 @@
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         // Arduino and PSoC
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
                                 pop(size()-1);
                             #endif
                         //
@@ -798,7 +798,7 @@
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         //  PSoC Creator and Arduino IDE
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
                                 resize(_Size+1);
                                 for(unsigned int i = _Size-1 ; i > pos ; i--)
                                 {
@@ -862,7 +862,7 @@
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         //  PSoC Creator and Arduino IDE
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
                                 if(index < _Size)
                                 {
                                     for(unsigned int i = index; i < _Size ;i++)
@@ -903,7 +903,7 @@
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         //  PSoC Creator and Arduino IDE
 
-                            #if defined(__avr__) || defined(PSOC_CREATOR)
+                            #if defined(CPVECTOR_USING_C)
                                 if(first < _Size)
                                 {
                                     auto end = (_Size<last)?_Size:last;
