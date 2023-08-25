@@ -21,11 +21,11 @@
     // AVR 
  
         #if defined(__avr__)
-            #include <avr/pgmspace.h>
-
+            #include <cstdlib>
             #define CPVECTOR_USING_C
             
             #ifndef PROGMEM_MACRO
+                #include <avr/pgmspace.h>
                 #define PROGMEM_MACRO PROGMEM
             #endif
         #else
@@ -38,6 +38,7 @@
     // ESP32 
  
         #if defined(ESP32)
+            #include <vector>
             #define CPVECTOR_USING_STD
         #endif
     //
@@ -45,6 +46,7 @@
     // PSoC Creator
     
         #if defined(PSOC_CREATOR)
+
             //#define CPVECTOR_VERSION "0.0.1"
             #include <cstdlib>
 
@@ -55,9 +57,9 @@
     // Desktop C++
     
         #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__APPLE__) || defined(linux)
-            #include <vector>
             
             #if !defined(CPVECTOR_USING_STD)
+                #include <vector>
                 #define CPVECTOR_USING_STD
             #endif
         #endif
