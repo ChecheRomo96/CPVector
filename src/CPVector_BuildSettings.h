@@ -40,6 +40,13 @@
         #if defined(ESP32)
             #include <vector>
             #define CPVECTOR_USING_STD
+
+            //#include <vector>
+            //#define CPVECTOR_USING_STD
+
+            //#include <cstdlib>
+            //#define CPVECTOR_USING_C
+
         #endif
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
