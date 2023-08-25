@@ -38,14 +38,17 @@
     // ESP32 
  
         #if defined(ESP32)
-            #include <vector>
-            #define CPVECTOR_USING_STD
 
-            //#include <vector>
-            //#define CPVECTOR_USING_STD
+            #if !defined(CPVECTOR_USING_STD) && !defined(CPVECTOR_USING_C) && !defined(CPVECTOR_USING_CPP)
 
-            //#include <cstdlib>
-            //#define CPVECTOR_USING_C
+                #define CPVECTOR_USING_STD
+            #endif
+
+            #if defined(CPVECTOR_USING_STD)
+                #include <vector>
+            #elif defined(CPVECTOR_USING_C)
+                #include <cstdlib>
+            #endif
 
         #endif
     //
