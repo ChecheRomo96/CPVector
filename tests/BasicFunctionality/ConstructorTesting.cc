@@ -51,10 +51,23 @@
 		for(uint8_t i = 0; i < UINT8_MAX; i++ )
 		{
 			Data[i] = i;
-
 		}
 
 		CPVector::vector<uint8_t> myVector(Data, UINT8_MAX);
+		ASSERT_EQ(myVector.size(),UINT8_MAX);
+
+		for(uint8_t i = 0; i < myVector.size(); i++)
+		{
+			EXPECT_EQ(myVector[i], i);
+		}
+	}
+//
+//////////////////////////////////////////////////////////////////////////////////
+// Move Constructor
+
+	TEST(ConstructorTesting, MoveConstructor) {
+
+		CPVector::vector<uint8_t> myVector( uint8_t {0, 1, 2}[0] );
 		ASSERT_EQ(myVector.size(),UINT8_MAX);
 
 		for(uint8_t i = 0; i < myVector.size(); i++)
