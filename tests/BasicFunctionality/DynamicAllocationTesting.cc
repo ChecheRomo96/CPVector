@@ -23,7 +23,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // dynamicAllocation2
 
-	/*TEST(DynamicAllocationTesting, VectorPointerToArray) {
+	TEST(DynamicAllocationTesting, VectorPointerToArray) {
 
 		CPVector::vector<uint8_t>* myVectorptr = nullptr;
 
@@ -53,7 +53,7 @@
 		}
 
 		delete[] myVectorptr;
-	}*/
+	}
 //
 //////////////////////////////////////////////////////////////////////////////////
 // dynamicAllocation3
