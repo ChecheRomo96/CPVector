@@ -1,15 +1,15 @@
 # Cross-Platform Vector
 
-Library for unifiying Vectors across multiple systems. These library contains a CMake build system. You can install the package with cmake to make it available in your computer, also you can "add" this subdirectory with cmake to compile the library when building your project. 
+Library for unifiying Vectors across multiple systems. These library contains a CMake build system. You can install the package with cmake to make it available in your system, also you can "add" this subdirectory with cmake to compile the library when building your project. 
 
-This library complies with the Arduino Library Specification. To achieve this, a library.properties file has been included. Also there is a keywords.txt file so the IDE knows how to color keywords, examples are in the directory examples. The exaples are automatically discovered by Arduino IDE due to the file structure. Examples can also be compiled via cmake by adding the cache variable CPVECTOR_BUILD_EXAMPLES = ON.
+This library also complies with the Arduino Library Specification. To achieve this, a library.properties file has been included. Also there is a keywords.txt file so the IDE knows how to color keywords, examples are in the directory examples. The exaples are automatically discovered by Arduino IDE due to the file structure. Examples can also be compiled via cmake by adding the cache variable CPVECTOR_BUILD_EXAMPLES = ON.
 
 List of platforms where it has been tested.
 
 - Arduino IDE (AVR, ESP32)
 - Windows (cl)
-- Ubuntu (G++, clang++)
-- Mac Os (G++, clang++)
+- Ubuntu (g++, clang++)
+- Mac Os (g++, clang++)
 
 # Docs:
 

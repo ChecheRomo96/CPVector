@@ -58,6 +58,8 @@
                         void Buffer_SetNull()
                         {
                             _Buffer = NULL;
+                            _Size = 0;
+                            _Capacity = 0;
                         }
                     #endif
                 //
