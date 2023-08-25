@@ -18,38 +18,51 @@
 ######################################################################################################
 # Add Subdirectories
 
-	if( ${CPVECTOR_SORTING_ENABLED} )
+	if( ${CPVECTOR_COMPILE_SORTING} )
 		add_subdirectory(Sorting)
 	endif()
+#
+######################################################################################################
+# Create the CPVector library
 
-# Create the CPVector library (STATIC is not justified tho) and include the directories needed to compile
-add_library(CPVector INTERFACE)
+	add_library(CPVector INTERFACE)
+#
+######################################################################################################
+# Add Compliler Definitions
 
+	if(${CPVECTOR_COMPILE_SORTING})
+		target_compile_definitions(CPVector PUBLIC CPVECTOR_SORTING_ENABLED)
+	endif()
+#
+######################################################################################################
 # Include directories for install and for build 
-target_include_directories( 
-	CPVector INTERFACE 
-	$<INSTALL_INTERFACE:include/CPVector> 
-	$<BUILD_INTERFACE:${CPVECTOR_SRC_DIRECTORY}> 
-)
 
-# CPVector install process
-if( CPVECTOR_INSTALL STREQUAL "ON")
-
-	install(
-		FILES ${HEADERS_LIST} 
-		DESTINATION ${CMAKE_INSTALL_PREFIX}/include/CPVector 
+	target_include_directories( 
+		CPVector INTERFACE 
+		$<INSTALL_INTERFACE:include/CPVector> 
+		$<BUILD_INTERFACE:${CPVECTOR_SRC_DIRECTORY}> 
 	)
+#
+######################################################################################################
+# Add libs Subdirectory
 
-	install(
-		TARGETS CPVector 
-		EXPORT CPVectorExport
-		DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/CPVector
-	)
+	if( CPVECTOR_INSTALL STREQUAL "ON")
 
-	install(
-		EXPORT CPVectorExport
-		FILE CPVector-config.cmake
-		DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/CPVector
-	)
+		install(
+			FILES ${HEADERS_LIST} 
+			DESTINATION ${CMAKE_INSTALL_PREFIX}/include/CPVector 
+		)
 
-endif()
+		install(
+			TARGETS CPVector 
+			EXPORT CPVectorExport
+			DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/CPVector
+		)
+
+		install(
+			EXPORT CPVectorExport
+			FILE CPVector-config.cmake
+			DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/CPVector
+		)
+
+	endif()
