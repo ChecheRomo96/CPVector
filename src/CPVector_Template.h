@@ -827,14 +827,30 @@
                     void swap(unsigned int index_a, unsigned int index_b)
                     {
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                        // Cross Compatible Code
+                        // Parameters validation
 
                             auto sz = size();
                             if((index_a == index_b) || (index_a>=sz) || (index_b>=sz) ){return;}
-
-                            T tmp = (*this)[index_a];
-                            (*this)[index_a] = (*this)[index_b];
-                            (*this)[index_b] = tmp;
+                        //
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //  std::vector
+                        
+                            #if defined(CPVECTOR_USING_STD)
+                            
+                                T tmp = std::move((*this)[index_a]);
+                                (*this)[index_a] = std::move((*this)[index_b]);
+                                (*this)[index_b] = std::move(tmp);
+                            #endif
+                        //
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //  C
+                        
+                            #if defined(CPVECTOR_USING_C)
+                            
+                                T tmp = (*this)[index_a];
+                                (*this)[index_a] = (*this)[index_b];
+                                (*this)[index_b] = tmp;
+                            #endif
                         //
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     }
