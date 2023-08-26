@@ -54,9 +54,7 @@
              * @brief Template function that enables sorting elements in an ascending manner.
              *
              * Works with any class that has operators > , < and ==.
-             * \snippet Sorting/CPVector_Soting.h Ascending
              */
-//! [Ascending]
 	        template <class T>
 	        Result Ascending(const T& Element, const T& Pivot)
 	        {
@@ -64,7 +62,6 @@
 	            else if(Element<Pivot){return Sorting::Swap;}
 	            else{return Sorting::Ignore;}
 	        }
-//! [Ascending]
 	        
             /**
              * @brief Template function that enables sorting elements in an descending manner.
