@@ -32,13 +32,13 @@
 # Add Compliler Definitions
 
 	if(${CPVECTOR_COMPILE_SORTING})
-		target_compile_definitions(CPVector INTERFACE CPVECTOR_SORTING_ENABLED)
+		target_compile_options (CPVector INTERFACE CPVECTOR_SORTING_ENABLED)
 	endif()
 #
 ######################################################################################################
 # Include directories for install and for build 
 
-	interface_include_directories( 
+	target_include_directories( 
 		CPVector INTERFACE 
 		$<INSTALL_INTERFACE:include/CPVector> 
 		$<BUILD_INTERFACE:${CPVECTOR_SRC_DIRECTORY}> 
