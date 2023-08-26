@@ -27,6 +27,7 @@
 # Create the CPVector library
 
 	add_library(CPVector STATIC ${HEADERS_LIST})
+	set_target_properties(CPVector PROPERTIES LINKER_LANGUAGE CXX)
 #
 ######################################################################################################
 # Add Compliler Definitions
