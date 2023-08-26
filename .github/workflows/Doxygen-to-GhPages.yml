@@ -45,7 +45,7 @@ jobs:
         -DCMAKE_CXX_COMPILER=g++
         -DCMAKE_BUILD_TYPE=Release
         -DCPVECTOR_TESTING=FALSE
-        -DCPVECTOR_BUILD_EXAMPLES=FALSE
+        -DCPVECTOR_BUILD_EXAMPLES=TRUE
         -DCPVECTOR_COMPILE_SORTING=TRUE
         -S ${{ github.workspace }}
 
