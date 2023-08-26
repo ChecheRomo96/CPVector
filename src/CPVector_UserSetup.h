@@ -11,7 +11,7 @@
 	//
 	//////////////////////////////////////////////////////
 
-	#define CPVECTOR_SORTING_ENABLED
+	//#define CPVECTOR_SORTING_ENABLED
 
 
 
