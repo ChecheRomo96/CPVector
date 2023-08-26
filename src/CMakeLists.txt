@@ -38,7 +38,7 @@
 ######################################################################################################
 # Include directories for install and for build 
 
-	target_include_directories( 
+	interface_include_directories( 
 		CPVector INTERFACE 
 		$<INSTALL_INTERFACE:include/CPVector> 
 		$<BUILD_INTERFACE:${CPVECTOR_SRC_DIRECTORY}> 
