@@ -253,7 +253,8 @@
                     // std::vector Specific Constructor
 
                         #if defined(CPVECTOR_USING_STD)
-                            vector(std::initializer_list<T> list) {
+                            vector(std::initializer_list<T> list)
+                            {
                                 resize(list.size());
                                 std::copy(list.begin(), list.end(), _Vector.begin());
                             }
