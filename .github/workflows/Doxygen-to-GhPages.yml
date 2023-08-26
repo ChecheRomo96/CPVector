@@ -44,10 +44,10 @@ jobs:
         cmake -B ${{ steps.strings.outputs.build-output-dir }}
         -DCMAKE_CXX_COMPILER=g++
         -DCMAKE_BUILD_TYPE=Release
-        -S ${{ github.workspace }}
         -DCPVECTOR_TESTING=FALSE
         -DCPVECTOR_BUILD_EXAMPLES=FALSE
         -DCPVECTOR_COMPILE_SORTING=TRUE
+        -S ${{ github.workspace }}
 
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
