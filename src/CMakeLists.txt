@@ -32,7 +32,7 @@
 # Add Compliler Definitions
 
 	if(${CPVECTOR_COMPILE_SORTING})
-		target_compile_options (CPVector INTERFACE CPVECTOR_SORTING_ENABLED)
+		target_compile_options (CPVector PUBLIC CPVECTOR_SORTING_ENABLED)
 	endif()
 #
 ######################################################################################################
