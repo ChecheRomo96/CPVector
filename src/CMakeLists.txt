@@ -26,14 +26,14 @@
 ######################################################################################################
 # Create the CPVector library
 
-	add_library(CPVector STATIC ${HEADERS_LIST})
-	set_target_properties(CPVector PROPERTIES LINKER_LANGUAGE CXX)
+	add_library(CPVector INTERFACE)
+	#set_target_properties(CPVector PROPERTIES LINKER_LANGUAGE CXX)
 #
 ######################################################################################################
 # Add Compliler Definitions
 
 	if(${CPVECTOR_COMPILE_SORTING})
-		target_compile_definitions(CPVector PUBLIC CPVECTOR_SORTING_ENABLED)
+		target_compile_definitions(CPVector INTERFACE CPVECTOR_SORTING_ENABLED)
 	endif()
 #
 ######################################################################################################
