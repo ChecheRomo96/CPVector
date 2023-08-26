@@ -7,17 +7,19 @@
 
 	TEST(DynamicAllocationTesting, VectorPointerToObject) {
 
-		CPVector::vector<uint8_t>* myVectorptr = nullptr;
+        #if defined(CPVECTOR_USING_STD)
+			CPVector::vector<uint8_t>* myVectorptr = nullptr;
 
-		EXPECT_EQ((void*)myVectorptr,nullptr);
-		
-		myVectorptr = new CPVector::vector<uint8_t>(12);
+			EXPECT_EQ((void*)myVectorptr,nullptr);
+			
+			myVectorptr = new CPVector::vector<uint8_t>(12);
 
-		ASSERT_NE(myVectorptr,nullptr);
+			ASSERT_NE(myVectorptr,nullptr);
 
-		EXPECT_EQ(myVectorptr->size(),12);
+			EXPECT_EQ(myVectorptr->size(),12);
 
-		delete(myVectorptr);
+			delete(myVectorptr);
+		#endif
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
@@ -25,34 +27,36 @@
 
 	TEST(DynamicAllocationTesting, VectorPointerToArray) {
 
-		CPVector::vector<uint8_t>* myVectorptr = nullptr;
+        #if defined(CPVECTOR_USING_STD)
+			CPVector::vector<uint8_t>* myVectorptr = nullptr;
 
-		EXPECT_EQ((void*)myVectorptr,nullptr);
-		
-		myVectorptr = new CPVector::vector<uint8_t>[8];
+			EXPECT_EQ((void*)myVectorptr,nullptr);
+			
+			myVectorptr = new CPVector::vector<uint8_t>[8];
 
-		ASSERT_NE(myVectorptr,nullptr);
+			ASSERT_NE(myVectorptr,nullptr);
 
-		for(uint8_t i = 0; i < 8; i++)
-		{
-			myVectorptr[i] = CPVector::vector<uint8_t>(8);
-			ASSERT_EQ(myVectorptr[i].size(), 8);
+			for(uint8_t i = 0; i < 8; i++)
+			{
+				myVectorptr[i] = CPVector::vector<uint8_t>(8);
+				ASSERT_EQ(myVectorptr[i].size(), 8);
 
-		    for(uint8_t j = 0; j < 8; j++) 
-		    {    
-				myVectorptr[i][j] = (8*i) + j;
-		    }
-		}
-		
-		for(uint8_t i = 0; i < 8; i++)
-		{
-		    for(uint8_t j = 0; j < 8; j++) 
-		    {
-		        EXPECT_EQ(myVectorptr[i][j], (8*i) + j);
-		    }
-		}
+			    for(uint8_t j = 0; j < 8; j++) 
+			    {    
+					myVectorptr[i][j] = (8*i) + j;
+			    }
+			}
+			
+			for(uint8_t i = 0; i < 8; i++)
+			{
+			    for(uint8_t j = 0; j < 8; j++) 
+			    {
+			        EXPECT_EQ(myVectorptr[i][j], (8*i) + j);
+			    }
+			}
 
-		delete[] myVectorptr;
+			delete[] myVectorptr;
+		#endif
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
