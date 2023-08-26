@@ -32,7 +32,7 @@
 
 	set(CPVECTOR_BUILD_EXAMPLES TRUE CACHE BOOL "Build CPVector Examples")
 	set(CPVECTOR_ENABLE_TESTING FALSE CACHE BOOL "CPVector Testing Enabled")	
-	set(CPVECTOR_SORTING_ENABLED TRUE CACHE BOOL "Compile CPVector::Sorting")
+	set(CPVECTOR_COMPILE_SORTING TRUE CACHE BOOL "Compile CPVector::Sorting")
 #
 ######################################################################################################
 # Append Source
