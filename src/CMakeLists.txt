@@ -26,13 +26,13 @@
 ######################################################################################################
 # Create the CPVector library
 
-	add_library(CPVector INTERFACE)
+	add_library(CPVector STATIC ${HEADERS_LIST})
 #
 ######################################################################################################
 # Add Compliler Definitions
 
 	if(${CPVECTOR_COMPILE_SORTING})
-		#target_compile_definitions(CPVector INTERFACE CPVECTOR_SORTING_ENABLED)
+		target_compile_definitions(CPVector PUBLIC CPVECTOR_SORTING_ENABLED)
 	endif()
 #
 ######################################################################################################
