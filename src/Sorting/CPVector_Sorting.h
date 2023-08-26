@@ -54,7 +54,7 @@
              * @brief Template function that enables sorting elements in an ascending manner.
              *
              * Works with any class that has operators > , < and ==.
-             * @snippet Sorting/CPVector_Soting.h Ascending
+             * \snippet Sorting/CPVector_Soting.h Ascending
              */
 //! [Ascending]
 	        template <class T>
