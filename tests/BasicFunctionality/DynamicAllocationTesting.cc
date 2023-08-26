@@ -27,7 +27,7 @@
 
 	TEST(DynamicAllocationTesting, VectorPointerToArray) {
 
-        #if defined(CPVECTOR_USING_STD)
+        #if defined(CPVECTOR_USING_STD) || defined(CPVECTOR_USING_CPP)
 			CPVector::vector<uint8_t>* myVectorptr = nullptr;
 
 			EXPECT_EQ((void*)myVectorptr,nullptr);
