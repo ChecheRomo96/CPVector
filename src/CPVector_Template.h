@@ -290,7 +290,7 @@
                         }
 
                         /**
-                         * @brief Assignment operator. This operator is used to assign new contents to the container by replacing the existing contents.
+                         * @brief Move Assignment operator. This operator is used to assign new contents to the container by replacing the existing contents.
                          *
                          * It also modifies the size according to the new contents.
                          * @tparam source Another container of the same type.
