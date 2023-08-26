@@ -41,7 +41,7 @@
 			static constexpr Result Equal = 0;
 
             /**
-             * @brief Used to indicate that the objects being compared should be ignored.
+             * @brief Used to indicate that the objects being compared should not be swapped.
              *
              * An object must be swapped if the element being compared should go after the pivot. For example, the function CPVector::Sort::Ascending() returns ignore whenever Element > Pivot, hence Element goes after Pivot.
              */
@@ -54,7 +54,9 @@
              * @brief Template function that enables sorting elements in an ascending manner.
              *
              * Works with any class that has operators > , < and ==.
+             * @snippet Sorting/CPVector_Soting.h Ascending
              */
+			//! [Ascending]
 	        template <class T>
 	        Result Ascending(const T& Element, const T& Pivot)
 	        {
@@ -62,6 +64,7 @@
 	            else if(Element<Pivot){return Sorting::Swap;}
 	            else{return Sorting::Ignore;}
 	        }
+			//! [Ascending]
 	        
             /**
              * @brief Template function that enables sorting elements in an descending manner.
