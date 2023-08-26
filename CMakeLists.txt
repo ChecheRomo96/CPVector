@@ -31,7 +31,7 @@
 # Compile Configuration
 
 	set(CPVECTOR_BUILD_EXAMPLES TRUE CACHE BOOL "Build CPVector Examples")
-	set(CPVECTOR_ENABLE_TESTING FALSE CACHE BOOL "CPVector Testing Enabled")	
+	set(CPVECTOR_TESTING FALSE CACHE BOOL "CPVector Testing Enabled")	
 	set(CPVECTOR_COMPILE_SORTING TRUE CACHE BOOL "Compile CPVector::Sorting")
 #
 ######################################################################################################
@@ -52,7 +52,7 @@
 ######################################################################################################
 # Append Tests
 
-	if( ${CPVECTOR_ENABLE_TESTING} )
+	if( ${CPVECTOR_TESTING} )
 		message("Building ${CMAKE_PROJECT_NAME} Tests...")
 
 		include(FetchContent)
