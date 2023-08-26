@@ -38,6 +38,7 @@
 # Append Source
 
 	add_subdirectory(src)
+	
 	target_compile_definitions(CPVector INTERFACE ${PROJECT_NAME_UPPER}_VERSION="${PROJECT_VERSION}" )
 
 #
