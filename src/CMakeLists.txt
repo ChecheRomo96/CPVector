@@ -19,6 +19,7 @@
 # Add Subdirectories
 
 	if( ${CPVECTOR_COMPILE_SORTING} )
+		message("Building CPVector::Sorting...")
 		add_subdirectory(Sorting)
 	endif()
 #
