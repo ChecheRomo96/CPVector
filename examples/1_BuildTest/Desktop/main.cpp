@@ -1,3 +1,7 @@
+/* \example
+ *
+ */
+
 #include <iostream>
 #include <CPVector.h>
 
