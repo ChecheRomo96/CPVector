@@ -12,7 +12,7 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Arduino IDE
 
-        #if defined(ARDUINO)
+        #if defined(Arduino_h)
             #include <Arduino.h>
             #include "CPVector_UserSetup.h"
         #endif
