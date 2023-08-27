@@ -17,6 +17,13 @@ jobs:
         run: |
           cp -R ./src ./ArduinoRelease
           
+      - name: Remove CMakeLists.txt files
+        run: |
+          find . -name "CMakeLists.txt" -type f -delete
+          
       - name: Install tree and show file structure
         run: |
           tree ./ArduinoRelease
+
+
+          
