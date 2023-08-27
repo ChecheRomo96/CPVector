@@ -55,6 +55,9 @@ jobs:
 
     - name: Generate Documentation
       run: doxygen Doxyfile
+      
+    - name: Creaye .nojekyll file
+      run: touch .nojekyll
 
     - name: Deploy to GitHub Pages
       if: success()
