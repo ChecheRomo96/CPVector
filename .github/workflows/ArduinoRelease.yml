@@ -16,3 +16,9 @@ jobs:
       - name: Copy the source code
         run: |
           cp -R ./src ./ArduinoRelease
+          
+      - name: Install tree and show file structure
+        run: |
+          brew install tree |
+          cd ArduinoRelease |
+          tree
