@@ -13,13 +13,15 @@ List of platforms where it has been tested.
 - Ubuntu (g++, clang++)
 - Mac Os (g++, clang++)
 
-# Docs:
+# Documentations:
+
+There is a web page documentation available, This project's documentation has been created using Doxygen, a powerful documentation generator tool. Doxygen allows for the automatic generation of comprehensive documentation by extracting and analyzing code comments, providing developers a clear and structured overview of the project's functionalities, APIs, and internal workings.
 
 Docs hosted at: https://checheromo96.github.io/CPVector/
 
 #Introduction
 
-
+<a href="./d9/d8d/_instalation.html">Installation Page</a>
 
 # Steps to compile package:
 
