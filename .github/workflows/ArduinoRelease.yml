@@ -24,7 +24,7 @@ jobs:
       - name: Remove CMakeLists.txt files
         run: |
           find . -name "CMakeLists.txt" -type f -delete |
-          find . -name "Desktop" -type d -delete
+          find . -name "Desktop" -type d -exec rm -r "{}" \;
           
       - name: Install tree and show file structure
         run: |
