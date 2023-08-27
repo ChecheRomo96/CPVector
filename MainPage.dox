@@ -1,4 +1,7 @@
-/**
- * @mainpage
+/**  \mainpage
  * Documentation you want to occur on the main page.
+ */
+
+ /**  \page Installation
+ * Documentation you want to occur on the Installation page.
  */
