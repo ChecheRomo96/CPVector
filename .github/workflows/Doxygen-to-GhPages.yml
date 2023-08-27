@@ -58,9 +58,9 @@ jobs:
       
     - name: Creaye .nojekyll file
       run: 
-        cd docs/html
-        touch .nojekyll
-        cd ../..
+        cd docs/html |
+        touch .nojekyll |
+        cd ../.. |
 
     - name: Deploy to GitHub Pages
       if: success()
