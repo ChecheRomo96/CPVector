@@ -57,10 +57,10 @@ jobs:
       run: doxygen Doxyfile
       
     - name: Creaye .nojekyll file
-      run: 
-        cd docs/html |
-        touch .nojekyll |
-        cd ../.. |
+      run: |
+        cd docs/html
+        touch .nojekyll
+        cd ../..
 
     - name: Deploy to GitHub Pages
       if: success()
