@@ -1,7 +1,7 @@
-/**  \mainpage
+/*!  \mainpage Home
  * Documentation you want to occur on the main page.
  */
 
- /**  \page Installation
+ /*!  \page Instalation
   * Documentation you want to occur on the Installation page.
   */
