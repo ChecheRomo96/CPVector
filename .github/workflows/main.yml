@@ -1,0 +1,12 @@
+on:
+  workflow_dispatch:
+jobs:
+  my_job:
+    name: deploy to staging
+    runs-on: ubuntu-18.04
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3.6.0
+    
+      - name: arduino/arduino-lint-action
+        uses: arduino/arduino-lint-action@v1.0.2
