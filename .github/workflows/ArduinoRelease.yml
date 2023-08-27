@@ -13,9 +13,13 @@ jobs:
         run: |
           mkdir ArduinoRelease
           
-      - name: Copy the source code
+      - name: Copy the source code and other files
         run: |
-          cp -R ./src ./ArduinoRelease
+          cp -R ./src ./ArduinoRelease |
+          cp -R ./examples ./ArduinoRelease |
+          cp ./library.properties ./ArduinoRelease |
+          cp ./keywords.txt ./ArduinoRelease
+          
           
       - name: Remove CMakeLists.txt files
         run: |
