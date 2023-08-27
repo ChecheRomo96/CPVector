@@ -24,7 +24,7 @@ jobs:
       - name: Remove CMakeLists.txt files
         run: |
           find ./ArduinoRelease -name "CMakeLists.txt" -type f -delete |
-          find ./ArduinoRelease -name "Desktop" -type d -exec rm -r "{}" \;
+          find ./ArduinoRelease -name "Desktop" -type d -exec rm -rf {} +
           
       - name: Install tree and show file structure
         run: |
