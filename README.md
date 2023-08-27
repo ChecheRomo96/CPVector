@@ -19,9 +19,11 @@ There is a web page documentation available, This project's documentation has be
 
 Docs hosted at: https://checheromo96.github.io/CPVector/
 
-#Introduction
+# Introduction
 
-<a href="./d9/d8d/_instalation.html">Installation Page</a>
+## Instalation
+
+The instalation process may be different for diferent systems. Please check the <a href="./d9/d8d/_instalation.html">Installation Page</a> for a more detailed explanation for multiple systems.
 
 # Steps to compile package:
 
@@ -59,36 +61,3 @@ Docs hosted at: https://checheromo96.github.io/CPVector/
 	usr/local/lib/CPString
 	usr/local/include/CPString
 
-# Steps to install as an Arduino Library:
-
-## a) download zip file
-
-If you downlaoded the zip file containing this repository extract ists contents and move the CPVector_vX.X.X to your current Arduino Project library directory.
-
-Even though you did not installed through git you can update the package through it.
-
-## b) clone through git
-
-Note that you must have git installed on your computer. 
-
-### To istall git through homebrew on Mac Os X:
-
-	brew install git
-
-1.- Go to your current Arduino Project library directory replace <myArduinoProjectDirectory> with your directory path.
-
-	cd <myArduinoProjectDirectory>/libraries
-
-2.- Clone through git
-
-	git clone https://github.com/ChecheRomo96/CPVector.git
-
-3.- To update this repository, enter to the repository and pull the newer version
-
-	cd CPString
-	git pull
-
-
-/**
- *
- */
