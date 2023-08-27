@@ -18,7 +18,8 @@ jobs:
           cp -R ./src ./ArduinoRelease |
           cp -R ./examples ./ArduinoRelease |
           cp ./library.properties ./ArduinoRelease |
-          cp ./keywords.txt ./ArduinoRelease
+          cp ./keywords.txt ./ArduinoRelease |
+          cp ./LICENSE ./ArduinoRelease
           
           
       - name: Remove CMakeLists.txt files
