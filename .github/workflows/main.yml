@@ -1,0 +1,18 @@
+name: Create Arduino Release
+on:
+  workflow_dispatch:
+jobs:
+  CreateRelease:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.3
+         
+      - name: Create New Directory to copy the contets
+        run: |
+          mkdir ArduinoRelease
+          
+      - name: Copy the source code
+        run: |
+          cp -R ./src ./ArduinoRelease
