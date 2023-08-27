@@ -19,5 +19,4 @@ jobs:
           
       - name: Install tree and show file structure
         run: |
-          cd ArduinoRelease |
-          tree
+          tree ./ArduinoRelease
