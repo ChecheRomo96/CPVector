@@ -1,3 +1,43 @@
  /*!  \page Instalation
-  * Documentation you want to occur on the Installation page.
+  * 
+  * 
+  * 
+  * A
+  * 
+  * 
+  * \subpage Instalation_Arduino Install as an Arduino Library.
+  * 
+  * 
   */
+
+   /*!  \page Instalation_Arduino Install as an Arduino Library
+  * 
+  * 
+  * ## a) download zip file
+  * If you downlaoded the zip file containing this repository extract ists contents and move the CPVector_vX.X.X to your current Arduino Project library directory.\n
+  * Even though you did not installed through git you can update the package through it.\n
+  * 
+  * <a href="./d9/d8d/_instalation.html">Installation Page</a>
+  * 
+  * ## b) clone through git
+  * In order to install the library using Git, it is necessary to have Git installed on our system. Below, we are providing the installation process for Git for the most common cases.
+  * 
+  * ### Install git cli through homebrew on Mac Os X:
+  * 
+  * 	brew install git
+  * 	
+  * ###- Go to your current Arduino Project library directory replace <myArduinoProjectDirectory> with your directory path.
+  * 	
+  * 	cd <myArduinoProjectDirectory>/libraries
+  * 
+  * ###- Clone through git
+  * 
+  * 	git clone https://github.com/ChecheRomo96/CPVector.git
+  * 
+  * ###- To update this repository, enter to the repository and pull the newer version
+  * 
+  * 	cd CPString
+  * 	git pull
+  * 
+  */
+
