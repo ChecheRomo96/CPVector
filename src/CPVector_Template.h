@@ -304,7 +304,14 @@
                             clear();
 
                             #if defined(CPVECTOR_USING_STD)
+
                                 _Vector = std::move(source.stdVec());
+
+                            #elif defined(CPVECTOR_USING_C)
+
+                                _Buffer = source.Buffer();
+                                source.Buffer_SetNull();
+                                
                             #endif
 
                             return *this;
