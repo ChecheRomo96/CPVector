@@ -11,7 +11,7 @@
     namespace CPVector
     {
 
-        #ifndef(CPVECTOR_USING_STD) 
+        #ifndef CPVECTOR_USING_STD
             template <class T>
             struct remove_reference{ typedef T type; };
 
@@ -20,10 +20,14 @@
 
             template <class T>
             struct remove_reference<T&&> { typedef T type; };
+
+        #else
+            template<class T>
+            using remove_reference = std::remove_reference<T>;
         #endif
 
         template <typename T>
-        typename remove_reference<T>::type&& move(T&& arg)
+        typename CPVector::remove_reference<T>::type&& move(T&& arg)
         {
 
             #if defined(CPVECTOR_USING_STD) 
