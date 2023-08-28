@@ -81,177 +81,186 @@
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // Constructors, Destructor
                 
-                    /**
-                     * @brief Default constructor
-                     * 
-                     * Initializes the vector to have size() = 0, the Capacity value is undefined, it's value is only bigger than size at all times. In order to reduce the capacity of the vector see shrink_to_fit() or clear()
-                     */
-                    vector()
-                    {
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Initialization 
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Arduino and PSoC
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @name Constructors & Destructor
+                    //! @{
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @brief Default constructor
+                    //! Initializes the vector to have size() = 0, the Capacity value is undefined, it's value is only bigger than size at all times. In order to reduce 
+                    //! the capacity of the vector see shrink_to_fit() or clear()
+                    
+                        vector()
+                        {
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // Initialization 
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // C Vector
 
-                            #if defined(CPVECTOR_USING_C)
-                                _Buffer = NULL;
-                                _Size = 0;
-                                _Capacity = 0;
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
+                                #if defined(CPVECTOR_USING_C)
+                                    _Buffer = NULL;
+                                    _Size = 0;
+                                    _Capacity = 0;
+                                #endif
+                            //
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // std::vector
 
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Resizing
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Cross Compatible Code
+                                #if defined(CPVECTOR_USING_STD)
+                                    _Vector.resize(0);
+                                    shrink_to_fit();
+                                #endif
+                            //
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        }      
+                    //
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @brief Resize constructor. Resizes the container to contain count elements, does nothing if count == 0.
+                    //! If value parameter is not given additional default-inserted elements are appended\n 
+                    //! If value parameter is given additional copies of value are appended.\n
+                    //! @tparam count New size of the conatainer
+                    //! @tparam value The value to initialize the elements with
 
+                        vector(unsigned int count, const T& value = T())
+                        {
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // Initialization 
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // C Vector
+
+                                #if defined(CPVECTOR_USING_C)
+                                    _Buffer = NULL;
+                                    _Size = 0;
+                                    _Capacity = 0;
+                                #endif
+                            //
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // std::vector
+
+                                #if defined(CPVECTOR_USING_STD)
+                                    _Vector.resize(0);
+                                    shrink_to_fit();
+                                #endif
+                            //
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // Resizing
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // Cross Compatible Code
+                                
+                                resize(count, value);
+
+                            //
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        }
+                    //
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @brief Copy constructor. Constructs the container with the copy of the contents of other
+                    //! @tparam other another container to be used as source to initialize the elements of the container with
+                    
+                        vector(const vector<T>& other)
+                        {            
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // Initialization 
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // Arduino and PSoC
+
+                                #if defined(CPVECTOR_USING_C)
+                                    _Buffer = NULL;
+                                    _Size = 0;
+                                    _Capacity = 0;
+                                #endif
+                            //
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // Resizing and copying data
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // Cross Compatible Code
+                                    
+                                resize(other.size());
+                                
+                                for(unsigned int i = 0; i < size(); i++)
+                                {
+                                    (*this)[i] = other[i];
+                                }
+                            //
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        }
+                    //
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @brief Copy constructor. Constructs the container with the copy of the contents of other
+                    //! @tparam pointer location of the data to copy
+                    //! @tparam len number of elements to copy
+
+                        vector(const T* pointer, unsigned int len)
+                        {
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // Initialization 
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // Arduino and PSoC
+
+                                #if defined(CPVECTOR_USING_C)
+                                    _Buffer = NULL;
+                                    _Size = 0;
+                                    _Capacity = 0;
+                                #endif
+                            //
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // Resizing and copying data
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // Cross Compatible Code
+                                    
+                                resize(len);
+                                
+                                for(unsigned int i = 0; i < size(); i++)
+                                {
+                                    (*this)[i] = pointer[i];
+                                }
+                            //
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        }
+                    //
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @brief Move constructor. Constructs the container with the copy of the contents of other
+                    //! @tparam pointer location of the data to copy
+                    //! @tparam len number of elements to copy
+                    
+                        vector(vector<T>&& source)
+                        {
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // Arduino and PSoC
+
+                                #if defined(CPVECTOR_USING_C)
+                                    _Buffer = source.Buffer();
+                                    _Size = source.size();
+                                    _Capacity = source.capacity();
+                                    source.Buffer_SetNull();
+                                #endif
+                            //
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            // std::vector
+                                    
+                                #if defined(CPVECTOR_USING_STD)
+                                    clear();
+                                    _Vector = std::move(source.stdVec());
+                                #endif
+                            //
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        }
+                    //
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @brief Destructor. Destroys all the elements amd changes the size and capacity to 0. (Releases the used memory)
+                    
+                        ~vector()
+                        {
                             clear();
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                    }
-                    
-                    /**
-                     * @brief Resize constructor. Resizes the container to contain count elements, does nothing if count == 0.
-                     * 
-                     * If value parameter is not given additional default-inserted elements are appended\n
-                     * If value parameter is given additional copies of value are appended.\n                     
-                     * @tparam count New size of the conatainer
-                     * @tparam value The value to initialize the elements with
-                     */
-                    vector(unsigned int count, const T& value = T())
-                    {
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Initialization 
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Arduino and PSoC
-
-                            #if defined(CPVECTOR_USING_C)
-                                _Buffer = NULL;
-                                _Size = 0;
-                                _Capacity = 0;
-                            #endif
-                        //
-                        ///////////////// ///////////////////////////////////////////////////////////////////////////
-
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Resizing
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Cross Compatible Code
-                            
-                            resize(count, value);
-
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                    }
-                    
-                    /**
-                     * @brief Copy constructor. Constructs the container with the copy of the contents of other
-                     * @tparam other another container to be used as source to initialize the elements of the container with
-                     */
-                    vector(const vector<T>& other)
-                    {            
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Initialization 
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Arduino and PSoC
-
-                            #if defined(CPVECTOR_USING_C)
-                                _Buffer = NULL;
-                                _Size = 0;
-                                _Capacity = 0;
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Resizing and copying data
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Cross Compatible Code
-                                
-                            resize(other.size());
-                            
-                            for(unsigned int i = 0; i < size(); i++)
-                            {
-                                (*this)[i] = other[i];
-                            }
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                    }
-                
-                    /**
-                     * @brief Copy constructor. Constructs the container with the copy of the contents of other
-                     * @tparam pointer location of the data to copy
-                     * @tparam len number of elements to copy
-                     */
-                    vector(const T* pointer, unsigned int len)
-                    {
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Initialization 
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Arduino and PSoC
-
-                            #if defined(CPVECTOR_USING_C)
-                                _Buffer = NULL;
-                                _Size = 0;
-                                _Capacity = 0;
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Resizing and copying data
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Cross Compatible Code
-                                
-                            resize(len);
-                            
-                            for(unsigned int i = 0; i < size(); i++)
-                            {
-                                (*this)[i] = pointer[i];
-                            }
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                    }
-                
-                    /**
-                     * @brief Move constructor. Constructs the container with the copy of the contents of other
-                     * @tparam pointer location of the data to copy
-                     * @tparam len number of elements to copy
-                     */
-                    vector(vector<T>&& source)
-                    {
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Arduino and PSoC
-
-                            #if defined(CPVECTOR_USING_C)
-                                _Buffer = source.Buffer();
-                                _Size = source.size();
-                                _Capacity = source.capacity();
-                                source.Buffer_SetNull();
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // std::vector
-                                
-                            #if defined(CPVECTOR_USING_STD)
-                                clear();
-                                _Vector = std::move(source.stdVec());
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                    }
-                
-                    /**
-                     * @brief Destructor. Destroys all the elements amd changes the size and capacity to 0. (Releases the used memory)
-                     */
-                    ~vector()
-                    {
-                        clear();
-                    }
-
-                    ////////////////////////////////////////////////////////////////////////////////////////////////
-                    // std::vector Specific Constructor
+                        }
+                    //
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    // std::vector Specific Constructors
 
                         #if defined(CPVECTOR_USING_STD)
                             vector(std::initializer_list<T> list)
@@ -261,13 +270,17 @@
                             }
                         #endif
                     //
-                    ////////////////////////////////////////////////////////////////////////////////////////////////
-
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @}
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 //
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                // Operators
-                    
-                    ///////////////////////////////////////////////////////////////////
+                // Operators 
+                   
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @name Operators
+                    //! @{
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     // Assignment Operators
 
                         /**
@@ -311,13 +324,13 @@
 
                                 _Buffer = source.Buffer();
                                 source.Buffer_SetNull();
-                                
+
                             #endif
 
                             return *this;
                         }
                     //
-                    ///////////////////////////////////////////////////////////////////
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     // Subscript Array Operators
                     
                         /**
@@ -374,7 +387,7 @@
                             ////////////////////////////////////////////////////////////////////////////////////////////
                         }
                     //
-                    ///////////////////////////////////////////////////////////////////
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     // Comparison Operators
 
                         /**
@@ -413,266 +426,269 @@
                             return 0;
                         }
                     //
-                    ///////////////////////////////////////////////////////////////////
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @}
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 //
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // Size And Resize API
                 
-                    /**
-                     * @brief Returns the size of the storage space currently allocated for the vector, expressed in terms of elements.
-                     * 
-                     * This capacity is not necessarily equal to the vector size. It can be equal or greater, with the extra space allowing to accommodate for growth without the need to reallocate on each insertion.
-                     * Notice that this capacity does not suppose a limit on the size of the vector. When this capacity is exhausted and more is needed, it is automatically expanded by the container (reallocating it storage space). The theoretical limit on the size of a vector is given by member max_size.
-                     * The capacity of a vector can be explicitly altered by calling member vector::reserve.
-                     */
-                    uint32_t capacity() const
-                    {
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Arduino and PSoC
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @name Buffer Size And Resize API
+                    //! @{
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! "brief Returns the size of the storage space currently allocated for the vector, expressed in terms of elements.
+                    //! This capacity is not necessarily equal to the vector size. It can be equal or greater, with the extra space allowing to accommodate for growth without the need to reallocate on each insertion.
+                    //ª Notice that this capacity does not suppose a limit on the size of the vector. When this capacity is exhausted and more is needed, it is automatically expanded by the container (reallocating it storage space). The theoretical limit on the size of a vector is given by member max_size.
+                    //ª The capacity of a vector can be explicitly altered by calling member vector::reserve.
+                    
+                        uint32_t capacity() const
+                        {
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            // Arduino and PSoC
 
-                            #if defined(CPVECTOR_USING_C)
-                                return _Capacity;
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        //  std::vector
+                                #if defined(CPVECTOR_USING_C)
+                                    return _Capacity;
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            //  std::vector
 
-                            #if defined(CPVECTOR_USING_STD)
-                                return (uint32_t)_Vector.capacity();
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        
-                    }
+                                #if defined(CPVECTOR_USING_STD)
+                                    return (uint32_t)_Vector.capacity();
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            
+                        }
+                    //
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @brief Returns the number of elements in the vector.
+                    //! This is the number of actual objects held in the vector, which is not necessarily equal to its storage capacity.
+                    
+                        uint32_t size() const
+                        {
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            // Arduino and PSoC
 
-                    /**
-                     * @brief Returns the number of elements in the vector.
-                     * 
-                     * This is the number of actual objects held in the vector, which is not necessarily equal to its storage capacity.
-                     */
-                    uint32_t size() const
-                    {
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Arduino and PSoC
+                                #if defined(CPVECTOR_USING_C)
+                                    return _Size;
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            //  std::vector
 
-                            #if defined(CPVECTOR_USING_C)
-                                return _Size;
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        //  std::vector
+                                #if defined(CPVECTOR_USING_STD)
+                                    return (uint32_t)_Vector.size();
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                        }
+                    //
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @brief Increase the capacity of the vector (the total number of elements that the vector can hold without requiring reallocation) to a value that's greater or equal to capacity.
+                    //! If new_cap is greater than the current capacity(), new storage is allocated, otherwise the function does nothing.\n
+                    //! reserve() does not change the size of the vector.\n
+                    //! If after the operation the new size() is greater than old capacity() a reallocation takes place, in which case all iterators (including the end() iterator) and all references to the elements are invalidated. Otherwise, no iterators or references are invalidated.\n
+                    //! After a call to reserve(), insertions will not trigger reallocation unless the insertion would make the size of the vector greater than the value of capacity().\n
+                    
+                        void reserve(uint32_t new_cap)
+                        {
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            // Arduino and PSoC
 
-                            #if defined(CPVECTOR_USING_STD)
-                                return (uint32_t)_Vector.size();
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                    }
+                                #if defined(CPVECTOR_USING_C)
 
-                    /**
-                     * @brief Increase the capacity of the vector (the total number of elements that the vector can hold without requiring reallocation) to a value that's greater or equal to capacity.
-                     * 
-                     *  If new_cap is greater than the current capacity(), new storage is allocated, otherwise the function does nothing.\n
-                     * reserve() does not change the size of the vector.\n
-                     * If after the operation the new size() is greater than old capacity() a reallocation takes place, in which case all iterators (including the end() iterator) and all references to the elements are invalidated. Otherwise, no iterators or references are invalidated.\n
-                     * After a call to reserve(), insertions will not trigger reallocation unless the insertion would make the size of the vector greater than the value of capacity().\n
-                     */
-                    void reserve(uint32_t new_cap)
-                    {
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Arduino and PSoC
+                                    if(new_cap < _Size){ return;}
+                                    if(new_cap == 0){ clear(); return;}
 
-                            #if defined(CPVECTOR_USING_C)
-
-                                if(new_cap < _Size){ return;}
-                                if(new_cap == 0){ clear(); return;}
-
-                                if(_Buffer == NULL)
-                                {
-                                    if((_Buffer = (T*)malloc(new_cap * sizeof(T)) ) == NULL)
+                                    if(_Buffer == NULL)
                                     {
-                                        _Size = 0;
-                                        _Capacity = 0;
-                                    }
-
-                                    _Capacity = new_cap;
-                                }
-                                else
-                                {
-                                    T* ptr = NULL;
-                                    
-                                    if((ptr = (T*)malloc(new_cap * sizeof(T)) ) != NULL)
-                                    {
-
-
-                                        for(uint32_t i = 0; i < _Size; i++)
+                                        if((_Buffer = (T*)malloc(new_cap * sizeof(T)) ) == NULL)
                                         {
-                                            ptr[i] = _Buffer[i];
+                                            _Size = 0;
+                                            _Capacity = 0;
                                         }
 
-                                        free(_Buffer );
-                                        _Buffer = ptr;
+                                        _Capacity = new_cap;
                                     }
-                                }
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        //  std::vector
-
-                            #if defined(CPVECTOR_USING_STD)
-                                _Vector.reserve(new_cap);
-                            #endif
-                        //
-                    }
-
-                    /**
-                     * @brief Requests the container to reduce its capacity to fit its size.
-                     * 
-                     * The request is non-binding, and the container implementation is free to optimize otherwise and leave the vector with a capacity greater than its size.\n
-                     * This may cause a reallocation, but has no effect on the vector size and cannot alter its elements.                     
-                     */
-                    void shrink_to_fit()
-                    {
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Arduino and PSoC
-
-                            #if defined(CPVECTOR_USING_C)
-                                if(_Capacity > _Size)
-                                {
-                                    T* ptr = NULL;
-                                    
-                                    if((ptr = (T*)malloc(_Size * sizeof(T)) ) != NULL)
+                                    else
                                     {
-
-                                        for(uint32_t i = 0; i < _Size; i++)
+                                        T* ptr = NULL;
+                                        
+                                        if((ptr = (T*)malloc(new_cap * sizeof(T)) ) != NULL)
                                         {
-                                            ptr[i] = _Buffer[i];
+
+
+                                            for(uint32_t i = 0; i < _Size; i++)
+                                            {
+                                                ptr[i] = _Buffer[i];
+                                            }
+
+                                            free(_Buffer );
+                                            _Buffer = ptr;
                                         }
-
-                                        free(_Buffer );
-                                        _Buffer = ptr;
-                                        _Capacity = _Size;
                                     }
-                                }
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        //  std::vector
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            //  std::vector
 
-                            #if defined(CPVECTOR_USING_STD)
-                                _Vector.shrink_to_fit();
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                    }
+                                #if defined(CPVECTOR_USING_STD)
+                                    _Vector.reserve(new_cap);
+                                #endif
+                            //
+                        }
+                    //
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @brief Requests the container to reduce its capacity to fit its size.
+                    //! The request is non-binding, and the container implementation is free to optimize otherwise and leave the vector with a capacity greater than its size.\n
+                    //! This may cause a reallocation, but has no effect on the vector size and cannot alter its elements.                     
+                     
+                        void shrink_to_fit()
+                        {
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            // Arduino and PSoC
 
-                    /**
-                     * @brief Resizes the container to contain new_size elements, does nothing if new_size == size().
-                     * 
-                     * If the current size is greater than new_size, the container is reduced to to fit new_size elements.\n
-                     * If the current size is less than count and value parameter is unused, then additional default-inserted elements are appended.
-                     * If the current size is less than count and value parameter is used, then additional copies of value are appended.
-                     * @tparam new_size New size of the container.
-                     * @tparam value The value to initialize the new elements with.
-                     */
-                    bool resize(uint32_t new_size, const T& value = T())
-                    {
-                        if(size() == new_size){return 1;}
-                        
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Arduino and PSoC
-
-                            #if defined(CPVECTOR_USING_C)
-                                
-                                if(new_size == 0){ clear(); return 1;}
-
-                                if(new_size > _Capacity)
-                                { 
-                                    reserve(new_size); 
-                                    if(new_size < _Capacity)
+                                #if defined(CPVECTOR_USING_C)
+                                    if(_Capacity > _Size)
                                     {
-                                        return 0;
+                                        T* ptr = NULL;
+                                        
+                                        if((ptr = (T*)malloc(_Size * sizeof(T)) ) != NULL)
+                                        {
+
+                                            for(uint32_t i = 0; i < _Size; i++)
+                                            {
+                                                ptr[i] = _Buffer[i];
+                                            }
+
+                                            free(_Buffer );
+                                            _Buffer = ptr;
+                                            _Capacity = _Size;
+                                        }
                                     }
-                                }
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            //  std::vector
 
-                                for(uint32_t i = new_size; i < _Size; i++)
-                                {
-                                    _Buffer[i].~T();
-                                }
-
-                                auto min = (_Size<new_size) ? _Size : new_size;
-
-                                for(uint32_t i = min; i < new_size; i++)
-                                {
-                                    _Buffer[i] = value;
-                                }
-
-                                _Size = new_size;
-                                
-                                return 1;
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        //  std::vector
-
-                            #if defined(CPVECTOR_USING_STD)
-                                
-                                auto OldSize = _Vector.size();
-
-                                _Vector.resize(new_size, value);
-
-                                if(OldSize > new_size)
-                                {
+                                #if defined(CPVECTOR_USING_STD)
                                     _Vector.shrink_to_fit();
-                                }
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                        }
+                    //
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @brief Resizes the container to contain new_size elements, does nothing if new_size == size().
+                    //! If the current size is greater than new_size, the container is reduced to to fit new_size elements.\n
+                    //! If the current size is less than count and value parameter is unused, then additional default-inserted elements are appended.
+                    //! If the current size is less than count and value parameter is used, then additional copies of value are appended.
+                    //! @tparam new_size New size of the container.
+                    //! @tparam value The value to initialize the new elements with.
+                     
+                        bool resize(uint32_t new_size, const T& value = T())
+                        {
+                            if(size() == new_size){return 1;}
+                            
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            // Arduino and PSoC
 
-                                if(_Vector.size() == new_size){return 1;}
-                                else{return 0;}
+                                #if defined(CPVECTOR_USING_C)
+                                    
+                                    if(new_size == 0){ clear(); return 1;}
 
-                                return ((_Vector.size() == new_size) ? true : false );
+                                    if(new_size > _Capacity)
+                                    { 
+                                        reserve(new_size); 
+                                        if(new_size < _Capacity)
+                                        {
+                                            return 0;
+                                        }
+                                    }
 
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                    }
+                                    for(uint32_t i = new_size; i < _Size; i++)
+                                    {
+                                        _Buffer[i].~T();
+                                    }
 
-                    /**
-                     * @brief Removes all elements from the vector (which are destroyed), leaving the container with a size and capacity of 0.
-                     *
-                     * if ( capacity > 0 ) A reallocation is guaranteed to happen, and the vector capacity is guaranteed to change due to calling this function.                     
-                     */
-                    void clear()
-                    {
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        // Arduino and PSoC
+                                    auto min = (_Size<new_size) ? _Size : new_size;
 
-                            #if defined(CPVECTOR_USING_C)
+                                    for(uint32_t i = min; i < new_size; i++)
+                                    {
+                                        _Buffer[i] = value;
+                                    }
 
-                                for(uint8_t i = 0; i < _Size; i++)
-                                {
-                                    _Buffer[i].~T();
-                                }
+                                    _Size = new_size;
+                                    
+                                    return 1;
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            //  std::vector
 
-                                free(_Buffer);
-                                _Buffer = NULL;
-                                _Size = 0;
-                                _Capacity = 0;
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                        //  std::vector
+                                #if defined(CPVECTOR_USING_STD)
+                                    
+                                    auto OldSize = _Vector.size();
 
-                            #if defined(CPVECTOR_USING_STD)
-                                if(_Vector.size() != 0)
-                                {
-                                    _Vector.resize(0);
-                                }
-                                
-                                _Vector.shrink_to_fit();
-                            #endif
-                        //
-                        ////////////////////////////////////////////////////////////////////////////////////////////
-                    } 
+                                    _Vector.resize(new_size, value);
+
+                                    if(OldSize > new_size)
+                                    {
+                                        _Vector.shrink_to_fit();
+                                    }
+
+                                    if(_Vector.size() == new_size){return 1;}
+                                    else{return 0;}
+
+                                    return ((_Vector.size() == new_size) ? true : false );
+
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                        }
+                    //
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @brief Removes all elements from the vector (which are destroyed), leaving the container with a size and capacity of 0.
+                    //! if ( capacity > 0 ) A reallocation is guaranteed to happen, and the vector capacity is guaranteed to change due to calling this function.                     
+                     
+                        void clear()
+                        {
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            // Arduino and PSoC
+
+                                #if defined(CPVECTOR_USING_C)
+
+                                    for(uint8_t i = 0; i < _Size; i++)
+                                    {
+                                        _Buffer[i].~T();
+                                    }
+
+                                    free(_Buffer);
+                                    _Buffer = NULL;
+                                    _Size = 0;
+                                    _Capacity = 0;
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            //  std::vector
+
+                                #if defined(CPVECTOR_USING_STD)
+                                    if(_Vector.size() != 0)
+                                    {
+                                        _Vector.resize(0);
+                                    }
+                                    
+                                    _Vector.shrink_to_fit();
+                                #endif
+                            //
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                        } 
+                    //
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //! @}
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 //
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // API
@@ -723,6 +739,33 @@
                             #if defined(CPVECTOR_USING_C)
                                 resize(size() + 1);
                                 _Buffer[size() - 1] = value;
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                    }
+
+                    /**
+                     * @brief Appends the given element value to the end of the container.
+                     *
+                     * If after the operation the new size() is greater than old capacity() a reallocation takes place.
+                     * The class used must implement the proper move semantics in order for this method to be able to call a move assignment operator.
+                     * @tparam value the value of the element to append.
+                     */
+                    void push_back(T&& Rvalue)
+                    {
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        // std::vector
+
+                            #if defined(CPVECTOR_USING_STD)
+                                _Vector.push_back(Rvalue);
+                            #endif
+                        //
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        //  PSoC Creator and Arduino IDE
+
+                            #if defined(CPVECTOR_USING_C)
+                                resize(size() + 1);
+                                _Buffer[size() - 1] = CPVector::move(Rvalue);
                             #endif
                         //
                         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -826,7 +869,39 @@
                                 resize(_Size+1);
                                 for(unsigned int i = _Size-1 ; i > pos ; i--)
                                 {
-                                    (*this)[i] = (*this)[i-1];
+                                    (*this)[i] = CPVector::move( (*this)[i-1] );
+                                }
+                                (*this)[pos] = value;
+                            #endif
+                        //
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        // std::vector
+
+                            #if defined(CPVECTOR_USING_STD)
+                                _Vector.emplace(_Vector.begin()+pos,value);
+                            #endif
+                        //
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    }
+
+
+                    /**
+                     * @brief Inserts a new element into the container directly before pos.
+                     *
+                     * The element is inserted 
+                     * @tparam value The value of the element to append.
+                     * @tparam pos Index where the element will be appended append.
+                     */
+                    void emplace(T&& value, unsigned int pos)
+                    {
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //  PSoC Creator and Arduino IDE
+
+                            #if defined(CPVECTOR_USING_C)
+                                resize(_Size+1);
+                                for(unsigned int i = _Size-1 ; i > pos ; i--)
+                                {
+                                    (*this)[i] = CPVector::move( (*this)[i-1] );
                                 }
                                 (*this)[pos] = value;
                             #endif
@@ -845,8 +920,8 @@
                      * @brief Swaps the elements at index_a and index_b
                      *
                      * The element is constructed through std::allocator_traits::construct, which typically uses placement-new to construct the element in-place at a location provided by the container. However, if the required location has been occupied by an existing element, the inserted element is constructed at another location at first, and then move assigned into the required location.
+                     * The class used must implement the proper move semantics in order for this method to be able to call a move assignment operator.
                      * @tparam index_a the value of the first element to swap.
-                     * @tparam index_b the value of the second element to swap.
                      */
                     void swap(unsigned int index_a, unsigned int index_b)
                     {
@@ -951,7 +1026,12 @@
 
                     #if defined(CPVECTOR_SORTING_ENABLED)
 
-                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //! @name Sorting
+                        //! In order for these to work the class T must have declared the <, >, and the == operators.
+                        //! @{
+                        //
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         //
                             /**
                              * @brief Sorts the contents of the container based on the compare function recieved.
@@ -964,7 +1044,7 @@
                                 _CustomSort_Helper(CompareFunction, 0, size()-1);
                             }
                         //    
-                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         //
                             /**
                              * @brief Sorts the contents of the container based on the CPVector::Sorting::SortingArray<T> recieved.
@@ -977,7 +1057,7 @@
                                 _CustomSort_Helper(SortingArray, 0, size()-1);
                             }
                         //
-                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         //
                             /**
                              * @brief Sorts the contents of the container from smallest to largest
@@ -989,7 +1069,7 @@
                                 sort(Sorting::Ascending);
                             }
                         //
-                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         //
                             /**
                              * @brief Sorts the contents of the container from largest to smallest
@@ -1001,7 +1081,9 @@
                                 sort(Sorting::Descending);
                             }
                         //
-                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //! @}
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     #endif
                 //
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
