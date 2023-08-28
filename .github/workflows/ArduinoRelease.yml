@@ -29,7 +29,16 @@ jobs:
           find ./ArduinoRelease -name "Desktop" -type d -exec rm -rf {} + |
           find ./ArduinoRelease -name "PSoC" -type d -exec rm -rf {} +
           
-      - name: Install tree and show file structure
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: Arduino
+          build_dir: ./ArduinoRelease
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+      - name: Show file structure
         run: |
           tree ./ArduinoRelease
 
