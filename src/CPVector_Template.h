@@ -25,7 +25,7 @@
 
 
 
-            private:
+            protected:
 
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // Arduino and PSoC
@@ -41,37 +41,6 @@
                 
                     #if defined(CPVECTOR_USING_STD)
                         std::vector<T> _Vector;
-                    #endif
-                //
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            
-            protected:
-
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                // Arduino and PSoC
-
-                    #if defined(CPVECTOR_USING_C)
-                        T* Buffer() const
-                        {
-                            return _Buffer;
-                        }
-
-                        void Buffer_SetNull()
-                        {
-                            _Buffer = NULL;
-                            _Size = 0;
-                            _Capacity = 0;
-                        }
-                    #endif
-                //
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                // std::vector
-
-                    #if defined(CPVECTOR_USING_STD)
-                        std::vector<T>& stdVec()
-                        {
-                            return _Vector;
-                        }
                     #endif
                 //
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -437,7 +406,7 @@
                     //! @name Buffer Size And Resize API
                     //! @{
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //! "brief Returns the size of the storage space currently allocated for the vector, expressed in terms of elements.
+                    //! @brief Returns the size of the storage space currently allocated for the vector, expressed in terms of elements.
                     //! This capacity is not necessarily equal to the vector size. It can be equal or greater, with the extra space allowing to accommodate for growth without the need to reallocate on each insertion.
                     //ª Notice that this capacity does not suppose a limit on the size of the vector. When this capacity is exhausted and more is needed, it is automatically expanded by the container (reallocating it storage space). The theoretical limit on the size of a vector is given by member max_size.
                     //ª The capacity of a vector can be explicitly altered by calling member vector::reserve.
@@ -1157,7 +1126,6 @@
                             // Recursive calls
                             if(pivot > lower+1){_CustomSort_Helper(SortingArray,lower,pivot-1);}
                             if(pivot < upper-1)_CustomSort_Helper(SortingArray,pivot+1,upper);
-                            
                         }
                         
                         unsigned int _CustomSort_Partition(const Sorting::SortingArray<T>& CompareVector, unsigned int lower, unsigned int upper, unsigned int pivot)
