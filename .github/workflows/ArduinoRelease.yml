@@ -1,0 +1,46 @@
+name: Arduino Release
+on:
+  workflow_dispatch:
+jobs:
+  CreateRelease:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.3
+         
+      - name: Create New Directory to copy the contets
+        run: |
+          mkdir ArduinoRelease
+          
+      - name: Copy the source code and other files
+        run: |
+          cp -R ./src ./ArduinoRelease |
+          cp -R ./examples ./ArduinoRelease |
+          cp ./library.properties ./ArduinoRelease |
+          cp ./keywords.txt ./ArduinoRelease |
+          cp ./LICENSE ./ArduinoRelease
+          
+          
+      - name: Remove CMakeLists.txt files
+        run: |
+          find ./ArduinoRelease -name "CMakeLists.txt" -type f -delete |
+          find ./ArduinoRelease -name "*.dox" -type f -delete |
+          find ./ArduinoRelease -name "Desktop" -type d -exec rm -rf {} + |
+          find ./ArduinoRelease -name "PSoC" -type d -exec rm -rf {} +
+          
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: Arduino
+          build_dir: ./ArduinoRelease
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+      - name: Show file structure
+        run: |
+          tree ./ArduinoRelease
+
+
+          

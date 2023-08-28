@@ -1,3 +1,4 @@
+name: Arduino Lint Workflow
 on:
   workflow_dispatch:
 jobs:
@@ -6,3 +7,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: arduino/arduino-lint-action@v1.0.2
+        with:
+          compliance: strict
