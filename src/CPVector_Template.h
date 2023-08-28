@@ -53,10 +53,11 @@
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //! @name Constructors & Destructor
                     //! @{
+                    //!
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //! @brief Default constructor
                     //! Initializes the vector to have size() = 0, the Capacity value is undefined, it's value is only bigger than size at all times. In order to reduce 
-                    //! the capacity of the vector see shrink_to_fit() or clear()
+                    //! the capacity of the vector see shrink_to_fit() or clear().
                     
                         vector()
                         {
@@ -405,6 +406,7 @@
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //! @name Buffer Size And Resize API
                     //! @{
+                    //!
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //! @brief Returns the size of the storage space currently allocated for the vector, expressed in terms of elements.
                     //! This capacity is not necessarily equal to the vector size. It can be equal or greater, with the extra space allowing to accommodate for growth without the need to reallocate on each insertion.
