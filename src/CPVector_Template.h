@@ -6,6 +6,7 @@
 #define CROSS_PLATFFORM_VECTOR_TEMPLATE_H
 
     #include "CPVector_BuildSettings.h"
+    #include "CPVector_Move.h"
     #include "Sorting/CPVector_Sorting.h"
 
     namespace CPVector
@@ -849,24 +850,11 @@
                             if((index_a == index_b) || (index_a>=sz) || (index_b>=sz) ){return;}
                         //
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                        //  std::vector
+                        //  cross compatible code
                         
-                            #if defined(CPVECTOR_USING_STD)
-                            
-                                T tmp = std::move((*this)[index_a]);
-                                (*this)[index_a] = std::move((*this)[index_b]);
-                                (*this)[index_b] = std::move(tmp);
-                            #endif
-                        //
-                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                        //  C
-                        
-                            #if defined(CPVECTOR_USING_C)
-                            
-                                T tmp = (*this)[index_a];
-                                (*this)[index_a] = (*this)[index_b];
-                                (*this)[index_b] = tmp;
-                            #endif
+                            T tmp = CPVector::move((*this)[index_a]);
+                            (*this)[index_a] = CPVector::move((*this)[index_b]);
+                            (*this)[index_b] = CPVector::move(tmp);
                         //
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     }
