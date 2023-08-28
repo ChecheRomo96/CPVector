@@ -1,4 +1,4 @@
-name: Create Arduino Release
+name: Arduino Release
 on:
   workflow_dispatch:
 jobs:
