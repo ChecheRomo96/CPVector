@@ -48,14 +48,12 @@
             public:
                 
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                // Constructors, Destructor
+                //! @name Constructors & Destructor
+                //! @{
                 
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //! @name Constructors & Destructor
-                    //! @{
-                    //!
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //! @brief Default constructor
+                    //!
                     //! Initializes the vector to have size() = 0, the Capacity value is undefined, it's value is only bigger than size at all times. In order to reduce 
                     //! the capacity of the vector see shrink_to_fit() or clear().
                     
@@ -81,10 +79,12 @@
                                 #endif
                             //
                             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                        }      
-                    //
+                        }     
+                    //!
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //! @brief Resize constructor. Resizes the container to contain count elements, does nothing if count == 0.
+                    //! @brief Resize constructor. 
+                    //!
+                    //! Resizes the container to contain count elements, does nothing if count == 0.\n\n
                     //! If value parameter is not given additional default-inserted elements are appended\n 
                     //! If value parameter is given additional copies of value are appended.\n
                     //! @tparam count New size of the conatainer
@@ -123,9 +123,11 @@
                             //
                             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         }
-                    //
+                    //!
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //! @brief Copy constructor. Constructs the container with the copy of the contents of other
+                    //! @brief Copy constructor.
+                    //!
+                    //! Constructs the container with the copy of the contents of other
                     //! @tparam other another container to be used as source to initialize the elements of the container with
                     
                         vector(const vector<T>& other)
@@ -159,7 +161,9 @@
                         }
                     //
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //! @brief Copy constructor. Constructs the container with the copy of the contents of other
+                    //! @brief Copy constructor.
+                    //!
+                    //! Constructs the container with the copy of the contents of an array of objects of type T.
                     //! @tparam pointer location of the data to copy
                     //! @tparam len number of elements to copy
 
@@ -194,7 +198,9 @@
                         }
                     //
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //! @brief Move constructor. Constructs the container with the copy of the contents of other
+                    //! @brief Move constructor. 
+                    //!
+                    //! Constructs the container with the copy of the contents of other
                     //! @tparam pointer location of the data to copy
                     //! @tparam len number of elements to copy
                     
@@ -222,7 +228,9 @@
                         }
                     //
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //! @brief Destructor. Destroys all the elements amd changes the size and capacity to 0. (Releases the used memory)
+                    //! @brief Destructor. 
+                    //!
+                    //! Destroys all the elements amd changes the size and capacity to 0. (Releases the used memory)
                     
                         ~vector()
                         {
@@ -241,64 +249,62 @@
                         #endif
                     //
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //! @}
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                //
+                //! @}
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                // Operators 
-                   
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //! @name Operators
-                    //! @{
+                //! @name Operators
+                //! @{
+                
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     // Assignment Operators
 
-                        /**
-                         * @brief Assignment operator. This operator is used to assign new contents to the container by replacing the existing contents.
-                         *
-                         * It also modifies the size according to the new contents.
-                         * @tparam source Another container of the same type.
-                         */
-                        vector& operator=(const vector& source)
-                        {
-                            if(this == &source){return *this;}
-                            
-                            if(resize(source.size()))
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //! @brief Assignment operator.
+                        //! 
+                        //! This operator is used to assign new contents to the container by replacing the existing contents.
+                        //! @tparam source Another container of the same type.
+                        
+                            vector& operator=(const vector& source)
                             {
-                                for(unsigned int i = 0; i < size(); i++)
-                                {
-                                    (*this)[i] = source[i];
-                                }
-                            }
+                                if(this == &source){return *this;}
                                 
-                            return *this;
-                        }
+                                if(resize(source.size()))
+                                {
+                                    for(unsigned int i = 0; i < size(); i++)
+                                    {
+                                        (*this)[i] = source[i];
+                                    }
+                                }
+                                    
+                                return *this;
+                            }
+                        //
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //! @brief Move Assignment operator.
+                        //! 
+                        //! This operator is used to assign new contents to the container by replacing the existing contents.
+                        //! @tparam source Another container of the same type.
+                         
+                            vector& operator=(vector&& source)
+                            {
+                                if(this == &source){return *this;}
+                                
+                                clear();
 
-                        /**
-                         * @brief Move Assignment operator. This operator is used to assign new contents to the container by replacing the existing contents.
-                         *
-                         * It also modifies the size according to the new contents.
-                         * @tparam source Another container of the same type.
-                         */
-                        vector& operator=(vector&& source)
-                        {
-                            if(this == &source){return *this;}
-                            
-                            clear();
+                                #if defined(CPVECTOR_USING_STD)
 
-                            #if defined(CPVECTOR_USING_STD)
+                                    _Vector = std::move(source.stdVec());
 
-                                _Vector = std::move(source.stdVec());
+                                #elif defined(CPVECTOR_USING_C)
 
-                            #elif defined(CPVECTOR_USING_C)
+                                    _Buffer = source.Buffer();
+                                    source.Buffer_SetNull();
 
-                                _Buffer = source.Buffer();
-                                source.Buffer_SetNull();
+                                #endif
 
-                            #endif
-
-                            return *this;
-                        }
+                                return *this;
+                            }
+                        //e
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     // Subscript Array Operators
@@ -397,21 +403,17 @@
                         }
                     //
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //! @}
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                //
+                //! @}
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                // Size And Resize API
+                //! @name Buffer Size And Resize API
+                //! @{
                 
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //! @name Buffer Size And Resize API
-                    //! @{
-                    //!
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //! @brief Returns the size of the storage space currently allocated for the vector, expressed in terms of elements.
+                    //!
                     //! This capacity is not necessarily equal to the vector size. It can be equal or greater, with the extra space allowing to accommodate for growth without the need to reallocate on each insertion.
-                    //ª Notice that this capacity does not suppose a limit on the size of the vector. When this capacity is exhausted and more is needed, it is automatically expanded by the container (reallocating it storage space). The theoretical limit on the size of a vector is given by member max_size.
-                    //ª The capacity of a vector can be explicitly altered by calling member vector::reserve.
+                    //! Notice that this capacity does not suppose a limit on the size of the vector. When this capacity is exhausted and more is needed, it is automatically expanded by the container (reallocating it storage space). The theoretical limit on the size of a vector is given by member max_size.
+                    //! The capacity of a vector can be explicitly altered by calling member vector::reserve.
                     
                         uint32_t capacity() const
                         {
@@ -435,6 +437,7 @@
                     //
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //! @brief Returns the number of elements in the vector.
+                    //!
                     //! This is the number of actual objects held in the vector, which is not necessarily equal to its storage capacity.
                     
                         uint32_t size() const
@@ -458,6 +461,7 @@
                     //
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //! @brief Increase the capacity of the vector (the total number of elements that the vector can hold without requiring reallocation) to a value that's greater or equal to capacity.
+                    //!
                     //! If new_cap is greater than the current capacity(), new storage is allocated, otherwise the function does nothing.\n
                     //! reserve() does not change the size of the vector.\n
                     //! If after the operation the new size() is greater than old capacity() a reallocation takes place, in which case all iterators (including the end() iterator) and all references to the elements are invalidated. Otherwise, no iterators or references are invalidated.\n
@@ -513,6 +517,7 @@
                     //
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //! @brief Requests the container to reduce its capacity to fit its size.
+                    //!
                     //! The request is non-binding, and the container implementation is free to optimize otherwise and leave the vector with a capacity greater than its size.\n
                     //! This may cause a reallocation, but has no effect on the vector size and cannot alter its elements.                     
                      
@@ -553,6 +558,7 @@
                     //
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //! @brief Resizes the container to contain new_size elements, does nothing if new_size == size().
+                    //!
                     //! If the current size is greater than new_size, the container is reduced to to fit new_size elements.\n
                     //! If the current size is less than count and value parameter is unused, then additional default-inserted elements are appended.
                     //! If the current size is less than count and value parameter is used, then additional copies of value are appended.
@@ -622,7 +628,8 @@
                     //
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //! @brief Removes all elements from the vector (which are destroyed), leaving the container with a size and capacity of 0.
-                    //! if ( capacity > 0 ) A reallocation is guaranteed to happen, and the vector capacity is guaranteed to change due to calling this function.                     
+                    //!
+                    //! if ( capacity > 0 ) A reallocation is guaranteed to happen, and the vector capacity is guaranteed to change due to calling this function.
                      
                         void clear()
                         {
@@ -658,11 +665,10 @@
                         } 
                     //
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //! @}
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                //
+                //! @}
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                // API
+                //! @name Core functionality
+                //! @{
                     
                     /**
                      * @brief Copies len data elements from a buffer passed by pointer.
@@ -991,17 +997,14 @@
                         //
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     }
-                //
+                //! @}
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                // Sorting - In order for these to work the class T must have declared the <, >, and the == operators.
-
+                //! @name Sorting
+                //! In order for these to work the class T must have declared the <, >, and the == operators.
+                //! @{
+                
                     #if defined(CPVECTOR_SORTING_ENABLED)
 
-                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                        //! @name Sorting
-                        //! In order for these to work the class T must have declared the <, >, and the == operators.
-                        //! @{
-                        //
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         //
                             /**
@@ -1053,10 +1056,8 @@
                             }
                         //
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                        //! @}
-                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     #endif
-                //
+                //! @}
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             private:
