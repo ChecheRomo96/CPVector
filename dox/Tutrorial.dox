@@ -1,0 +1,20 @@
+/** \example ./examples/1_BuildTest/Desktop/main.cpp
+ * This is an example of how to use the Example_Test class.
+ * More details about this example.
+ */
+
+  /*!  \page Tutorial
+  * 
+  * 
+  * 
+  * A
+  * 
+  * 
+  * \subpage BasicUsage 
+  * 
+  * 
+  */
+
+  /*! \page BasicUsage Basic CPVector::vector Usage
+  * 
+  */
