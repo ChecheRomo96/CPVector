@@ -6,7 +6,6 @@
 #define CROSS_PLATFFORM_VECTOR_MOVE_H
 
     #include "CPVector_BuildSettings.h"
-    #include "Sorting/CPVector_Sorting.h"
 
     namespace CPVector
     {
