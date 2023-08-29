@@ -1,5 +1,9 @@
 #ifndef CROSS_PLATFORM_VECTOR_SORTING_H
 #define CROSS_PLATFORM_VECTOR_SORTING_H
+
+
+    #include "CPVector_BuildSettings.h"
+    
 	/**
      *  @defgroup Sorting Sorting
      *  @brief Functionality related to sorting vectors.
