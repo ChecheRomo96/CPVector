@@ -1,6 +1,7 @@
 #ifndef CROSS_PLATFORM_VECTOR_SORTING_ARRAY_H
 #define CROSS_PLATFORM_VECTOR_SORTING_ARRAY_H
 	
+    #include "CPVector_BuildSettings.h"
 	#include "CPVector_Sorting.h"
 
 	namespace CPVector
