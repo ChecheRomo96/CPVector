@@ -15,6 +15,7 @@ jobs:
           
       - name: Copy the source code and other files
         run: |
+          ls |
           cp -R ./src ./ArduinoRelease |
           cp -R ./examples ./ArduinoRelease |
           cp ./library.properties ./ArduinoRelease |
