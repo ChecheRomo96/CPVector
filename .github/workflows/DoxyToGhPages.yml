@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  ArduinoDocs:
     runs-on: macos-latest
 
     strategy:
@@ -47,7 +47,10 @@ jobs:
       if: success()
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: ./docs/html
-        force_orphan: true
+        personal_token: ${{ secrets.PERSONAL_TOKEN }}
+        external_repository: ChecheRomo96/CPVector_Arduino
+        publish_branch: master
+        publish_dir: ./ArduinoRelease
+        force_orphan: false
+        disable_nojekyll: true
+        allow_empty_commit: true
