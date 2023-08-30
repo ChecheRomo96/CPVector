@@ -52,7 +52,7 @@ jobs:
         
       - name: Show file structure
         run: |
-          tree ./ArduinoRelease
+          tree ./ArduinoRelease -a
           
   CMakeRelease:
     runs-on: ubuntu-latest
