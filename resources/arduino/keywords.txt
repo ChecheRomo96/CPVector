@@ -1,0 +1,21 @@
+CPVector		LITERAL1		
+vector			KEYWORD1		vector					DATA_TYPE
+vector			KEYWORD1		vector					DATA_TYPE
+size			KEYWORD2		vector_size
+resize			KEYWORD2		vector_resize
+clear			KEYWORD2		vector_clear
+copy			KEYWORD2		vector_copy
+push_back		KEYWORD2		vector_push_back
+pop				KEYWORD2		vector_pop
+pop_first		KEYWORD2		vector_pop_first
+pop_back		KEYWORD2		vector_pop_back
+emplace			KEYWORD2		vector_emplace
+swap			KEYWORD2		vector_swap
+erase			KEYWORD2		vector_erase
+sortAscending	KEYWORD2		vector_SortAscending
+sortDescending	KEYWORD2		vector_SortDescending
+sort			KEYWORD2		vector_Sort
+
+Sorting			LITERAL1		
+SortingArray	KEYWORD1		SortingArray			DATA_TYPE
+evaluate		KEYWORD2		SortingArray_Evaluate
