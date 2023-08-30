@@ -2,7 +2,7 @@ name: Create Releases
 on:
   workflow_dispatch:
 jobs:
-  CreateArduinoRelease:
+  ArduinoRelease:
     runs-on: ubuntu-latest
     
     steps:
@@ -50,7 +50,7 @@ jobs:
         run: |
           tree ./ArduinoRelease
           
-  CreateCMakeRelease:
+  CMakeRelease:
     runs-on: ubuntu-latest
     
     steps:
@@ -66,7 +66,7 @@ jobs:
           cp -R ./src ./CMakeRelease |
           cp -R ./examples ./CMakeRelease |
           cp ./LICENSE ./CMakeRelease |
-          cp ./.gitignore ./ArduinoRelease |
+          cp ./.gitignore ./CMakeRelease |
           cp ./README.md ./CMakeRelease |
           cp ./CMakeLists.txt ./CMakeRelease
           
@@ -85,10 +85,13 @@ jobs:
         if: success()
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: CMake
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          external_repository: ChecheRomo96/CPVector_CMake
+          publish_branch: master
           publish_dir: ./CMakeRelease
           force_orphan: false
+          disable_nojekyll: true
+          allow_empty_commit: true
 
       - name: Show file structure
         run: |
