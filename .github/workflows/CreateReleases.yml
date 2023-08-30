@@ -38,9 +38,9 @@ jobs:
         if: success()
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.personal_token }}
           external_repository: ChecheRomo96/CPVector_Arduino
-          publish_branch: Arduino
+          publish_branch: master
           publish_dir: ./ArduinoRelease
           force_orphan: false
         
