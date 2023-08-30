@@ -17,14 +17,11 @@ jobs:
         run: |
           cp -R ./src ./CMakeRelease |
           cp -R ./examples ./CMakeRelease |
-          cp ./library.properties ./CMakeRelease |
-          cp ./keywords.txt ./CMakeRelease |
           cp ./LICENSE ./CMakeRelease
           
           
       - name: Remove CMakeLists.txt files
         run: |
-          find ./CMakeRelease -name "CMakeLists.txt" -type f -delete |
           find ./CMakeRelease -name "*.dox" -type f -delete |
           find ./CMakeRelease -name "*.ino" -type f -delete |
           find ./CMakeRelease -name "PSoC" -type d -exec rm -rf {} +
