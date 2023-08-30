@@ -19,6 +19,7 @@ jobs:
           cp -R ./examples ./ArduinoRelease |
           cp ./library.properties ./ArduinoRelease |
           cp ./keywords.txt ./ArduinoRelease |
+          cp ./.gitignore ./ArduinoRelease |
           cp ./LICENSE ./ArduinoRelease
           
           
@@ -58,6 +59,7 @@ jobs:
           cp -R ./src ./CMakeRelease |
           cp -R ./examples ./CMakeRelease |
           cp ./LICENSE ./CMakeRelease
+          cp ./.gitignore ./CMakeRelease |
           cp ./CMakeLists.txt ./CMakeRelease
           
       - name: Remove examples from Desktop subfolder
