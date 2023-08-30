@@ -40,7 +40,7 @@ jobs:
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           external_repository: ChecheRomo96/CPVector_Arduino
-          publish_branch: master -> master
+          publish_branch: master
           publish_dir: ./ArduinoRelease
           force_orphan: false
           enable_jekyll: false
