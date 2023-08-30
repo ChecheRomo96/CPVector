@@ -28,7 +28,7 @@ jobs:
         run: |
           find ./CMakeRelease -name "*.dox" -type f -delete |
           find ./CMakeRelease -name "*.ino" -type f -delete |
-          find ./ArduinoRelease -name "Desktop" -type d -exec rm -rf {} + |
+          find ./CMakeRelease -name "Desktop" -type d -exec rm -rf {} + |
           find ./CMakeRelease -name "PSoC" -type d -exec rm -rf {} +
           
       #- name: Deploy to GitHub Pages
