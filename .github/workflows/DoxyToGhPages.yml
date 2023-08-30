@@ -72,8 +72,8 @@ jobs:
           touch .nojekyll |
           cd ../..
 
-        - name: Show file structure
-          run: tree ./docs/Arduino_C -a
+      - name: Show file structure
+        run: tree ./docs/Arduino_C -a
       
     #- name: Deploy to GitHub Pages
     #  if: success()
