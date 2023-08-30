@@ -2,7 +2,7 @@ name: Create Releases
 on:
   workflow_dispatch:
 jobs:
-  Create ArduinoRelease:
+  CreateArduinoRelease:
     runs-on: ubuntu-latest
     
     steps:
@@ -42,7 +42,7 @@ jobs:
         run: |
           tree ./ArduinoRelease
           
-  Create CMake Release:
+  CreateCMakeRelease:
     runs-on: ubuntu-latest
     
     steps:
