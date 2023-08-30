@@ -1,6 +1,6 @@
 name: Arduino Lint Workflow
 on:
-  workflow_dispatch:
+  workflow_dispatch
 jobs:
   lint:
     runs-on: ubuntu-latest
