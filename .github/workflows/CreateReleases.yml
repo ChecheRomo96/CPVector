@@ -82,7 +82,7 @@ jobs:
         
       - name: Show file structure
         run: |
-          tree ./ArduinoRelease
+          tree ./CMakeRelease
 
 
           
