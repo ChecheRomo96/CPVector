@@ -20,11 +20,15 @@ jobs:
         run: |
           cp -R ./src ./ArduinoRelease |
           cp -R ./examples ./ArduinoRelease |
-          cp ./keywords.txt ./ArduinoRelease |
           cp ./.gitignore ./ArduinoRelease |
           cp ./LICENSE ./ArduinoRelease |
           cp ./README.md ./ArduinoRelease |
-          cp ./library.properties ./ArduinoRelease
+          cp ./resources/keywords.txt ./ArduinoRelease |
+          cp ./resources/library.properties ./ArduinoRelease
+          
+      - name: Remove examples from Arduino subfolder
+        run: |
+          for i in ` find . -name Arduino ` ; do mv $i/* $i/.. ; done
           
           
       - name: Remove CMakeLists.txt files
@@ -65,8 +69,8 @@ jobs:
         run: |
           cp -R ./src ./CMakeRelease |
           cp -R ./examples ./CMakeRelease |
-          cp ./LICENSE ./CMakeRelease |
           cp ./.gitignore ./CMakeRelease |
+          cp ./LICENSE ./CMakeRelease |
           cp ./README.md ./CMakeRelease |
           cp ./CMakeLists.txt ./CMakeRelease
           
