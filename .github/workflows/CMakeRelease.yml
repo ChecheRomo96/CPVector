@@ -20,11 +20,15 @@ jobs:
           cp ./LICENSE ./CMakeRelease
           cp ./CMakeLists.txt ./CMakeRelease
           
+      - name: Remove examples from Desktop subfolder
+        run: |
+          for i in ` find . -name abc ` ; do mv $i/* $i/.. ; done
           
       - name: Remove CMakeLists.txt files
         run: |
           find ./CMakeRelease -name "*.dox" -type f -delete |
           find ./CMakeRelease -name "*.ino" -type f -delete |
+          find ./ArduinoRelease -name "Desktop" -type d -exec rm -rf {} + |
           find ./CMakeRelease -name "PSoC" -type d -exec rm -rf {} +
           
       #- name: Deploy to GitHub Pages
