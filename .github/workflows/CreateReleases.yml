@@ -19,6 +19,7 @@ jobs:
           cp -R ./examples ./ArduinoRelease |
           cp ./library.properties ./ArduinoRelease |
           cp ./keywords.txt ./ArduinoRelease |
+          cp ./.gitignore ./ArduinoRelease |
           cp ./LICENSE ./ArduinoRelease
           cp ./README.md ./ArduinoRelease
           
@@ -59,6 +60,7 @@ jobs:
           cp -R ./src ./CMakeRelease |
           cp -R ./examples ./CMakeRelease |
           cp ./LICENSE ./CMakeRelease
+          cp ./.gitignore ./ArduinoRelease |
           cp ./README.md ./CMakeRelease
           cp ./CMakeLists.txt ./CMakeRelease
           
@@ -81,7 +83,7 @@ jobs:
           publish_branch: CMake
           publish_dir: ./CMakeRelease
           force_orphan: true
-          
+
       - name: Show file structure
         run: |
           tree ./CMakeRelease
