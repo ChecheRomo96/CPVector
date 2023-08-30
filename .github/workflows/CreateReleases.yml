@@ -41,7 +41,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: Arduino
           publish_dir: ./ArduinoRelease
-          force_orphan: true
+          force_orphan: false
         
       - name: Show file structure
         run: |
@@ -85,7 +85,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: CMake
           publish_dir: ./CMakeRelease
-          force_orphan: true
+          force_orphan: false
 
       - name: Show file structure
         run: |
