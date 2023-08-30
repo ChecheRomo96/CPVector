@@ -26,17 +26,17 @@ jobs:
         run: |
           find ./CMakeRelease -name "CMakeLists.txt" -type f -delete |
           find ./CMakeRelease -name "*.dox" -type f -delete |
-          find ./CMakeRelease -name "Desktop" -type d -exec rm -rf {} + |
+          find ./CMakeRelease -name "*.ino" -type f -delete |
           find ./CMakeRelease -name "PSoC" -type d -exec rm -rf {} +
           
-      - name: Deploy to GitHub Pages
-        if: success()
-        uses: crazy-max/ghaction-github-pages@v3
-        with:
-          target_branch: Arduino
-          build_dir: ./CMakeRelease
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #- name: Deploy to GitHub Pages
+      #  if: success()
+      #  uses: crazy-max/ghaction-github-pages@v3
+      #  with:
+      #    target_branch: Arduino
+      #    build_dir: ./CMakeRelease
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
       - name: Show file structure
         run: |
