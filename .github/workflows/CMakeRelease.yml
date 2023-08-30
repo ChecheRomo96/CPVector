@@ -35,7 +35,7 @@ jobs:
         if: success()
         uses: crazy-max/ghaction-github-pages@v3
         with:
-          target_branch: Arduino
+          target_branch: CMake
           build_dir: ./CMakeRelease
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
