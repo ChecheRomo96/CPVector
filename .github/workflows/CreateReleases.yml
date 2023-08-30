@@ -36,6 +36,7 @@ jobs:
         with:
           target_branch: Arduino
           build_dir: ./ArduinoRelease
+          force_orphan: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
@@ -79,6 +80,7 @@ jobs:
         with:
           target_branch: CMake
           build_dir: ./CMakeRelease
+          force_orphan: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
