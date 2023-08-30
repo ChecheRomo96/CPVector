@@ -27,6 +27,7 @@ jobs:
            
       - name: Create New Directory to copy the contets
         run: |
+          mkdir docs |
           mkdir docs/Arduino_C
         
       - name: Copy the source code and other files
@@ -65,7 +66,7 @@ jobs:
 
       - name: Generate Documentation
         run: doxygen Doxyfile
-        
+
       - name: Creaye .nojekyll file
         run: |
           cd docs/html |
