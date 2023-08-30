@@ -18,6 +18,7 @@ jobs:
           cp -R ./src ./CMakeRelease |
           cp -R ./examples ./CMakeRelease |
           cp ./LICENSE ./CMakeRelease
+          cp ./CMakeLists.txt ./CMakeRelease
           
           
       - name: Remove CMakeLists.txt files
