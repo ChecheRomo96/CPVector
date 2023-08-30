@@ -2,7 +2,7 @@
 
 The intention of CPVector is to unify vector (dynamic size arrays) classes across multiple systems. CPVector::vector<> is based on std::vector<> class and implements some of its functionality.
 
-These library contains a CMake build generation system. You can install the package with cmake to make it available in your system, also you can "add" this subdirectory with cmake to compile the library when building your project.
+These library contains a CMake build generation system. You can install the package with cmake to make it available in your system, also you can "add" this repository as a subdirectory with cmake to compile the library when building your project.
 
 This library also complies with the Arduino Library Specification. To achieve this, a library.properties file has been included. Also there is a keywords.txt file so the IDE knows how to color keywords, examples are in the directory examples. The exaples are automatically discovered by Arduino IDE due to the file structure. Examples can also be compiled via cmake by adding the cache variable CPVECTOR_BUILD_EXAMPLES = ON.
 
