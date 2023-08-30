@@ -43,6 +43,7 @@ jobs:
           publish_branch: master
           publish_dir: ./ArduinoRelease
           force_orphan: false
+          enable_jekyll: false
         
       - name: Show file structure
         run: |
