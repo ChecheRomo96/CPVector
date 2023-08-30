@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  ArduinoDocs:
+  ArduinoDocsC:
     runs-on: macos-latest
 
     strategy:
@@ -14,7 +14,8 @@ jobs:
       fail-fast: false
 
     steps:
-    - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3.5.3
 
     - name: Set reusable strings
       # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
@@ -23,6 +24,34 @@ jobs:
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
         
+         
+      - name: Create New Directory to copy the contets
+        run: |
+          mkdir docs/Arduino_C
+        
+      - name: Copy the source code and other files
+        run: |
+          cp -R ./src ./docs/Arduino_C |
+          cp -R ./examples ./docs/Arduino_C |
+          cp ./.gitignore ./docs/Arduino_C |
+          cp ./LICENSE ./docs/Arduino_C |
+          cp ./README.md ./docs/Arduino_C |
+          cp ./resources/keywords.txt ./docs/Arduino_C |
+          cp ./resources/arduino/library.properties ./docs/Arduino_C |
+          cp ./resources/doxy/ArduinoDocs_C.doxy ./docs/Arduino_C |
+          cp ./resources/doxy/DoxygenLayout.xml ./docs/Arduino_C
+          
+      - name: Remove examples from Arduino subfolder
+        run: |
+          for i in ` find . -name Arduino ` ; do mv $i/* $i/.. ; done
+          
+          
+      - name: Remove CMakeLists.txt files
+        run: |
+          find ./docs/Arduino_C -name "CMakeLists.txt" -type f -delete |
+          find ./docs/Arduino_C -name "Desktop" -type d -exec rm -rf {} + |
+          find ./docs/Arduino_C -name "PSoC" -type d -exec rm -rf {} +
+
     - name: Initialize and Update Submodules
       run: |
         git submodule init
@@ -42,15 +71,19 @@ jobs:
         cd docs/html
         touch .nojekyll
         cd ../..
+
+      - name: Show file structure
+        run: |
+          tree ./docs/Arduino_C -a
       
-    - name: Deploy to GitHub Pages
-      if: success()
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        personal_token: ${{ secrets.PERSONAL_TOKEN }}
-        external_repository: ChecheRomo96/CPVector_Arduino
-        publish_branch: master
-        publish_dir: ./ArduinoRelease
-        force_orphan: false
-        disable_nojekyll: true
-        allow_empty_commit: true
+    #- name: Deploy to GitHub Pages
+    #  if: success()
+    #  uses: peaceiris/actions-gh-pages@v3
+    #  with:
+    #    personal_token: ${{ secrets.PERSONAL_TOKEN }}
+    #    external_repository: ChecheRomo96/CPVector_Arduino
+    #    publish_branch: master
+    #    publish_dir: ./docs/Arduino_C
+    #    force_orphan: false
+    #    disable_nojekyll: true
+    #    allow_empty_commit: true
