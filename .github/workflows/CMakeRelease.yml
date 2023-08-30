@@ -22,7 +22,7 @@ jobs:
           
       - name: Remove examples from Desktop subfolder
         run: |
-          for i in ` find . -name abc ` ; do mv $i/* $i/.. ; done
+          for i in ` find . -name Desktop ` ; do mv $i/* $i/.. ; done
           
       - name: Remove CMakeLists.txt files
         run: |
