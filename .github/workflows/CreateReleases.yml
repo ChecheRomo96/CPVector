@@ -14,8 +14,7 @@ jobs:
           mkdir ArduinoRelease
           
       - name: Copy the source code and other files
-        run: |
-          ls |
+        run: ls
           
       - name: Copy the source code and other files
         run: |
