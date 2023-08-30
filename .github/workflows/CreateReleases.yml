@@ -44,7 +44,7 @@ jobs:
           publish_dir: ./ArduinoRelease
           force_orphan: false
           enable_jekyll: false
-          disable_jekyll: true
+          disable_nojekyll: true
           allow_empty_commit: true
         
       - name: Show file structure
