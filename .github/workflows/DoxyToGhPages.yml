@@ -50,9 +50,9 @@ jobs:
           
       - name: Remove files not needed from the new directory
         run: |
-          find ./docs/Arduino_C -name "CMakeLists.txt" -type f -delete |
-          find ./docs/Arduino_C -name "Desktop" -type d -exec rm -rf {} + |
-          find ./docs/Arduino_C -name "PSoC" -type d -exec rm -rf {} +
+          find ./ArduinoBuild -name "CMakeLists.txt" -type f -delete |
+          find ./ArduinoBuild -name "Desktop" -type d -exec rm -rf {} + |
+          find ./ArduinoBuild -name "PSoC" -type d -exec rm -rf {} +
 
       - name: Initialize and Update Submodules
         run: |
@@ -66,7 +66,9 @@ jobs:
         run: brew install graphviz
 
       - name: Generate Documentation
-        run: doxygen ArduinoDocs_C.doxy
+        run: |
+        cd ArduinoBuild |
+         doxygen ArduinoDocs_C.doxy
 
       - name: Creaye .nojekyll file
         run: |
