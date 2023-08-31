@@ -85,7 +85,7 @@ jobs:
       - name: Show file structure
         if: always() 
         run: |
-          tree -a
+          tree -a ./ArduinoBuild
       
     #- name: Deploy to GitHub Pages
     #  if: success()
