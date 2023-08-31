@@ -75,14 +75,19 @@ jobs:
 
       - name: Creaye .nojekyll file
         run: |
-          cd docs/html |
+          cd docs/html/Arduino_C |
           touch .nojekyll |
-          cd ../..
+          cd ../../..
 
-      - name: Show file structure
+      - name: Show build structure
         if: always() 
         run: |
           tree -a ./ArduinoBuild
+          
+      - name: Show docs structure
+        if: always() 
+        run: |
+          tree -a ./docs/Arduino_C/html
       
     #- name: Deploy to GitHub Pages
     #  if: success()
