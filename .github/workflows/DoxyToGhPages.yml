@@ -67,8 +67,9 @@ jobs:
 
       - name: Generate Documentation
         run: |
-          cd ArduinoBuild |
-          doxygen ArduinoDocs_C.doxy
+          cd ./ArduinoBuild |
+          doxygen ArduinoDocs_C.doxy |
+          cd ../..
 
       - name: Creaye .nojekyll file
         run: |
@@ -77,7 +78,8 @@ jobs:
           cd ../..
 
       - name: Show file structure
-        run: tree ./docs/Arduino_C -a
+        if: always() 
+        run: tree -a
       
     #- name: Deploy to GitHub Pages
     #  if: success()
