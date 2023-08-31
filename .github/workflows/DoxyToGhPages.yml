@@ -56,6 +56,7 @@ jobs:
         run: |
           find ./ArduinoBuild -name "CMakeLists.txt" -type f -delete |
           find ./ArduinoBuild -name "Desktop" -type d -exec rm -rf {} + |
+          find ./ArduinoBuild -name "Arduino" -type d -exec rm -rf {} + |
           find ./ArduinoBuild -name "PSoC" -type d -exec rm -rf {} +
 
       - name: Initialize and Update Submodules
