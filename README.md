@@ -14,6 +14,36 @@ CPVector is a library that provides an encapsulation for the `std::vector` class
 
 - **Clear Documentation:** The library's documentation has been generated using Doxygen, making it easier to understand the provided functions, methods, and classes by CPVector.
 
+## Tested Platforms
+
+CPVector has been tested on the following platforms:
+
+- Arduino IDE:
+  - AVR (e.g., Arduino Uno, Arduino Mega, etc.)
+  - ESP32
+
+- Windows:
+  - Compiled using Visual C++ (cl)
+
+- Ubuntu:
+  - Compiled using g++
+  - Compiled using clang++
+
+- macOS:
+  - Compiled using g++
+  - Compiled using clang++
+
+## Online Documentation
+
+CPVector features comprehensive online documentation, generated using Doxygen. This documentation provides in-depth insights into the functions, methods, classes, and usage examples offered by the library.
+
+To access the online documentation:
+
+1. Visit the [CPVector Documentation](https://your-documentation-link-here) website.
+
+The online documentation serves as a valuable resource for understanding and effectively utilizing CPVector in your projects.
+
+
 ## Quick Start
 
 To begin using CPVector in your project, you can follow these steps:
@@ -30,7 +60,7 @@ Your contributions are welcome! If you find issues, want to add new features, or
 
 ## Contact
 
-If you have questions, suggestions, or comments, you can get in touch with the CPVector team via [email](mailto:example@example.com) or open an [issue](https://github.com/ChecheRomo96/CPVector/issues) on the repository.
+If you have questions, suggestions, or comments, you can open an [issue](https://github.com/ChecheRomo96/CPVector/issues) on the repository.
 
 We hope CPVector proves to be a valuable asset in your cross-platform development projects!
 
