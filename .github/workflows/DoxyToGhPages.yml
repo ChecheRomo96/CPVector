@@ -23,7 +23,9 @@ jobs:
         shell: bash
         run: |
           echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
-          
+
+      - name: Install tree
+        run: brew install tree
            
       - name: Create New Directory to copy the contets
         run: |
@@ -80,7 +82,6 @@ jobs:
       - name: Show file structure
         if: always() 
         run: |
-          brew install tree |
           tree -a
       
     #- name: Deploy to GitHub Pages
