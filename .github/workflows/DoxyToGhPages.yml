@@ -67,8 +67,8 @@ jobs:
 
       - name: Generate Documentation
         run: |
-        cd ArduinoBuild |
-        doxygen ArduinoDocs_C.doxy
+          cd ArduinoBuild |
+          doxygen ArduinoDocs_C.doxy
 
       - name: Creaye .nojekyll file
         run: |
