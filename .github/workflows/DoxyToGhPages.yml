@@ -26,10 +26,12 @@ jobs:
 
       - name: Install tree
         run: brew install tree
+        
+      - name: Show File Structure
+        run: tree -a
            
       - name: Create New Directory to copy the contets
         run: |
-          tree -a |
           mkdir -p ./ArduinoBuild |
           mkdir -p ./docs/Arduino_C
         
