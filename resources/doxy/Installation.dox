@@ -1,4 +1,4 @@
- /*!  \page Instalation
+ /*!  \page Instalation Tnstalling / Building
   * 
   * 
   * 
@@ -6,6 +6,8 @@
   * 
   * 
   * \subpage Instalation_Arduino
+  * 
+  * \subpage Building_CMake
   * 
   * 
   */
@@ -27,7 +29,6 @@
   * Use any utilityto decompress the zip file, and place the contents on a known directory.
   * 
   * ###-Rename CPVector_vX.X.X to CPVector
-  * 
   * 
   * 
   * ###-Move the CPVector folder to your current Arduino Project library directory.\n
@@ -55,3 +56,63 @@
   * 
   */
 
+
+
+ /*! \page Building_CMake Building the source code with cmake
+  * 
+  * ## Building Source Code with CMake
+  * 
+  * CMake is a popular build system generator widely used in the C++ community. It provides a cross-platform approach to generate build files for different build systems like Make, Ninja, Visual Studio, etc. In this tutorial, we'll walk through the process of building source code using CMake.
+  * 
+  * ### Prerequisites
+  * 
+  * Before we begin, make sure you have the following prerequisites installed:
+  *
+  * - CMake (version 3.1 or higher)
+  * - A C++ compiler (GCC, Clang, or Visual Studio, depending on your platform)
+  * - Git (for retrieving the source code from a remote repository)
+  * 
+  * ### Using CMake from the Command Line:
+  *
+  * 1. Create a new folder for your project.
+  * 2. Open a command prompt or terminal and navigate to the project folder.
+  * 3. Create a new file named `CMakeLists.txt` in the project folder.
+  * 4. Open the `CMakeLists.txt` file in a text editor.
+  * 5. Add the following minimum required content to the `CMakeLists.txt` file:
+  *
+  *    cmake
+  *    cmake_minimum_required(VERSION 3.0)
+  *    project(MyProject)
+  *   
+  *    add_executable(MyExecutable main.cpp)
+  *    
+  *    Note: Replace `main.cpp` with the appropriate source file(s) for your project.
+  *
+  * 6. Save the `CMakeLists.txt` file.
+  * 7. In the command prompt or terminal, run the following commands:
+  *
+  *    shell
+  *    cmake .
+  *    cmake --build .
+  *    
+  *
+  *    This will generate the build files and build your project.
+  *
+  * Using CMake GUI:
+  *
+  * 1. Download and install CMake GUI from the official [CMake website](https://cmake.org/download/) based on your operating system.
+  * 2. Open the CMake GUI application.
+  * 3. Set the source directory to the location where your project folder is located.
+  * 4. Set the build directory where you want the generated build files to be stored (typically, this is a separate folder within your project directory).
+  * 5. Click on the "Configure" button.
+  * 6. Select the appropriate generator for your build system. For example:
+  *    - For Windows: "Visual Studio"
+  *    - For Linux and Mac: "Unix Makefiles"
+  * 7. Click on the "Finish" button.
+  * 8. The CMake GUI will populate the available options based on your project's `CMakeLists.txt` file. Adjust the desired options if necessary.
+  * 9. Click on the "Generate" button.
+  * 10. Navigate to the build directory you specified earlier and open the build files using the appropriate build system tool. For example:
+  *     - For Windows: Open the generated solution file with Visual Studio.
+  *     - For Linux and Mac: Use `make` in the terminal to build your project.
+  * 11. Build your project using the chosen build system tool.
+  */
