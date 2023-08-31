@@ -73,12 +73,6 @@ jobs:
       - name: Generate Documentation
         run: doxygen ./ArduinoBuild/ArduinoDocs_C.doxy
 
-      - name: Creaye .nojekyll file
-        run: |
-          cd docs/html/Arduino_C |
-          touch .nojekyll |
-          cd ../../..
-
       - name: Show build structure
         if: always() 
         run: |
