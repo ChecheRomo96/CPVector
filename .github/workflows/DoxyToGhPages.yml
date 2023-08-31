@@ -96,7 +96,7 @@ jobs:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           external_repository: ChecheRomo96/CPVector_Arduino
           publish_branch: gh-pages
-          publish_dir: ./docs/Arduino_C
+          publish_dir: ./docs/Arduino_C/html
           force_orphan: true
           disable_nojekyll: false
           allow_empty_commit: true
