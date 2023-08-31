@@ -29,6 +29,10 @@ CPVector has been tested on the following platforms:
   - Compiled using g++
   - Compiled using clang++
 
+- Raspbian:
+  - Compiled using g++
+  - Compiled using clang++
+
 - macOS:
   - Compiled using g++
   - Compiled using clang++
@@ -40,7 +44,6 @@ CPVector features comprehensive online documentation, generated using Doxygen. T
 To access the online documentation, visit the [CPVector Documentation](https://checheromo96.github.io/CPVector_Arduino/index.html) website.
 
 The online documentation serves as a valuable resource for understanding and effectively utilizing CPVector in your projects.
-
 
 ## Quick Start
 
