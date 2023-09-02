@@ -23,8 +23,8 @@ jobs:
           cp ./.gitignore ./ArduinoRelease |
           cp ./LICENSE ./ArduinoRelease |
           cp ./README.md ./ArduinoRelease |
-          cp ./resources/keywords.txt ./ArduinoRelease |
-          cp ./resources/library.properties ./ArduinoRelease
+          cp ./resources/arduino/keywords.txt ./ArduinoRelease |
+          cp ./resources/arduino/library.properties ./ArduinoRelease
           
       - name: Remove examples from Arduino subfolder
         run: |
