@@ -56,6 +56,7 @@
 	if( ${CPVECTOR_TESTING} )
 		message("Building ${CMAKE_PROJECT_NAME} Tests...")
 
+		set(DOWNLOAD_EXTRACT_TIMESTAMP TRUE )
 		include(FetchContent)
 
 		FetchContent_Declare(
