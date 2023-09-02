@@ -69,6 +69,7 @@ jobs:
         run: |
           cp -R ./src ./CMakeRelease |
           cp -R ./examples ./CMakeRelease |
+          cp -R ./tests ./CMakeRelease |
           cp ./.gitignore ./CMakeRelease |
           cp ./LICENSE ./CMakeRelease |
           cp ./README.md ./CMakeRelease |
