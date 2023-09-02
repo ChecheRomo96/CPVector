@@ -19,23 +19,23 @@ CPVector is a library that provides an encapsulation for the `std::vector` class
 CPVector has been tested on the following platforms:
 
 - Arduino IDE:
-  - AVR (e.g., Arduino Uno, Arduino Mega, etc.)
-  - ESP32
+  - AVR (e.g., Arduino Uno, Arduino Mega, etc.) ( using C )
+  - ESP32 (using C, C++, and std::vector<>)
 
 - Windows:
-  - Compiled using Visual C++ (cl)
+  - Compiled using Visual C++ (cl) (using std::vector<>)
 
 - Ubuntu:
-  - Compiled using g++
-  - Compiled using clang++
+  - Compiled using g++ (using std::vector<>)
+  - Compiled using clang++ (using std::vector<>)
 
 - Raspbian:
-  - Compiled using g++
-  - Compiled using clang++
+  - Compiled using g++ (using std::vector<>)
+  - Compiled using clang++ (using std::vector<>)
 
 - macOS:
-  - Compiled using g++
-  - Compiled using clang++
+  - Compiled using g++ (using std::vector<>)
+  - Compiled using clang++ (using std::vector<>)
 
 ## Online Documentation
 
