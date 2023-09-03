@@ -284,7 +284,7 @@
 							#if defined(CPVECTOR_USING_STD_ALLOCATION)
 
 
-								if(position >= size()){ throw CPVector::out }
+								//if(position >= size()){ throw CPVector::out }
 
 								return _Vector[position];
 
