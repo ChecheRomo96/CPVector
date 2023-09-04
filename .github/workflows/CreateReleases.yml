@@ -101,7 +101,6 @@ jobs:
           find ./CPVector-CMake -name "src" -type d -exec rm -rf {} + |
           cp -r ./CMakeRelease/src ./CPVector-CMake
 
-
       - name: Show file structure
         run: |
           tree ./CPVector-CMake/src
