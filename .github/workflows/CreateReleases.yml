@@ -69,23 +69,23 @@ jobs:
       
       - name: Copy the source code and other files
         run: |
-          cp -R ./src ./CMakeRelease |
-          cp -R ./examples ./CMakeRelease |
-          cp -R ./tests ./CMakeRelease |
-          cp ./.gitignore ./CMakeRelease |
-          cp ./LICENSE ./CMakeRelease |
-          cp ./README.md ./CMakeRelease |
+          cp -R ./src ./CMakeRelease
+          cp -R ./examples ./CMakeRelease
+          cp -R ./tests ./CMakeRelease
+          cp ./.gitignore ./CMakeRelease
+          cp ./LICENSE ./CMakeRelease
+          cp ./README.md ./CMakeRelease
           cp ./CMakeLists.txt ./CMakeRelease
       
       - name: Remove examples from Desktop subfolder
         run: |
           for i in ` find . -name Desktop ` ; do mv $i/* $i/.. ; done
       
-      - name: Remove CMakeLists.txt files
+      - name: Remove files
         run: |
-          find ./CMakeRelease -name "*.dox" -type f -delete |
-          find ./CMakeRelease -name "*.ino" -type f -delete |
-          find ./CMakeRelease -name "Desktop" -type d -exec rm -rf {} + |
+          find ./CMakeRelease -name "*.dox" -type f -delete
+          find ./CMakeRelease -name "*.ino" -type f -delete
+          find ./CMakeRelease -name "Desktop" -type d -exec rm -rf {} +
           find ./CMakeRelease -name "PSoC" -type d -exec rm -rf {} +
       
       - name: Show file structure
@@ -108,6 +108,8 @@ jobs:
       - name: Add files to git
         working-directory: ./CPVector-CMake
         run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
           git add .
       
       - name: Commit
