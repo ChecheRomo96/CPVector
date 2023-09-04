@@ -126,7 +126,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.PERSONAL_TOKEN }}
-          repository: CPVector-CMake
+          repository: "CPVector-CMake"
           directory: ./CPVector-CMake
 
 
