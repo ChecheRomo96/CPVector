@@ -90,16 +90,16 @@ jobs:
         run: |
           tree ./CMakeRelease
       
-      -name: Clone CPVector-CMake repo
+      - name: Clone CPVector-CMake repo
         run: |
           git clone https://github.com/ChecheRomo96/CPVector-CMake
       
-      -name: Replace src folder with new contents
+      - name: Replace src folder with new contents
         run: |
           rm -rf ./CPVector-CMake/src |
           cp ./CMakeRelease/src ./CPVector-CMake
       
-      -name: Commit and Push
+      - name: Commit and Push
         run: |
           cd CPVector-CMake |
           git commit -m "Automated commit from CPVector github action "CreateReleases.yml" |
