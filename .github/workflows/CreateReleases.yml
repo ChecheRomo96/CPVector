@@ -100,6 +100,11 @@ jobs:
         run: |
           rm -rf ./CPVector-CMake/src |
           cp -r ./CMakeRelease/src ./CPVector-CMake
+
+
+      - name: Show file structure
+        run: |
+          tree ./CPVector-CMake/src
       
       - name: Commit and Push
         working-directory: ./CPVector-CMake
