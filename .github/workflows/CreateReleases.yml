@@ -102,6 +102,8 @@ jobs:
       - name: Commit and Push
         run: |
           cd CPVector-CMake |
+          git config --global user.name "ChecheRomo96" |
+          git config --global user.email "jsoemanuel.romo.96@gmail.com" |
           git commit -m "Automated commit from CPVector github action \"CreateReleases.yml\"" |
           git push https://${{ secrets.PERSONAL_TOKEN }}@github.com/ChecheRomo96/CPVector-CMake.git
 
