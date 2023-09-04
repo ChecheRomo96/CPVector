@@ -106,12 +106,6 @@ jobs:
         run: |
           tree ./CPVector-CMake/src
       
-      - name: Git Cli Configuration
-        working-directory: ./CPVector-CMake
-        run: |
-          git config --global user.name "github-actions[bot]" |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-      
       - name: Add files to git
         working-directory: ./CPVector-CMake
         run: |
