@@ -120,9 +120,9 @@ jobs:
       - name: Push changes
         working-directory: ./CPVector-CMake
         run: |
-          git config user.email "tu_correo_electronico@example.com"
-          git config user.name "Tu Nombre"
-          git remote set-url origin git@github.com:username/repo.git
+          git config user.email "josemanuel.romo.96@gmail.com"
+          git config user.name "José Romo"
+          git remote set-url origin git@github.com:ChecheRomo96/CPVector-CMake.git
           git push origin main
 
 
