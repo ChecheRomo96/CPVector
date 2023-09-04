@@ -36,16 +36,16 @@
 		target_compile_definitions(CPVector INTERFACE CPVECTOR_SORTING_ENABLED)
 	endif()
 
-	if( ${CPVECTOR_ALLOCATION_METHOD} STREQUAL "std::vector wrapper" )
+	if( ${CPVECTOR_ALLOCATION_METHOD} STREQUAL "std::vector" )
 		target_compile_definitions(CPVector INTERFACE CPVECTOR_USING_STD_VECTOR_ALLOCATION)
 	endif()
 
-	if( ${CPVECTOR_ALLOCATION_METHOD} STREQUAL "CPP allocators (malloc, calloc, free)" )
-		target_compile_definitions(CPVector INTERFACE CPVECTOR_USING_C_ALLOCATION)
+	if( ${CPVECTOR_ALLOCATION_METHOD} STREQUAL "CPP" )
+		target_compile_definitions(CPVector INTERFACE CPVECTOR_USING_CPP_ALLOCATION)
 	endif()
 
-	if( ${CPVECTOR_ALLOCATION_METHOD} STREQUAL "C++ allocators (new, new[], delete, delete[])" )
-		target_compile_definitions(CPVector INTERFACE CPVECTOR_USING_CPP_ALLOCATION)
+	if( ${CPVECTOR_ALLOCATION_METHOD} STREQUAL "C" )
+		target_compile_definitions(CPVector INTERFACE CPVECTOR_USING_C_ALLOCATION)
 	endif()
 
 #
