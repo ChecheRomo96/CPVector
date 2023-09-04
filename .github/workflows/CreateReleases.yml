@@ -102,13 +102,14 @@ jobs:
           cp -r ./CMakeRelease/src ./CPVector-CMake
       
       - name: Commit and Push
+        working-directory: ./CPVector-CMake
         run: |
-          cd CPVector-CMake |
           git config --global user.name "github-actions[bot]" |
           git config --global user.email "github-actions[bot]@users.noreply.github.com" |
           git commit -m "Automated commit from CPVector github action \"CreateReleases.yml\"" 
 
       - name: Push changes
+        working-directory: ./CPVector-CMake
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.PERSONAL_TOKEN }}
