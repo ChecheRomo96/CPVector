@@ -106,13 +106,20 @@ jobs:
         run: |
           tree ./CPVector-CMake/src
       
-      - name: Commit and Push
+      - name: Git Cli Configuration
         working-directory: ./CPVector-CMake
         run: |
-          find . -name "index.lock"  -type f -delete |
           git config --global user.name "github-actions[bot]" |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com" |
-          git add . |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      
+      - name: Add files to git
+        working-directory: ./CPVector-CMake
+        run: |
+          git add .
+      
+      - name: Commit
+        working-directory: ./CPVector-CMake
+        run: |
           git commit -m "Automated commit from CPVector github action \"CreateReleases.yml\"" 
 
       - name: Push changes
