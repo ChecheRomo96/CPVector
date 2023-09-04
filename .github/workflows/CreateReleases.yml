@@ -55,6 +55,8 @@ jobs:
           
   CMakeRelease:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     
     steps:
       
@@ -106,6 +108,12 @@ jobs:
           git config --global user.email "jsoemanuel.romo.96@gmail.com" |
           git commit -m "Automated commit from CPVector github action \"CreateReleases.yml\"" |
           git push https://${{ secrets.PERSONAL_TOKEN }}@github.com/ChecheRomo96/CPVector-CMake.git
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
 
 
 
