@@ -102,7 +102,7 @@ jobs:
       - name: Commit and Push
         run: |
           cd CPVector-CMake |
-          git commit -m "Automated commit from CPVector github action "CreateReleases.yml" |
+          git commit -m "Automated commit from CPVector github action \"CreateReleases.yml\"" |
           git push
 
 
