@@ -85,31 +85,38 @@ jobs:
           find ./CMakeRelease -name "*.ino" -type f -delete |
           find ./CMakeRelease -name "Desktop" -type d -exec rm -rf {} + |
           find ./CMakeRelease -name "PSoC" -type d -exec rm -rf {} +
-              
-      #- name: Push directory to another repository
-      #  uses: cpina/github-action-push-to-another-repository@v1.7.2
-      #  env:
-      #    SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
-      #    API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-      #  with:
-      #    source-directory: './CMakeRelease'
-      #    destination-github-username: 'ChecheRomo96'
-      #    destination-repository-name: 'CPVector-CMake'
-      #    user-email: josemanuel.romo.96@gmail.com
-      #    user-email: josemanuel.romo.96@gmail.com
-      #    target-branch: main
 
-      - name: Deploy CMake Bramch
-        if: success()
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          external_repository: ChecheRomo96/CPVector_CMake
-          publish_branch: Update
-          publish_dir: ./CMakeRelease
-          force_orphan: false
-          disable_nojekyll: true
-          allow_empty_commit: true
+
+      -name: Clone CPVector-CMake repo
+        run: |
+          git clone https://github.com/ChecheRomo96/CPVector-CMake
+
+
+
+      -name: Replace src folder with new contents
+        run: |
+          rm -rf ./CPVector-CMake/src |
+          cp ./CMakeRelease/src ./CPVector-CMake
+
+
+      -name: Commit and Push
+        run: |
+          cd CPVector-CMake |
+          git commit -m "Automated commit from CPVector github action "CreateReleases.yml" |
+          git push
+
+
+      #- name: Deploy CMake Branch
+      #  if: success()
+      #  uses: peaceiris/actions-gh-pages@v3
+      #  with:
+      #    personal_token: ${{ secrets.PERSONAL_TOKEN }}
+      #    external_repository: ChecheRomo96/CPVector_CMake
+      #    publish_branch: Update
+      #    publish_dir: ./CMakeRelease
+      #    force_orphan: false
+      #    disable_nojekyll: true
+      #    allow_empty_commit: true
 
       - name: Show file structure
         run: |
