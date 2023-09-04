@@ -97,7 +97,7 @@ jobs:
       - name: Replace src folder with new contents
         run: |
           rm -rf ./CPVector-CMake/src |
-          cp ./CMakeRelease/src ./CPVector-CMake
+          cp -r ./CMakeRelease/src ./CPVector-CMake
       
       - name: Commit and Push
         run: |
