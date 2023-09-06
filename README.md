@@ -56,18 +56,13 @@ The online documentation serves as a valuable resource for understanding and eff
 
 ## Quick Start
 
-To quickly get started with CPVector, follow these steps:
+Please note that the main repository houses all essential files compatible with various platforms and filesystems, including implementations for diverse environments such as Arduino, Windows, Ubuntu, and macOS.
 
-1. Clone the CPVector repository from [GitHub](https://github.com/ChecheRomo96/CPVector) or add the repository as a submodule in your project.
+- If your primary focus is integrating CPVector seamlessly with CMake, you'll find dedicated resources in the CPVector-CMake repository. Here, you'll discover a structured directory layout and CMake files tailored to simplify CPVector integration into larger projects.
 
-2. The main repository contains all the necessary files for various platforms and filesystems, including implementations for different platforms like Arduino, Windows, Ubuntu, and macOS.
+- For projects centered around Arduino, we recommend exploring the CPVector-Arduino repository. This repository has been specifically designed with a file structure optimized for Arduino development.
 
-3. Additionally, if you're specifically interested in using CPVector with CMake, you can explore the [CPVector-CMake](https://github.com/ChecheRomo96/CPVector-CMake) repository. This repository provides a directory structure and CMake files that make it easier to integrate CPVector into larger projects.
-
-4. For Arduino-specific projects, check out the [CPVector-Arduino](https://github.com/ChecheRomo96/CPVector-Arduino) repository. This repository offers a file structure tailored for Arduino development.
-
-By choosing the appropriate repository based on your project's requirements, you can efficiently integrate CPVector into your development environment and start benefiting from its cross-platform capabilities.
-
+Please select the appropriate repository aligned with your project's specific needs, you can streamline the integration of CPVector into your development environment and harness its cross-platform capabilities more effectively.
 ## Contributions
 
 Your contributions are welcome! If you find issues, want to add new features, or improve existing ones, feel free to submit a pull request to the CPVector repository.
