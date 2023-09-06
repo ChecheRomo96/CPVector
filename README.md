@@ -63,6 +63,13 @@ Please note that the main repository houses all essential files compatible with 
 - For projects centered around Arduino, we recommend exploring the CPVector-Arduino repository. This repository has been specifically designed with a file structure optimized for Arduino development.
 
 Please select the appropriate repository aligned with your project's specific needs, you can streamline the integration of CPVector into your development environment and harness its cross-platform capabilities more effectively.
+
+## Unit Testing
+
+Unit testing is a vital aspect of maintaining the quality and reliability of CPVector across its various sub-repositories. It's important to note that unit testing methods may vary between each sub-project due to the unique requirements and platforms they cater to. As such, thorough unit testing is performed on each sub-repository to ensure functionality and compatibility.
+
+When contributing to or working with a specific sub-repository, be sure to refer to the respective unit testing guidelines and procedures provided in that repository's documentation. This approach ensures that CPVector remains robust and dependable across diverse environments.
+
 ## Contributions
 
 Your contributions are welcome! If you find issues, want to add new features, or improve existing ones, feel free to submit a pull request to the CPVector repository.
