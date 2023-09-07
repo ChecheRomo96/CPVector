@@ -1,6 +1,4 @@
 /**
- * @defgroup   CPVECTOR_EXCEPTIONS Cross Platform Vector Exceptions
- *
  * @brief      This file implements CP Vector Exceptions.
  *
  * @author     Josem
@@ -14,8 +12,12 @@
 	#ifdef CPVECTOR_EXCEPTIONS_ENABLED
 		namespace CPVector{
 
+		/**
+		 * @defgroup   CPVECTOR_EXCEPTIONS Cross Platform Vector Exceptions
+		 * @{
+		 */
+
 			/**
-			 * @ingroup    CPVECTOR_EXCEPTIONS
 			 * @brief      Exception for signaling  errors.
 			 */
 			class exception : public std::exception {
@@ -28,7 +30,6 @@
 			};
 
 			/**
-			 * @ingroup    CPVECTOR_EXCEPTIONS
 			 * @brief      This class describes a logic error.
 			 */
 			class logic_error : public std::logic_error {
@@ -47,7 +48,6 @@
 
 
 			/**
-			 * @ingroup    CPVECTOR_EXCEPTIONS
 			 * @brief      This class describes a bad allocation.
 			 */
 			class bad_alloc : public CPVector::exception {
@@ -61,7 +61,6 @@
 			};
 
 			/**
-			 * @ingroup    CPVECTOR_EXCEPTIONS
 			 * @brief      This class describes an allocation error.
 			 */
 			class allocation_error : public CPVector::exception {
@@ -78,7 +77,6 @@
 
 
 			/**
-			 * @ingroup    CPVECTOR_EXCEPTIONS
 			 * @brief      This class describes an index out of range.
 			 */
 			class index_out_of_range : public CPVector::logic_error {
@@ -94,7 +92,6 @@
 			};
 
 			/**
-			 * @ingroup    CPVECTOR_EXCEPTIONS
 			 * @brief      This class describes a length error.
 			 */
 			class length_error : public CPVector::logic_error {
@@ -108,6 +105,10 @@
 			        return "CPVector::length_error";
 			    }
 			};
+
+		/**
+		 * @}
+		 */
 		}
 	#endif
 		
