@@ -1,0 +1,31 @@
+name: Create Arduino Release
+on:
+  workflow_dispatch:
+jobs:
+  CreateRelease:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.3
+         
+      - name: Create New Directory to copy the contets
+        run: |
+          mkdir ArduinoRelease
+          
+      - name: Copy the source code and other files
+        run: |
+          cp -R ./src ./ArduinoRelease |
+          cp -R ./examples ./ArduinoRelease |
+          cp ./library.properties ./ArduinoRelease |
+          cp ./keywords.txt ./ArduinoRelease
+          
+          
+      - name: Remove CMakeLists.txt files
+        run: |
+          find . -name "CMakeLists.txt" -type f -delete |
+          find . -name "Desktop" -type d -exec rm -r "{}" \;
+          
+      - name: Install tree and show file structure
+        run: |
+          tree ./ArduinoRelease
