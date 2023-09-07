@@ -32,32 +32,29 @@ jobs:
            
       - name: Create New Directory to copy the contets
         run: |
-          mkdir -p ./ArduinoBuild |
+          mkdir -p ./DoxyBuild |
           mkdir -p ./docs/Arduino_C
         
       - name: Copy the source code and other files
         run: |
-          cp -R ./src ./ArduinoBuild |
-          cp -R ./examples ./ArduinoBuild |
-          cp ./.gitignore ./ArduinoBuild |
-          cp ./LICENSE ./ArduinoBuild |
-          cp ./README.md ./ArduinoBuild |
-          cp ./resources/keywords.txt ./ArduinoBuild |
-          cp ./resources/library.properties ./ArduinoBuild |
-          cp ./resources/doxy/ArduinoDocs_C.doxy ./ArduinoBuild |
-          cp ./resources/doxy/DoxygenLayout.xml ./ArduinoBuild
+          cp -R ./src ./DoxyBuild |
+          cp -R ./examples ./DoxyBuild |
+          cp ./LICENSE ./DoxyBuild |
+          cp ./README.md ./DoxyBuild |
+          cp ./resources/keywords.txt ./DoxyBuild |
+          cp ./resources/doxy/Doxyfile ./DoxyBuild |
+          cp ./resources/doxy/DoxygenLayout.xml ./DoxyBuild
           
       - name: Remove examples from Arduino subfolder
         run: |
-          for i in ` find ./ArduinoBuild -name Arduino ` ; do mv $i/* $i/.. ; done
-          
+          for i in ` find ./DoxyBuild -name Arduino ` ; do mv $i/* $i/.. ; done
           
       - name: Remove files not needed from the new directory
         run: |
-          find ./ArduinoBuild -name "CMakeLists.txt" -type f -delete |
-          find ./ArduinoBuild -name "Desktop" -type d -exec rm -rf {} + |
-          find ./ArduinoBuild -name "Arduino" -type d -exec rm -rf {} + |
-          find ./ArduinoBuild -name "PSoC" -type d -exec rm -rf {} +
+          find ./DoxyBuild -name "CMakeLists.txt" -type f -delete |
+          find ./DoxyBuild -name "Desktop" -type d -exec rm -rf {} + |
+          find ./DoxyBuild -name "Arduino" -type d -exec rm -rf {} + |
+          find ./DoxyBuild -name "PSoC" -type d -exec rm -rf {} +
 
       - name: Initialize and Update Submodules
         run: |
@@ -71,12 +68,12 @@ jobs:
         run: brew install graphviz
 
       - name: Generate Documentation
-        run: doxygen ./ArduinoBuild/ArduinoDocs_C.doxy
+        run: doxygen ./DoxyBuild/ArduinoDocs_C.doxy
 
       - name: Show build structure
         if: always() 
         run: |
-          tree -a ./ArduinoBuild
+          tree -a ./DoxyBuild
           
       - name: Show docs structure
         if: always() 
@@ -88,9 +85,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          external_repository: ChecheRomo96/CPVector_Arduino
           publish_branch: gh-pages
-          publish_dir: ./docs/Arduino_C/html
+          publish_dir: ./docs/mainDocs/html
           force_orphan: true
-          disable_nojekyll: false
-          allow_empty_commit: true
+          disable_nojekyll: true
