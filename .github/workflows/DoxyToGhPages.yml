@@ -37,12 +37,13 @@ jobs:
         
       - name: Copy the source code and other files
         run: |
-          cp -R ./src ./DoxyBuild |
-          cp -R ./examples ./DoxyBuild |
-          cp ./LICENSE ./DoxyBuild |
-          cp ./README.md ./DoxyBuild |
-          cp ./resources/keywords.txt ./DoxyBuild |
-          cp ./resources/doxy/Doxyfile ./DoxyBuild |
+          cp -R ./src ./DoxyBuild
+          cp -R ./examples ./DoxyBuild
+          cp ./resources/doxs ./DoxyBuild
+          cp ./LICENSE ./DoxyBuild
+          cp ./README.md ./DoxyBuild
+          cp ./resources/keywords.txt ./DoxyBuild
+          cp ./resources/doxy/Doxyfile ./DoxyBuild
           cp ./resources/doxy/DoxygenLayout.xml ./DoxyBuild
           
       - name: Remove examples from Arduino subfolder
