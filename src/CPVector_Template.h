@@ -159,6 +159,12 @@
 				// std::vector Specific Constructors
 
 					#if defined(CPVECTOR_USING_STD_VECTOR_ALLOCATION)
+					//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+					//! @brief std::initializer list constructor (only available if CPVECTOR_USING_STD_VECTOR_ALLOCATION is enabled). 
+					//!
+					//! Constructs the container with an initializer list
+					//! @tparam list std::initializer list with matching template argument
+					//
 						vector(std::initializer_list<T> list): vector(){
 							resize(list.size());
 							std::copy(list.begin(), list.end(), _Vector.begin());
