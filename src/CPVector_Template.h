@@ -750,8 +750,8 @@
 
 					#ifdef CPVECTOR_EXCEPTIONS_ENABLED
 						}
-						catch(){
-
+						catch(...){
+							throw;
 						}
 					#endif
 
