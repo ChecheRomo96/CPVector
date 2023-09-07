@@ -2377,7 +2377,11 @@ INCLUDE_FILE_PATTERNS  =
 # This tag requires that the tag ENABLE_PREPROCESSING is set to YES.
 
 PREDEFINED             = protected=private \
-                         CPVECTOR_SORTING_ENABLED
+                         CPVECTOR_SORTING_ENABLED \
+                         CPVECTOR_EXCEPTIONS_ENABLED \
+                         CPVECTOR_USING_STD_VECTOR_ALLOCATION \
+                         CPVECTOR_USING_CPP_ALLOCATION \
+                         CPVECTOR_USING_C_ALLOCATION
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
 # tag can be used to specify a list of macro names that should be expanded. The
