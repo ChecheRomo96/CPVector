@@ -16,6 +16,10 @@
 		#include "Sorting/CPVector_Sorting.h"
 	#endif
 
+	#ifdef CPVECTOR_EXCEPTIONS_ENABLED
+		#include "CPVector_Exceptions.h"
+	#endif
+
 	#include "CPVector_Template.h"
 
 #endif//CROSS_PLATFORM_STRING_H
