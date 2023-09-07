@@ -1,3 +1,11 @@
+/**
+ * @defgroup   CPVECTOR CP Vector
+ *
+ * @brief      This file implements CP Vector.
+ *
+ * @author     Josem
+ * @date       2023
+ */
 #ifndef CROSS_PLATFORM_VECTOR_H
 #define CROSS_PLATFORM_VECTOR_H
 
