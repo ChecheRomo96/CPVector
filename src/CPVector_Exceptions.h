@@ -18,7 +18,7 @@
 		 */
 
 			/**
-			 * @brief      Exception for signaling  errors.
+			 * @brief Base exception. part of @link CPVECTOR_EXCEPTIONS Cross Platform Vector Exceptions@endlink
 			 */
 			class exception : public std::exception {
 			public:
