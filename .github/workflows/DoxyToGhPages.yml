@@ -39,7 +39,7 @@ jobs:
         run: |
           cp -R ./src ./DoxyBuild
           cp -R ./examples ./DoxyBuild
-          cp ./resources/doxs ./DoxyBuild
+          cp ./resources/doxy ./DoxyBuild
           cp ./LICENSE ./DoxyBuild
           cp ./README.md ./DoxyBuild
           cp ./resources/keywords.txt ./DoxyBuild
