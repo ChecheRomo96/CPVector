@@ -90,4 +90,4 @@ jobs:
           publish_branch: gh-pages
           publish_dir: ./docs/mainDocs/html
           force_orphan: true
-          disable_nojekyll: true
+          disable_nojekyll: false
