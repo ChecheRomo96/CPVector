@@ -39,12 +39,12 @@ jobs:
         run: |
           cp -R ./src ./DoxyBuild
           cp -R ./examples ./DoxyBuild
-          cp -R ./resources/doxy ./DoxyBuild
           cp ./LICENSE ./DoxyBuild
           cp ./README.md ./DoxyBuild
-          cp ./resources/keywords.txt ./DoxyBuild
           cp ./resources/doxy/Doxyfile ./DoxyBuild
           cp ./resources/doxy/DoxygenLayout.xml ./DoxyBuild
+          cp ./resources/doxy/Installation.dox ./DoxyBuild
+          cp ./resources/doxy/Tutorials.dox ./DoxyBuild
           
       - name: Remove examples from Arduino subfolder
         run: |
