@@ -78,7 +78,7 @@ jobs:
       - name: Show docs structure
         if: always() 
         run: |
-          tree -a ./docs/Arduino_C/html
+          tree -a ./docs/mainDocs
       
       - name: Deploy to GitHub Pages
         if: success()
