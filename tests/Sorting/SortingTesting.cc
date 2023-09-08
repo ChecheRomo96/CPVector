@@ -4,15 +4,13 @@
 
 //////////////////////////////////////////////////////////////////////////////////
 //! @test
-//! This test case assesses the correctness of a sorting algorithm implemented
-//! in the CPVector class. It begins by creating a vector called myVector, which is 
-//! used as a boundary condition to verify the vector's size. Then, it populates the 
-//! vector with random values. Afterward, the sortAscending method of the myVector 
-//! object is invoked to sort the elements in ascending order. Finally, it validates 
-//! the sorting outcome by iterating through the vector and checking that each element 
-//! is less than or equal to the next one, ensuring that the vector is indeed sorted in 
-//! ascending order. This test case serves as a crucial validation step for ensuring the 
-//! correctness of the ascending sorting algorithm within the CPVector class.
+//! This test case assesses the sortAscending() functionality of CPVector. 
+//! The test begins by creating a vector with random values. Afterward, the vector 
+//! is sorted in ascending order using the "sortAscending" method. 
+//! Finally, a loop iterates through the sorted vector to ensure that each element 
+//! is less than or equal to the next, using the "EXPECT_LE" assertion. 
+//! This test verifies that the ascending sorting algorithm correctly orders the 
+//! elements in the vector, confirming the integrity of the sorting functionality.
 	
 	TEST(SortingTesting, Ascending) {
 
@@ -62,8 +60,24 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// SortingList
-// 
+//! @test
+//! This unit test, named "SortingTesting," evaluates the sorting functionality of 
+//! a CPVector::vector containing elements of a user-defined structure.
+//! The test commences by creating a vector of "TestingStruct" instances with a size 
+//! equal to UINT8_MAX and verifies that the vector size matches this value. 
+//! It proceeds to populate each element of the vector with random values 
+//! for members "A" and "B." 
+//!
+//! The test configures a CPVector::Sorting::SortingArray named "SortConfig" with two sorting functions, 
+//! "TestingStruct_A_Ascending" and "TestingStruct_B_Ascending," which determine how 
+//! the elements should be sorted based on the values of their "A" and "B" members. 
+//! The custom sorting algorithm is applied to the vector using "myVector.sort(SortConfig)."
+//!
+//! The final part of the test asserts that the vector is sorted correctly in ascending 
+//! order based on the values of "A" and, if "A" values are equal, based on the values 
+//! of "B." This comprehensive test ensures the integrity of the sorting algorithm for 
+//! custom structures and multi-level sorting within the CPVector class.
+
 	namespace {
 		struct TestingStruct
 		{
