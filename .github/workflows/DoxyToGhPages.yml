@@ -53,7 +53,7 @@ jobs:
 
       - name: Remove examples from test subfolders
         run: |
-          for i in ` find ./CPVector -name ./CPVector/tests/*.cc ` ; do mv $i/* $i/.. ; done
+          for i in ` find ./CPVector -name ./CPVector/tests/*/*.cc ` ; do mv $i/* $i/.. ; done
           
       - name: Remove files not needed from the new directory
         run: |
