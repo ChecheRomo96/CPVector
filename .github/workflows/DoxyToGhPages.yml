@@ -57,7 +57,7 @@ jobs:
 
       - name: Remove empty tests sub directories
         run: |
-          find ./CPVector/tests -mindepth 1 -maxdepth 1 -type d -exec rm -r {} ;
+          for i in `find ./CPVector/tests -mindepth 1 -maxdepth 1 -type d `; do rm -r "$i" ; done
           
       - name: Remove files not needed from the new directory
         run: |
