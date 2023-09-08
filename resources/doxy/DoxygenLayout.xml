@@ -37,6 +37,7 @@
     </tab>
     <tab type="examples" visible="yes" title="" intro=""/>
     <tab type="user" url="./d2/dd8/_tutorials.html" visible="yes" title="Tutorials"/>
+    <tab type="user" url="./d4/df6/test.html" visible="yes" title="Unit Tests"/>
     <tab type="user" url="@ref licence" visible="yes" title="Licence"/>
   </navindex>
 
