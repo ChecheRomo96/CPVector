@@ -15,7 +15,7 @@
 
 			/**
 			 * @ingroup CPVECTOR_EXCEPTIONS
-			 * @brief Class describing base exceptions. Belongs to @link CPVECTOR_EXCEPTIONS Cross Platform Vector Exceptions@endlink
+			 * @brief This class belongs to @link CPVECTOR_EXCEPTIONS Cross Platform Vector Exceptions@endlink
 			 */
 			class exception : public std::exception {
 			public:
@@ -28,7 +28,7 @@
 
 			/**
 			 * @ingroup CPVECTOR_EXCEPTIONS
-			 * @brief Class describing logic error exceptions. Belongs to @link CPVECTOR_EXCEPTIONS Cross Platform Vector Exceptions@endlink
+			 * @brief This class belongs to @link CPVECTOR_EXCEPTIONS Cross Platform Vector Exceptions@endlink
 			 */
 			class logic_error : public std::logic_error {
 			public:
@@ -47,7 +47,7 @@
 
 			/**
 			 * @ingroup CPVECTOR_EXCEPTIONS
-			 * @brief      This class describes a bad allocation.
+			 * @brief This class belongs to @link CPVECTOR_EXCEPTIONS Cross Platform Vector Exceptions@endlink
 			 */
 			class bad_alloc : public CPVector::exception {
 			public:
@@ -61,7 +61,7 @@
 
 			/**
 			 * @ingroup CPVECTOR_EXCEPTIONS
-			 * @brief      This class describes an allocation error.
+			 * @brief This class belongs to @link CPVECTOR_EXCEPTIONS Cross Platform Vector Exceptions@endlink
 			 */
 			class allocation_error : public CPVector::exception {
 			public:
@@ -78,7 +78,7 @@
 
 			/**
 			 * @ingroup CPVECTOR_EXCEPTIONS
-			 * @brief      This class describes an index out of range.
+			 * @brief This class belongs to @link CPVECTOR_EXCEPTIONS Cross Platform Vector Exceptions@endlink
 			 */
 			class index_out_of_range : public CPVector::logic_error {
 			public:
@@ -94,7 +94,7 @@
 
 			/**
 			 * @ingroup CPVECTOR_EXCEPTIONS
-			 * @brief      This class describes a length error.
+			 * @brief This class belongs to @link CPVECTOR_EXCEPTIONS Cross Platform Vector Exceptions@endlink
 			 */
 			class length_error : public CPVector::logic_error {
 			public:
