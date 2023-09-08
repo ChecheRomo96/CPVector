@@ -107,7 +107,7 @@
       <nestednamespaces visible="yes" title=""/>
       <constantgroups visible="yes" title=""/>
       <interfaces visible="yes" title=""/>
-      <classes visible="yes" title=""/>
+      <classes visible="no" title=""/>
       <concepts visible="yes" title=""/>
       <structs visible="yes" title=""/>
       <exceptions visible="yes" title=""/>
