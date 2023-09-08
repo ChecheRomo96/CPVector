@@ -14,6 +14,7 @@
 
 	
     /**
+     * @namespace CPVector
 	 * @brief This namespace contains the implementation of CPVector::vector class.
      *
      * The Vector namespace provides a set of classes and functions for working with a vector, a dynamic array that can resize itself when needed. It offers functionalities similar to the standard vector container in C++ STL.
