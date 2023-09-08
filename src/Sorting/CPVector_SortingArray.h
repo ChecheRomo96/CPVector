@@ -15,6 +15,13 @@
 		////////////////////////////////////////////////////////////////////////
 		// SortingArray Class
 
+			/**
+			 * @brief      Dynamic array of CPVector::Sorting::Callback, used to sort CPVector::vector with multiple condiditions.
+			 * 
+			 * Relevance in the sorting process is defined by the index of each compare function. First has the most priority.\n
+			 * In order to append new callbacks use push_back(), or emplace(), to remove an element use erase(). 
+			 * @tparam     T	Class to be used as parameters for the Callbacks.
+			 */
 			template <class T>
 	        class SortingArray
 	        {
