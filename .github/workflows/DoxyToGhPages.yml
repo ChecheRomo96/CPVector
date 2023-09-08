@@ -39,6 +39,7 @@ jobs:
         run: |
           cp -R ./src ./CPVector
           cp -R ./examples ./CPVector
+          cp -R ./tests ./CPVector
           cp ./LICENSE ./CPVector
           cp ./README.md ./CPVector
           cp ./resources/doxy/Doxyfile ./CPVector
