@@ -19,7 +19,6 @@
 	
 	TEST(SortingTesting, Ascending) {
 
-		
 		CPVector::vector<uint8_t> myVector(UINT8_MAX);
 		ASSERT_EQ(myVector.size(), UINT8_MAX);
 
