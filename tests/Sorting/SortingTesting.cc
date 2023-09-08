@@ -1,13 +1,10 @@
-//! @File
-
 #include <gtest/gtest.h>
 #include <CPVector.h>
 #include <iostream>
 
 //////////////////////////////////////////////////////////////////////////////////
 //! @test
-//! This test case, named "SortingTesting" and specifically testing the "Ascending"
-//! sorting functionality, assesses the correctness of a sorting algorithm implemented
+//! This test case assesses the correctness of a sorting algorithm implemented
 //! in the CPVector class. It begins by creating a vector called myVector, which is 
 //! used as a boundary condition to verify the vector's size. Then, it populates the 
 //! vector with random values. Afterward, the sortAscending method of the myVector 
@@ -36,7 +33,14 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// Descending
+//! @test
+//! This test case assesses the sortDescending() functionality of CPVector. 
+//! The test begins by creating a vector with random values. Afterward, the vector 
+//! is sorted in descending order using the "sortDescending" method. 
+//! Finally, a loop iterates through the sorted vector to ensure that each element 
+//! is greater than or equal to the next, using the "EXPECT_GE" assertion. 
+//! This test verifies that the descending sorting algorithm correctly orders the 
+//! elements in the vector, confirming the integrity of the sorting functionality.
 
 	TEST(SortingTesting, Descending) {
 
