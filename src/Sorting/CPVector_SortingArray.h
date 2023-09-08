@@ -23,12 +23,12 @@
 			 * @tparam     T	Class to be used as parameters for the Callbacks.
 			 */
 			template <class T>
-	        class SortingArray
+	        class SortingArray : public CPVector::vector<Callback<T>>
 	        {
 	            ////////////////////////////////////////////////////////////////
 	            // Compare Function Vector
 
-	            	CPVector::vector<CPVector::Callback> buffer;
+	            	//CPVector::vector<Callback<T>> buffer;
 	            //
 	            ////////////////////////////////////////////////////////////////
 
@@ -50,7 +50,7 @@
 	        	////////////////////////////////////////////////////////////////
 	        	// API
 
-                    void copy(const Sorting::Callback<T>* Callbacks, unsigned int len, bool Resize = 0)
+              /*  void copy(const Sorting::Callback<T>* Callbacks, unsigned int len, bool Resize = 0)
 	                {
 	                	buffer.copy(Callbacks,len,Resize);
 	                }
@@ -99,19 +99,20 @@
 	                		}
 	                	}
 	                }
+                */
 
 	                Result compare(const T& a, const T& b) const
 	                {
-	             		if(buffer.size() == 0){return CPVector::Sorting::Equal;}
+	             		if(CPVector::vector<Callback<T>>::size() == 0){return CPVector::Sorting::Equal;}
 	                    
 	                    uint8_t index = 0;
 	                    Result result = CPVector::Sorting::Equal;
 	                    
 	                    while(result == CPVector::Sorting::Equal)
 	                    {
-	                        result = buffer[index](a,b);
+	                        result = (*this)[index](a,b);
 	                        index++;
-	                        if(index == buffer.size()){return result;}
+	                        if(index == CPVector::vector<Callback<T>>::size()){return result;}
 	                    }
 
 	                    return result;
