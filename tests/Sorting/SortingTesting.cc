@@ -60,24 +60,8 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-//! @test
-//! This unit test, named "SortingTesting," evaluates the sorting functionality of 
-//! a CPVector::vector containing elements of a user-defined structure.
-//! The test commences by creating a vector of "TestingStruct" instances with a size 
-//! equal to UINT8_MAX and verifies that the vector size matches this value. 
-//! It proceeds to populate each element of the vector with random values 
-//! for members "A" and "B." 
-//!
-//! The test configures a CPVector::Sorting::SortingArray named "SortConfig" with two sorting functions, 
-//! "TestingStruct_A_Ascending" and "TestingStruct_B_Ascending," which determine how 
-//! the elements should be sorted based on the values of their "A" and "B" members. 
-//! The custom sorting algorithm is applied to the vector using "myVector.sort(SortConfig)."
-//!
-//! The final part of the test asserts that the vector is sorted correctly in ascending 
-//! order based on the values of "A" and, if "A" values are equal, based on the values 
-//! of "B." This comprehensive test ensures the integrity of the sorting algorithm for 
-//! custom structures and multi-level sorting within the CPVector class.
-//! @{
+//
+
 	namespace {
 		struct TestingStruct
 		{
@@ -102,33 +86,55 @@
 	    }
 	}
 
-	TEST(SortingTesting, SortingList) {
+	//////////////////////////////////////////////////////////////////////////////
+	//! @test
+	//! This unit test, named "SortingTesting," evaluates the sorting functionality of 
+	//! a CPVector::vector containing elements of a user-defined structure.
+	//! The test commences by creating a vector of "TestingStruct" instances with a size 
+	//! equal to UINT8_MAX and verifies that the vector size matches this value. 
+	//! It proceeds to populate each element of the vector with random values 
+	//! for members "A" and "B." 
+	//!
+	//! The test configures a CPVector::Sorting::SortingArray named "SortConfig" with two sorting functions, 
+	//! "TestingStruct_A_Ascending" and "TestingStruct_B_Ascending," which determine how 
+	//! the elements should be sorted based on the values of their "A" and "B" members. 
+	//! The custom sorting algorithm is applied to the vector using "myVector.sort(SortConfig)."
+	//!
+	//! The final part of the test asserts that the vector is sorted correctly in ascending 
+	//! order based on the values of "A" and, if "A" values are equal, based on the values 
+	//! of "B." This comprehensive test ensures the integrity of the sorting algorithm for 
+	//! custom structures and multi-level sorting within the CPVector class.
+	//! @{
 
-		CPVector::vector<TestingStruct> myVector(UINT8_MAX);
-		ASSERT_EQ(myVector.size(), UINT8_MAX);
+		TEST(SortingTesting, SortingList) {
 
-		for(uint8_t i = 0; i < myVector.size(); i++ )
-		{
-			myVector[i].A = rand();
-			myVector[i].B = rand();
-		}
+			CPVector::vector<TestingStruct> myVector(UINT8_MAX);
+			ASSERT_EQ(myVector.size(), UINT8_MAX);
 
-
-		CPVector::Sorting::SortingArray<TestingStruct> SortConfig;
-		SortConfig.push_back(TestingStruct_A_Ascending);
-		SortConfig.push_back(TestingStruct_B_Ascending);
-
-		myVector.sort(SortConfig);
-
-		for(uint8_t i = 0; i < myVector.size()-1; i++ )
-		{
-			EXPECT_LE(myVector[i].A, myVector[i+1].A);
-
-			if(myVector[i].A == myVector[i+1].A)
+			for(uint8_t i = 0; i < myVector.size(); i++ )
 			{
-				EXPECT_LE(myVector[i].B, myVector[i+1].B);
+				myVector[i].A = rand();
+				myVector[i].B = rand();
+			}
+
+
+			CPVector::Sorting::SortingArray<TestingStruct> SortConfig;
+			SortConfig.push_back(TestingStruct_A_Ascending);
+			SortConfig.push_back(TestingStruct_B_Ascending);
+
+			myVector.sort(SortConfig);
+
+			for(uint8_t i = 0; i < myVector.size()-1; i++ )
+			{
+				EXPECT_LE(myVector[i].A, myVector[i+1].A);
+
+				if(myVector[i].A == myVector[i+1].A)
+				{
+					EXPECT_LE(myVector[i].B, myVector[i+1].B);
+				}
 			}
 		}
-	}
-//! @}
+	//! @}
+	//////////////////////////////////////////////////////////////////////////////
+//
 //////////////////////////////////////////////////////////////////////////////////
