@@ -47,9 +47,13 @@ jobs:
           cp ./resources/doxy/Installation.dox ./CPVector
           cp ./resources/doxy/Tutorials.dox ./CPVector
           
-      - name: Remove examples from Arduino subfolder
+      - name: Remove examples from Examples subfolders
         run: |
           for i in ` find ./CPVector -name Desktop ` ; do mv $i/* $i/.. ; done
+
+      - name: Remove examples from test subfolders
+        run: |
+          for i in ` find ./CPVector -name ./CPVector/tests/*.cc ` ; do mv $i/* $i/.. ; done
           
       - name: Remove files not needed from the new directory
         run: |
