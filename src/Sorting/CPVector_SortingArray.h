@@ -28,7 +28,7 @@
 	            ////////////////////////////////////////////////////////////////
 	            // Compare Function Vector
 
-	            	CPVector::vector<Result(*)(const T& a, const T& b)> buffer;
+	            	CPVector::vector<CPVector::Callback> buffer;
 	            //
 	            ////////////////////////////////////////////////////////////////
 
