@@ -1,4 +1,3 @@
-//! @File
 #include <gtest/gtest.h>
 #include <CPVector.h>
 #include <iostream>
