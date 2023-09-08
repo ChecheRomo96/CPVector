@@ -1,3 +1,4 @@
+//! @File
 #include <gtest/gtest.h>
 #include <CPVector.h>
 #include <iostream>
@@ -87,6 +88,27 @@
             try
             {
                 throw CPVector::index_out_of_range();
+            }
+            catch( const CPVector::index_out_of_range& e )
+            {
+                // and this tests that it has the correct message
+                EXPECT_STREQ( "CPVector::index_out_of_range", e.what() );
+                throw;
+            }
+        }, CPVector::index_out_of_range );
+    }
+//
+//////////////////////////////////////////////////////////////////////////////////
+// index_out_of_range
+
+    TEST(Exceptions, index_out_of_range2 )
+    {
+        EXPECT_THROW({
+            try
+            {
+                CPVector::vector<uint8_t> vec(5);
+
+                vec[5];
             }
             catch( const CPVector::index_out_of_range& e )
             {
