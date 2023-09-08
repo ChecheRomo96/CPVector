@@ -1,5 +1,6 @@
 /**
- * @brief      This file is the main header of CPVector.
+ * @file CPVector.h
+ * @brief This file is the main header of CPVector.
  * 
  * Inlcude this file in your source code in order to use CPVector with the configuration that was previously chosen.
  *
