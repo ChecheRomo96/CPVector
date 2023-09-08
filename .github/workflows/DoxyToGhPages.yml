@@ -51,11 +51,11 @@ jobs:
         run: |
           for i in ` find ./CPVector -name Desktop ` ; do mv $i/* $i/.. ; done
 
-      - name: Remove examples from test subfolders
+      - name: Remove *.cc files from test subfolders
         run: |
-          for i in ` find ./CPVector/tests -name *.cc ` ; do mv $i $i/.. ; done
+          for i in ` find ./CPVector/tests -name *.cc ` ; do mv $i $./CPVector/tests/ ; done
 
-      - name: Remove examples from test subfolders
+      - name: Remove empty tests sub directories
         run: |
           find ./CPVector/tests -mindepth 1 -maxdepth 1 -type d -exec rm -r {} \ ;
           
