@@ -77,7 +77,7 @@
 //! order based on the values of "A" and, if "A" values are equal, based on the values 
 //! of "B." This comprehensive test ensures the integrity of the sorting algorithm for 
 //! custom structures and multi-level sorting within the CPVector class.
-
+//! @{
 	namespace {
 		struct TestingStruct
 		{
@@ -130,5 +130,5 @@
 			}
 		}
 	}
-//
+//! @}
 //////////////////////////////////////////////////////////////////////////////////
