@@ -1,7 +1,7 @@
 /**
- * @defgroup   CPVECTOR CP Vector
- *
- * @brief      This file implements CP Vector.
+ * @brief      This file is the main header of CPVector.
+ * 
+ * Inlcude this file in your source code in order to use CPVector with the configuration that was previously chosen.
  *
  * @author     Josem
  * @date       2023
