@@ -93,13 +93,11 @@
 	//! The test commences by creating a vector of "TestingStruct" instances with a size 
 	//! equal to UINT8_MAX and verifies that the vector size matches this value. 
 	//! It proceeds to populate each element of the vector with random values 
-	//! for members "A" and "B." 
-	//!
+	//! for members "A" and "B." \n
 	//! The test configures a CPVector::Sorting::SortingArray named "SortConfig" with two sorting functions, 
 	//! "TestingStruct_A_Ascending" and "TestingStruct_B_Ascending," which determine how 
 	//! the elements should be sorted based on the values of their "A" and "B" members. 
-	//! The custom sorting algorithm is applied to the vector using "myVector.sort(SortConfig)."
-	//!
+	//! The custom sorting algorithm is applied to the vector using "myVector.sort(SortConfig)."\n
 	//! The final part of the test asserts that the vector is sorted correctly in ascending 
 	//! order based on the values of "A" and, if "A" values are equal, based on the values 
 	//! of "B." This comprehensive test ensures the integrity of the sorting algorithm for 
