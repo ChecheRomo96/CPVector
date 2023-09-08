@@ -1,4 +1,4 @@
-# CPVector: Cross-Platform std::vector Encapsulation
+# CPVector: Cross-Platform vector
 
 CPVector is a library that provides an encapsulation for the `std::vector` class, enabling the implementation of the same functionality across various platforms in a unified manner. This library has been developed with the purpose of achieving cross-compatibility in different programming environments, while offering a familiar and user-friendly interface.
 
