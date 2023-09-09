@@ -103,7 +103,7 @@
   <!-- Layout definition for a namespace page -->
   <namespace>
     <briefdescription visible="yes"/>
-    <memberdecl>
+    <memberdecl><!--
       <nestednamespaces visible="yes" title=""/>
       <constantgroups visible="yes" title=""/>
       <interfaces visible="yes" title=""/>
@@ -117,7 +117,7 @@
       <enums title="yes"/>
       <functions visible="yes" title=""/>
       <variables visible="yes" title=""/>
-      <membergroups visible="yes"/>
+      <membergroups visible="yes"/>-->
     </memberdecl>
     <detaileddescription title=""/>
     <memberdef>
