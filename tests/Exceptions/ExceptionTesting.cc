@@ -22,7 +22,7 @@
     }
 //
 //////////////////////////////////////////////////////////////////////////////////
-// logic_error 1
+// logic_error
 
     TEST(Exceptions, logic_error )
     {
@@ -79,28 +79,28 @@
     }
 //
 //////////////////////////////////////////////////////////////////////////////////
-// index_out_of_range
+// out_of_range
 
-    TEST(Exceptions, index_out_of_range )
+    TEST(Exceptions, out_of_range )
     {
         EXPECT_THROW({
             try
             {
-                throw CPVector::index_out_of_range();
+                throw CPVector::out_of_range();
             }
-            catch( const CPVector::index_out_of_range& e )
+            catch( const CPVector::out_of_range& e )
             {
                 // and this tests that it has the correct message
-                EXPECT_STREQ( "CPVector::index_out_of_range", e.what() );
+                EXPECT_STREQ( "CPVector::out_of_range", e.what() );
                 throw;
             }
-        }, CPVector::index_out_of_range );
+        }, CPVector::out_of_range );
     }
 //
 //////////////////////////////////////////////////////////////////////////////////
-// index_out_of_range
+// out_of_range
 
-    TEST(Exceptions, index_out_of_range2 )
+    TEST(Exceptions, out_of_range2 )
     {
         EXPECT_THROW({
             try
@@ -109,13 +109,13 @@
 
                 vec[5];
             }
-            catch( const CPVector::index_out_of_range& e )
+            catch( const CPVector::out_of_range& e )
             {
                 // and this tests that it has the correct message
-                EXPECT_STREQ( "CPVector::index_out_of_range", e.what() );
+                EXPECT_STREQ( "CPVector::out_of_range", e.what() );
                 throw;
             }
-        }, CPVector::index_out_of_range );
+        }, CPVector::out_of_range );
     }
 //
 //////////////////////////////////////////////////////////////////////////////////
