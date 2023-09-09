@@ -120,7 +120,7 @@
       <membergroups visible="yes"/>-->
     </memberdecl>
     <detaileddescription title=""/>
-    <memberdef>
+    <memberdef><!--
       <inlineclasses title=""/>
       <typedefs title=""/>
       <sequences title=""/>
@@ -128,7 +128,7 @@
       <enums title=""/>
       <functions title=""/>
       <variables title=""/>
-    </memberdef>
+    </memberdef> -->
     <authorsection visible="yes"/>
   </namespace>
 
