@@ -244,7 +244,7 @@
 						T& operator[](unsigned int position) {
 						#ifdef CPVECTOR_EXCEPTIONS_ENABLED
 							if(position >= size()){
-								throw CPVector::index_out_of_range("Index requested on subscript array does not exists");
+								throw CPVector::out_of_range("Index requested on subscript array does not exists");
 							}
 						#endif
 
@@ -264,7 +264,7 @@
 						const T& operator[](unsigned int position) const {
 						#ifdef CPVECTOR_EXCEPTIONS_ENABLED
 							if(position >= size()){
-								throw CPVector::index_out_of_range("Index requested on subscript array does not exists");
+								throw CPVector::out_of_range("Index requested on subscript array does not exists");
 							}
 						#endif
 
@@ -741,7 +741,7 @@
 
 					#ifdef CPVECTOR_EXCEPTIONS_ENABLED
 						if(index >= size()){
-							throw CPVector::index_out_of_range("Index requested on subscript array does not exists");
+							throw CPVector::out_of_range("Index requested on subscript array does not exists");
 						}
 					#endif
 
@@ -777,7 +777,7 @@
 					void pop_first(){
 					#ifdef CPVECTOR_EXCEPTIONS_ENABLED
 						if(size() == 0){
-							throw CPVector::index_out_of_range("Index requested on subscript array does not exists");
+							throw CPVector::out_of_range("Index requested on subscript array does not exists");
 						}
 					#endif
 
@@ -798,7 +798,7 @@
 					void pop_back(){
 					#ifdef CPVECTOR_EXCEPTIONS_ENABLED
 						if(size() == 0){
-							throw CPVector::index_out_of_range("Index requested on subscript array does not exists");
+							throw CPVector::out_of_range("Index requested on subscript array does not exists");
 						}
 					#endif
 
