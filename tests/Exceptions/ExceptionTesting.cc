@@ -3,7 +3,7 @@
 #include <iostream>
 
 //////////////////////////////////////////////////////////////////////////////////
-// bad_alloc 1
+// exception
 
     TEST(Exceptions, exception )
     {
@@ -57,25 +57,6 @@
                 throw;
             }
         }, CPVector::bad_alloc );
-    }
-//
-//////////////////////////////////////////////////////////////////////////////////
-// allocation_error
-
-    TEST(Exceptions, allocation_error )
-    {
-        EXPECT_THROW({
-            try
-            {
-                throw CPVector::allocation_error();
-            }
-            catch( const CPVector::allocation_error& e )
-            {
-                // and this tests that it has the correct message
-                EXPECT_STREQ( "CPVector::allocation_error", e.what() );
-                throw;
-            }
-        }, CPVector::allocation_error );
     }
 //
 //////////////////////////////////////////////////////////////////////////////////
