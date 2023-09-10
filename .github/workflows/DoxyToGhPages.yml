@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  ArduinoDocsC:
+  mainDocs:
     runs-on: macos-latest
 
     strategy:
