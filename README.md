@@ -50,7 +50,7 @@ CPVector has been tested on the following platforms:
 
 CPVector features comprehensive online documentation, generated using Doxygen. This documentation provides in-depth insights into the functions, methods, classes, and usage examples offered by the library.
 
-To access the online documentation, visit the [CPVector Documentation](https://checheromo96.github.io/CPVector_Arduino/index.html) website.
+To access the online documentation, visit the [CPVector Documentation](https://checheromo96.github.io/CPVector/index.html) website.
 
 The online documentation serves as a valuable resource for understanding and effectively utilizing CPVector in your projects.
 
