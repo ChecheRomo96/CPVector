@@ -58,6 +58,18 @@ jobs:
       - name: Remove empty tests sub directories
         run: |
           for i in `find ./CPVector/tests -mindepth 1 -maxdepth 1 -type d `; do rm -r "$i" ; done
+
+      - name: Remove *.cpp files from examples subfolders
+        run: |
+          for i in ` find ./CPVector/examples -name *.cpp ` ; do mv $i ./CPVector/examples/ ; done
+
+      - name: Remove *.dox files from examples subfolders
+        run: |
+          for i in ` find ./CPVector/examples -name *.dox ` ; do mv $i ./CPVector/examples/ ; done
+
+      - name: Remove empty examples sub directories
+        run: |
+          for i in `find ./CPVector/examples -mindepth 1 -maxdepth 1 -type d `; do rm -r "$i" ; done
           
       - name: Remove files not needed from the new directory
         run: |

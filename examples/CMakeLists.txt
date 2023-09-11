@@ -1,8 +1,7 @@
-add_subdirectory(1_BuildTest)
-add_subdirectory(2_AppendingData)
-add_subdirectory(3_MemoryLeakCheck)
+add_subdirectory(BuildConfiguration)
+add_subdirectory(AppendingData)
 
 if ( ${CPVECTOR_SORTING} )
-	add_subdirectory(4_SortingData)
-	add_subdirectory(5_SortingArray)
+	add_subdirectory(SortingData)
+	add_subdirectory(SortingArray)
 endif()

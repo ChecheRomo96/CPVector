@@ -11,7 +11,7 @@
 #define CROSS_PLATFORM_VECTOR_H
 
 	#include "CPVector_BuildSettings.h"
-
+	#define CPVECTOR
 	
     /**
      * @namespace CPVector

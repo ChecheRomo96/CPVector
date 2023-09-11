@@ -6,7 +6,11 @@ int main()
     std::cout<<"This project uses CPVector version: "<<CPVECTOR_VERSION<<std::endl;
 
     #if defined(CPVECTOR_SORTING_ENABLED)
-    	std::cout<<"CPVector::Sorting Enabled."<<std::endl;
+        std::cout<<"CPVector::Sorting Enabled."<<std::endl;
+    #endif
+
+    #if defined(CPVECTOR_EXCEPTIONS_ENABLED)
+        std::cout<<"CPVector::exception and derived classes enabled, throwing inside CPVector::vector is enabled."<<std::endl;
     #endif
 
     #if defined(CPVECTOR_USING_STD_VECTOR_ALLOCATION)

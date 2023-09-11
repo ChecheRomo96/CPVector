@@ -1,5 +1,4 @@
-/** \example ./examples/1_BuildTest/1_BuildTest.c
- * /main.cpp 
+/** \example ./examples/SortingData.cpp 
  * This is an example of how to use the Example_Test class.
  * More details about this example.
  */

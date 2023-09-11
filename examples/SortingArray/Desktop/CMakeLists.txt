@@ -1,0 +1,2 @@
+add_executable( CPVector_SortingArray SortingArray.cpp)
+target_link_libraries( CPVector_SortingArray PUBLIC CPVector)
