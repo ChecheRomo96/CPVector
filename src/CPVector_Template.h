@@ -32,12 +32,12 @@
 			// Instance Variables
 
 	            #if defined(CPVECTOR_USING_C_ALLOCATION)
-		            unsigned int _Size;
-		            unsigned int _Capacity;
+		            size_t _Size;
+		            size_t _Capacity;
 		            T * _Buffer;
 	            #elif defined(CPVECTOR_USING_CPP_ALLOCATION)
-		            unsigned int _Size;
-		            unsigned int _Capacity;
+		            size_t _Size;
+		            size_t _Capacity;
 		            T * _Buffer;
 	            #elif defined(CPVECTOR_USING_STD_VECTOR_ALLOCATION)
 	            	std::vector < T > _Vector;
@@ -321,11 +321,11 @@
 				//! Notice that this capacity does not suppose a limit on the size of the vector. When this capacity is exhausted and more is needed, it is automatically expanded by the container (reallocating it storage space). The theoretical limit on the size of a vector is given by member max_size.
 				//! The capacity of a vector can be explicitly altered by calling member vector::reserve.
 				
-					uint32_t capacity() const noexcept{
+					size_t capacity() const noexcept{
 					#if defined(CPVECTOR_USING_C_ALLOCATION) | defined(CPVECTOR_USING_CPP_ALLOCATION)
 						return _Capacity;
 					#elif defined(CPVECTOR_USING_STD_VECTOR_ALLOCATION)
-						return (uint32_t)_Vector.capacity();
+						return _Vector.capacity();
 					#endif
 					}
 				//
@@ -334,11 +334,11 @@
 				//!
 				//! This is the number of actual objects held in the vector, which is not necessarily equal to its storage capacity.
 				
-					uint32_t size() const noexcept{
+					size_t size() const noexcept{
 					#if defined(CPVECTOR_USING_C_ALLOCATION) | defined(CPVECTOR_USING_CPP_ALLOCATION)
 						return _Size;
 					#elif defined(CPVECTOR_USING_STD_VECTOR_ALLOCATION)
-						return (uint32_t)_Vector.size();
+						return _Vector.size();
 					#endif
 					}
 				//
@@ -366,7 +366,7 @@
 								_Capacity = 0;
 
 							#ifdef CPVECTOR_EXCEPTIONS_ENABLED
-								throw CPVector::bad_alloc("Could not allocate new buffer");
+								throw CPVector::bad_alloc();
 							#endif
 
 								return;
@@ -387,10 +387,11 @@
 
 								free(_Buffer );
 								_Buffer = ptr;
+								_Capacity = new_cap;
 							}
 							else{
 							#ifdef CPVECTOR_EXCEPTIONS_ENABLED
-								throw CPVector::bad_alloc("Could not allocate new buffer");
+								throw CPVector::bad_alloc();
 							#endif
 							}
 						}
@@ -443,6 +444,7 @@
 
 							delete(_Buffer );
 							_Buffer = ptr;
+							_Capacity = new_cap;
 						}
 					#elif defined(CPVECTOR_USING_STD_VECTOR_ALLOCATION)
 
@@ -498,7 +500,7 @@
 							else
 							{
 							#ifdef CPVECTOR_EXCEPTIONS_ENABLED
-								throw CPVector::bad_alloc("Could not allocate new buffer");
+								throw CPVector::bad_alloc();
 							#endif
 							}
 						}
@@ -709,7 +711,7 @@
 					#if defined(CPVECTOR_USING_STD_VECTOR_ALLOCATION)
 						_Vector.push_back(value);
 
-					#elif defined(CPVECTOR_USING_C_ALLOCATION)
+					#elif defined(CPVECTOR_USING_C_ALLOCATION) | defined(CPVECTOR_USING_CPP_ALLOCATION)
 						resize(size() + 1);
 						_Buffer[size() - 1] = value;
 					#endif
@@ -725,7 +727,7 @@
 					void push_back(T&& Rvalue){
 					#if defined(CPVECTOR_USING_STD_VECTOR_ALLOCATION)
 						_Vector.push_back(Rvalue);
-					#elif defined(CPVECTOR_USING_C_ALLOCATION)
+					#elif defined(CPVECTOR_USING_C_ALLOCATION) | defined(CPVECTOR_USING_CPP_ALLOCATION)
 						resize(size() + 1);
 						_Buffer[size() - 1] = CPVector::move(Rvalue);
 					#endif
@@ -745,9 +747,9 @@
 						}
 					#endif
 
-					#if defined(CPVECTOR_USING_C_ALLOCATION)
+					#if defined(CPVECTOR_USING_C_ALLOCATION) | defined(CPVECTOR_USING_CPP_ALLOCATION)
 						for(unsigned int i = index; i < size()-1; i++){
-							(*this)[i] = (*this)[i+1];
+							(*this)[i] = CPVector::move((*this)[i+1]);
 						}
 
 					#ifdef CPVECTOR_EXCEPTIONS_ENABLED
@@ -781,7 +783,7 @@
 						}
 					#endif
 
-					#if defined(CPVECTOR_USING_C_ALLOCATION)
+					#if defined(CPVECTOR_USING_C_ALLOCATION) | defined(CPVECTOR_USING_CPP_ALLOCATION)
 						pop(0);
 					#elif defined(CPVECTOR_USING_STD_VECTOR_ALLOCATION)
 						_Vector.erase(_Vector.begin());
@@ -802,7 +804,7 @@
 						}
 					#endif
 
-					#if defined(CPVECTOR_USING_C_ALLOCATION)
+					#if defined(CPVECTOR_USING_C_ALLOCATION) | defined(CPVECTOR_USING_CPP_ALLOCATION)
 						pop(size()-1);
 					#elif defined(CPVECTOR_USING_STD_VECTOR_ALLOCATION)
 						_Vector.pop_back();
@@ -817,15 +819,12 @@
 				//! @tparam pos Index where the element will be appended append.
 
 					void emplace(const T& value, unsigned int pos){
-					#if defined(CPVECTOR_USING_C_ALLOCATION)
-
+					#if defined(CPVECTOR_USING_C_ALLOCATION) | defined(CPVECTOR_USING_CPP_ALLOCATION)
 						resize(_Size+1);
-						
-
-						for(unsigned int i = _Size-1 ; i > pos ; i--)
-						{
+						for(unsigned int i = _Size-1 ; i > pos ; i--){
 							(*this)[i] = CPVector::move( (*this)[i-1] );
 						}
+
 						(*this)[pos] = value;
 					#elif defined(CPVECTOR_USING_STD_VECTOR_ALLOCATION)
 						_Vector.emplace(_Vector.begin()+pos,value);
@@ -840,13 +839,13 @@
 				//! @tparam pos Index where the element will be appended append.
 
 					void emplace(T&& value, unsigned int pos){
-					#if defined(CPVECTOR_USING_C_ALLOCATION)
+					#if defined(CPVECTOR_USING_C_ALLOCATION) | defined(CPVECTOR_USING_CPP_ALLOCATION)
 						resize(_Size+1);
-						for(unsigned int i = _Size-1 ; i > pos ; i--)
-						{
+						for(unsigned int i = _Size-1 ; i > pos ; i--){
 							(*this)[i] = CPVector::move( (*this)[i-1] );
 						}
-						(*this)[pos] = value;
+
+						(*this)[pos] = CPVector::move(value);
 					#elif defined(CPVECTOR_USING_STD_VECTOR_ALLOCATION)
 						_Vector.emplace(_Vector.begin()+pos,value);
 					#endif
@@ -881,12 +880,12 @@
 						_Vector.erase(_Vector.begin()+index);
 					#endif
 
-					#if defined(CPVECTOR_USING_C_ALLOCATION)
+					#if defined(CPVECTOR_USING_C_ALLOCATION) | defined(CPVECTOR_USING_CPP_ALLOCATION)
 						if(index < _Size)
 						{
-							for(unsigned int i = index; i < _Size ;i++)
+							for(unsigned int i = index; i < _Size-1 ;i++)
 							{
-								(*this)[i] = (*this)[i+1];
+								(*this)[i] = CPVector::move((*this)[i+1]);
 							}
 							resize(size()-1);
 						}

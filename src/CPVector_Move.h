@@ -10,7 +10,7 @@
     namespace CPVector
     {
 
-        #ifndef CPVECTOR_USING_STD_VECTOR_ALLOCATION
+    #ifndef CPVECTOR_USING_STD_VECTOR_ALLOCATION
 
 
         /**
@@ -34,7 +34,7 @@
          *   // MyType is now int, as the reference qualifier has been removed
          */
         template <class T>
-        class remove_reference {typedef T type;};
+        struct remove_reference {typedef T type;};
 
         /**
          * @ingroup Move
@@ -47,7 +47,7 @@
          * @return The type 'type', which represents the original type T without the lvalue reference.
          */
         template <class T>
-        class remove_reference<T&> {typedef T type;};
+        struct remove_reference<T&> {typedef T type;};
 
         /**
          * @ingroup Move
@@ -60,18 +60,18 @@
          * @return The type 'type', which represents the original type T without the rvalue reference.
          */
         template <class T>
-        class remove_reference<T&&> {typedef T type;};
+        struct remove_reference<T&&> {typedef T type;};
 
-        #else
+    #else
         /**
          * @brief Template alias to remove the reference from a type.
          *
          * The `remove_reference` template alias uses the `std::remove_reference` trait to remove the reference from the given type `T`. It provides a non-reference (rvalue) type as the result.
          * @tparam T The type from which to remove the reference.
          */
-            template<class T>
-            using remove_reference = std::remove_reference<T>;
-        #endif
+        template<class T>
+        using remove_reference = std::remove_reference<T>;
+    #endif
 
         /** @ingroup Move
          * @brief Used to indicate that an object may be "moved from".
@@ -85,11 +85,11 @@
         typename CPVector::remove_reference<T>::type&& move(T&& t)
         {
 
-            #if defined(CPVECTOR_USING_STD_VECTOR_ALLOCATION) 
+        #if defined(CPVECTOR_USING_STD_VECTOR_ALLOCATION) 
               return static_cast<typename std::remove_reference<T>::type&&>(t);
-            #else
+        #else
             return static_cast<typename CPVector::remove_reference<T>::type&&>(t);
-            #endif
+        #endif
         }
 
     }

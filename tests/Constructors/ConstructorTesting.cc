@@ -67,7 +67,8 @@
 
 	TEST(ConstructorTesting, MoveConstructor) {
 
-		CPVector::vector<uint8_t> myVector = {0, 1, 2};
+		static const uint8_t values[] = {0, 1, 2};
+		CPVector::vector<uint8_t> myVector(values, 3);
 		ASSERT_EQ(myVector.size(),3);
 
 		for(uint8_t i = 0; i < myVector.size(); i++){

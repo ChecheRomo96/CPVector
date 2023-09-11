@@ -25,7 +25,7 @@
 ######################################################################################################
 # Store this directory as a variable called MCC_SRC_DIRECTORY to reference in deeper directories
 
-	set( ${PROJECT_NAME_UPPER}_ROOT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR})
+	set( ${PROJECT_NAME_UPPER}_ROOT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR} )
 #
 ######################################################################################################
 # Compile Configuration
@@ -50,7 +50,6 @@
 	add_subdirectory(src)
 	
 	target_compile_definitions(CPVector INTERFACE ${PROJECT_NAME_UPPER}_VERSION="${PROJECT_VERSION}" )
-
 #
 ######################################################################################################
 # Append Examples

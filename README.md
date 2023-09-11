@@ -87,4 +87,5 @@ We hope CPVector proves to be a valuable asset in your cross-platform developmen
 
 - Better structure documentatiom
 - Write tutorials page for documentation
-- Unit testing for CMake-Arduino
+- Unit testing for CPVector-Arduino
+- Unit testing action for CPVector-CMake and CPVector-Arduino

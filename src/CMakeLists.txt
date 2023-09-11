@@ -59,8 +59,6 @@
 		message("Using C allocators (malloc, calloc, free)")
 		target_compile_definitions(CPVector INTERFACE CPVECTOR_USING_C_ALLOCATION)
 	endif()
-	
-
 
 
 #

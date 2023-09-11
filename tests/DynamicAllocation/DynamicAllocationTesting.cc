@@ -23,11 +23,12 @@
 
 			CPVector::vector<uint8_t>* myVectorptr = NULL;
 
-			EXPECT_EQ((void*)myVectorptr,NULL);
+			EXPECT_EQ(myVectorptr,(void*)NULL);
 			
-			myVectorptr = (CPVector::vector<uint8_t>*)malloc(sizeof(CPVector::vector<uint8_t>) * 12);
+			myVectorptr = (CPVector::vector<uint8_t>*)calloc(1, sizeof(CPVector::vector<uint8_t>));
+			(*myVectorptr) = CPVector::vector<uint8_t>(12);
 
-			ASSERT_NE(myVectorptr,NULL);
+			ASSERT_NE(myVectorptr,(void*)NULL);
 
 			EXPECT_EQ(myVectorptr->size(),12);
 
