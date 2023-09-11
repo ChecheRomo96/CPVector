@@ -65,7 +65,7 @@ jobs:
 
       - name: Remove *.dox files from examples subfolders
         run: |
-          for i in ` find ./CPVector/examples -name *.dox ` ; do mv $i ./CPVector/examples/ ; done
+          for i in ` find ./CPVector/examples -name Desktop/*.dox ` ; do mv $i ./CPVector/examples/ ; done
 
       - name: Remove empty examples sub directories
         run: |
