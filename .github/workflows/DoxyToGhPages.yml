@@ -50,11 +50,11 @@ jobs:
 
       - name: Remove *.cpp files from examples subfolders
         run: |
-          for i in ` find ./CPVector/examples/ -name Desktop/*.cpp ` ; do mv $i ./CPVector/examples/ ; done
+          for i in ` find ./CPVector/examples/*/Desktop -name *.cpp ` ; do mv $i ./CPVector/examples/ ; done
 
       - name: Remove *.dox files from examples subfolders
         run: |
-          for i in ` find ./CPVector/examples/ -name Desktop/*.dox ` ; do mv $i ./CPVector/examples/ ; done
+          for i in ` find ./CPVector/examples/*/Desktop -name *.dox ` ; do mv $i ./CPVector/examples/ ; done
 
 
       - name: Remove empty examples sub directories
@@ -77,7 +77,7 @@ jobs:
         run: >
           brew install doxygen
           brew install graphviz
-          
+
       - name: Generate Documentation
         working-directory: ./CPVector
         run: doxygen ./Doxyfile
