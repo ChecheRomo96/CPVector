@@ -3,7 +3,40 @@
 #include <iostream>
 
 //////////////////////////////////////////////////////////////////////////////////
-// reserve
+//! @test
+//! This test case assesses the "reserve" functionality of the CPVector class.
+//! The purpose of this test is to verify that the "reserve" method correctly
+//! allocates memory to accommodate the specified capacity without affecting the
+//! size of the vector.
+//!
+//! @test_steps
+//! 1. Create an empty CPVector<uint8_t> named "myVector."
+//! 2. Assert that the initial size of "myVector" is 0.
+//! 3. Iterate through values from 0 to UINT8_MAX, resizing "myVector" at each
+//!    step.
+//! 4. For each resize operation, assert that the size of "myVector" matches
+//!    the specified size and that the capacity is greater than or equal to the
+//!    specified size.
+//! 5. Clear "myVector" and assert that its size becomes 0 while the capacity
+//!    remains 0.
+//! 6. Call "reserve" on "myVector" with a capacity of UINT8_MAX.
+//! 7. Assert that the size of "myVector" remains 0, and the capacity is at least
+//!    UINT8_MAX.
+//! 8. Iterate through values from 0 to UINT8_MAX, resizing "myVector" again.
+//! 9. For each resize operation after reserving capacity, assert that the size of
+//!    "myVector" matches the specified size, and the capacity remains at least
+//!    UINT8_MAX.
+//!
+//! @expected_result
+//! The test is expected to pass if all assertions hold true, demonstrating that
+//! the "reserve" method correctly allocates memory as specified without changing
+//! the size of the vector.
+//!
+//! @dependencies
+//! The CPVector class with a functioning "reserve" method.
+//!
+//! @test_author
+//! José Manuel Romo
 
 	TEST(BasicFunctionalityTesting, reserve) {
 
