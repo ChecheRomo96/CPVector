@@ -73,10 +73,11 @@ jobs:
           git submodule init
           git submodule update
           
-      - name: Install Doxygen
-        run: >
-          brew install doxygen
-          brew install graphviz
+      - name: Install doxygen
+        run: brew install doxygen
+        
+      - name: Install graphviz
+        run: brew install graphviz
 
       - name: Generate Documentation
         working-directory: ./CPVector
