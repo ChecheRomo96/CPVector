@@ -41,7 +41,13 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// resize
+//! @test
+//! This test case assesses the "resize" functionality of the CPVector class.
+//! The purpose of this test is to verify that the "resize" method correctly
+//! changes the size of the vector while maintaining its content integrity.\n\n
+//! The test is expected to pass if all assertions hold true, demonstrating that
+//! the "resize" method effectively changes the size of the vector without
+//! affecting the content's integrity.
 
 	TEST(BasicFunctionalityTesting, resize) {
 
@@ -56,7 +62,15 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// resize_initialization
+//! @test
+//! This test case assesses the "resize" functionality of the CPVector class with
+//! initialization.
+//! The purpose of this test is to verify that the "resize" method correctly
+//! changes the size of the vector, initializes new elements, and maintains
+//! existing content integrity.\n\n
+//! The test is expected to pass if all assertions hold true, demonstrating that
+//! the "resize" method effectively changes the size of the vector, initializes
+//! new elements to zero, and maintains the integrity of existing elements.
 
 	TEST(BasicFunctionalityTesting, resize_initialization) {
 
@@ -72,7 +86,13 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// clear
+//! @test
+//! This test case assesses the "clear" functionality of the CPVector class.
+//! The purpose of this test is to verify that the "clear" method correctly
+//! removes all elements from the vector, effectively resetting its size to zero.\n\n
+//! The test is expected to pass if all assertions hold true, demonstrating that
+//! the "clear" method effectively removes all elements from the vector and resets
+//! its size to zero.
 
 	TEST(BasicFunctionalityTesting, clear) {
 
@@ -89,7 +109,13 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// copy
+//! @test
+//! This test case assesses the "copy" functionality of the CPVector class.
+//! The purpose of this test is to verify that the "copy" method correctly copies
+//! a range of elements from an external data array into the vector.\n\n
+//! The test is expected to pass if all assertions hold true, demonstrating that
+//! the "copy" method effectively copies the specified range of elements into the
+//! vector, updating its size and content accordingly.
 
 	TEST(BasicFunctionalityTesting, copy) {
 
@@ -108,11 +134,17 @@
 		{
 			EXPECT_EQ(myVector[i],10+i);
 		}
-
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// push_back
+//! @test
+//! This test case assesses the "push_back" functionality of the CPVector class.
+//! The purpose of this test is to verify that the "push_back" method correctly
+//! adds elements to the end of the vector, increments its size, and maintains
+//! the integrity of the added elements.\n\n
+//! The test is expected to pass if all assertions hold true, demonstrating that
+//! the "push_back" method effectively adds elements to the vector, increases its
+//! size, and preserves the integrity of the added elements.
 
 	TEST(BasicFunctionalityTesting, push_back) {
 
@@ -130,11 +162,17 @@
 			ASSERT_EQ(myVector.size(),i+1);
 			EXPECT_EQ(myVector[i],i);
 		}
-
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// pop
+//! @test
+//! This test case assesses the "pop" functionality of the CPVector class.
+//! The purpose of this test is to verify that the "pop" method correctly removes
+//! elements from the vector, decreases its size, and maintains the integrity of
+//! the remaining elements.\n\n
+//! The test is expected to pass if all assertions hold true, demonstrating that
+//! the "pop" method effectively removes elements from the vector, reduces its
+//! size, and preserves the integrity of the remaining elements.
 
 	TEST(BasicFunctionalityTesting, pop) {
 
@@ -158,7 +196,14 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// pop_first
+//! @test
+//! This test case assesses the "pop_first" functionality of the CPVector class.
+//! The purpose of this test is to verify that the "pop_first" method correctly
+//! removes the first element from the vector, decreases its size, and maintains
+//! the integrity of the remaining elements.\n\n
+//! The test is expected to pass if all assertions hold true, demonstrating that
+//! the "pop_first" method effectively removes the first element from the vector,
+//! reduces its size, and preserves the integrity of the remaining elements.
 
 	TEST(BasicFunctionalityTesting, pop_first) {
 
@@ -182,7 +227,15 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// pop_back
+//! @test
+//! This test case assesses the "pop_back" functionality of the CPVector class.
+//! The purpose of this test is to verify that the "pop_back" method correctly
+//! removes the last element from the vector, decreases its size, and maintains
+//! the integrity of the remaining elements.\n\n
+//! The test is expected to pass if all assertions hold true, demonstrating that
+//! the "pop_back" method effectively removes the last element from the vector,
+//! reduces its size, and preserves the integrity of the remaining elements.
+
 
 	TEST(BasicFunctionalityTesting, pop_back) {
 
@@ -206,7 +259,15 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// emplace
+//! @test
+//! This test case assesses the "emplace" functionality of the CPVector class.
+//! The purpose of this test is to verify that the "emplace" method correctly
+//! inserts elements into the vector at the specified position, increments its
+//! size, and maintains the integrity of the inserted elements.\n\n
+//! The test is expected to pass if all assertions hold true, demonstrating that
+//! the "emplace" method effectively inserts elements into the vector, increases
+//! its size, and preserves the integrity of the inserted elements.
+
 
 	TEST(BasicFunctionalityTesting, emplace) {
 
@@ -223,7 +284,13 @@
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// swap
+//! @test
+//! This test case assesses the "swap" functionality of the CPVector class.
+//! The purpose of this test is to verify that the "swap" method correctly swaps
+//! elements within the vector, maintaining their integrity.\n\n
+//! The test is expected to pass if all assertions hold true, demonstrating that
+//! the "swap" method effectively swaps elements within the vector while
+//! preserving the integrity of the swapped elements.
 
 	TEST(BasicFunctionalityTesting, swap) {
 
@@ -231,30 +298,33 @@
 		EXPECT_EQ(myVector.size(),0);
 
 		uint8_t counter = 0;
-		for(uint8_t i = 0; i < 10; i++)
-		{
+		for(uint8_t i = 0; i < 10; i++){
 			myVector.push_back(i);
 		}
 
-		for(uint8_t i = 0; i < 5; i++)
-		{
+		for(uint8_t i = 0; i < 5; i++){
 			myVector.swap(i,9-i);
 		}
 
-		for(uint8_t i = 0; i < 10; i ++)
-		{
+		for(uint8_t i = 0; i < 10; i ++){
 			EXPECT_EQ(myVector[i],9-i);
 		}
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// erase
+//! @test
+//! This test case assesses the "erase" functionality of the CPVector class.
+//! The purpose of this test is to verify that the "erase" method correctly removes
+//! elements from the vector at the specified position, decreases its size, and
+//! maintains the integrity of the remaining elements.\n\n
+//! The test is expected to pass if all assertions hold true, demonstrating that
+//! the "erase" method effectively removes elements from the vector, reduces its
+//! size, and preserves the integrity of the remaining elements.
 
 	TEST(BasicFunctionalityTesting, erase) {
 
 		uint8_t Data[UINT8_MAX] = {};
-		for(uint8_t i = 0; i < UINT8_MAX; i++ )
-		{
+		for(uint8_t i = 0; i < UINT8_MAX; i++ ){
 			Data[i] = i;
 		}
 
@@ -263,8 +333,7 @@
 
 		uint8_t counter = 0;
 		
-		while(myVector.size() > 0)
-		{
+		while(myVector.size() > 0){
 			EXPECT_EQ(myVector[0],counter++);
 			myVector.erase(0);
 		}
