@@ -21,7 +21,7 @@
  * 
  * Below is a list of tutorials explaining more in depth how to use CPVector:\n\n
  * 
- * -\subpage BasicUsage \n
+ * - \subpage BasicUsage \n
  * 
  *  -# \ref Constructing \n
  *  -# \ref Resizing \n
@@ -41,7 +41,7 @@
  * 
  */
 
-/*!\page Constructing Constructing vector objects
+/*!\page Constructing Constructing CPVector::vector objects
  * 
  *
  */
