@@ -57,6 +57,7 @@
  *     - Default constructor.
  *     - Initializes an empty vector.
  *     - Example:
+ *     
  * \code
  * CPVector::vector<int> v(); // Creates an empty vector
  * CPVector::vector<int> v;   // Creates an empty vector
