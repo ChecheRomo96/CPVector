@@ -3,10 +3,12 @@
 #include <iostream>
 
 //////////////////////////////////////////////////////////////////////////////////
-// exception
+//! @test
+//! This test case assesses the exception handling in the CPVector class.
+//! The purpose of this test is to verify that the CPVector::exception is correctly
+//! thrown and that it contains the expected error message when an exception occurs.
 
-    TEST(Exceptions, exception )
-    {
+    TEST(Exceptions, exception ){
         EXPECT_THROW({
             try
             {
@@ -22,10 +24,18 @@
     }
 //
 //////////////////////////////////////////////////////////////////////////////////
-// logic_error
+//! @test
+//! This test case assesses the exception handling in the CPVector class for
+//! logic_error.
+//! The purpose of this test is to verify that a CPVector::logic_error exception
+//! is correctly thrown and that it contains the expected error message when such
+//! an exception occurs. The test also checks that the thrown exception matches the
+//! expected exception type.\n\n
+//! The test is expected to pass if a CPVector::logic_error exception is thrown,
+//! and its error message matches the expected message, while also verifying the
+//! correctness of the thrown exception type.
 
-    TEST(Exceptions, logic_error )
-    {
+    TEST(Exceptions, logic_error ){
         EXPECT_THROW({
             try
             {
@@ -41,10 +51,18 @@
     }
 //
 //////////////////////////////////////////////////////////////////////////////////
-// bad_alloc
+//! @test
+//! This test case assesses the exception handling in the CPVector class for
+//! bad_alloc.
+//! The purpose of this test is to verify that a CPVector::bad_alloc exception is
+//! correctly thrown and that it contains the expected error message when such an
+//! exception occurs. The test also checks that the thrown exception matches the
+//! expected exception type.\n\n
+//! The test is expected to pass if a CPVector::bad_alloc exception is thrown,
+//! and its error message matches the expected message, while also verifying the
+//! correctness of the thrown exception type.
 
-    TEST(Exceptions, bad_alloc )
-    {
+    TEST(Exceptions, bad_alloc ){
         EXPECT_THROW({
             try
             {
@@ -60,10 +78,18 @@
     }
 //
 //////////////////////////////////////////////////////////////////////////////////
-// out_of_range
+//! @test
+//! This test case assesses the exception handling in the CPVector class for
+//! out_of_range.
+//! The purpose of this test is to verify that a CPVector::out_of_range exception
+//! is correctly thrown and that it contains the expected error message when such
+//! an exception occurs. The test also checks that the thrown exception matches the
+//! expected exception type.\n\n
+//! The test is expected to pass if a CPVector::out_of_range exception is thrown,
+//! and its error message matches the expected message, while also verifying the
+//! correctness of the thrown exception type.
 
-    TEST(Exceptions, out_of_range )
-    {
+    TEST(Exceptions, out_of_range ){
         EXPECT_THROW({
             try
             {
@@ -79,10 +105,19 @@
     }
 //
 //////////////////////////////////////////////////////////////////////////////////
-// out_of_range
+//! @test
+//! This test case assesses the exception handling in the CPVector class for
+//! out_of_range when accessing an element out of range.
+//! The purpose of this test is to verify that a CPVector::out_of_range exception
+//! is correctly thrown and that it contains the expected error message when trying
+//! to access an element beyond the valid range. The test also checks that the thrown
+//! exception matches the expected exception type.\n\n
+//! The test is expected to pass if a CPVector::out_of_range exception is thrown
+//! while attempting to access an out-of-range element, and its error message
+//! matches the expected message, while also verifying the correctness of the
+//! thrown exception type.
 
-    TEST(Exceptions, out_of_range2 )
-    {
+    TEST(Exceptions, out_of_range2 ){
         EXPECT_THROW({
             try
             {
@@ -100,10 +135,18 @@
     }
 //
 //////////////////////////////////////////////////////////////////////////////////
-// length_error
+//! @test
+//! This test case assesses the exception handling in the CPVector class for
+//! length_error.
+//! The purpose of this test is to verify that a CPVector::length_error exception
+//! is correctly thrown and that it contains the expected error message when such
+//! an exception occurs. The test also checks that the thrown exception matches the
+//! expected exception type.\n\n
+//! The test is expected to pass if a CPVector::length_error exception is thrown,
+//! and its error message matches the expected message, while also verifying the
+//! correctness of the thrown exception type.
 
-    TEST(Exceptions, length_error )
-    {
+    TEST(Exceptions, length_error ){
         EXPECT_THROW({
             try
             {
