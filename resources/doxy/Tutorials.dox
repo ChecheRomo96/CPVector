@@ -138,7 +138,7 @@
  *      CPVector::vector<int> source;
  *      // Populate source...
  *      CPVector::vector<int> target;
- *      target = std::move(source); // Moves the contents of 'source' to 'target'
+ *      target = CPVector::move(source); // Moves the contents of 'source' to 'target'
  *      \endcode
  *
  *\section SubscriptArrayOperator Subscript Array Operator
@@ -191,6 +191,7 @@
  *      }
  *      \endcode
  *
+ * \ref Tutorials Go Back to tutorials
  */
 
 /*!\page Resizing Resizing a CPVector::vector
