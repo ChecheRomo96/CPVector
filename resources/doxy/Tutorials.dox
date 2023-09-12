@@ -14,7 +14,8 @@
 
 /*! 
  * \page BasicUsage Basic CPVector::vector Usage
- * VPVector::vector is a template class that is a perfect replacement for the good old C-style arrays. It allows the same natural syntax that is used with plain arrays but offers a series of services that free the C++ programmer from taking care of the allocated memory and help to operate consistently on the contained objects.\n
+ *  It is a template class that will wrap an array of Ts. In this widely used notation, ‘T’ stands for any data type, built-in, or user-defined class. The vector will store the Ts in a contiguous memory area that it will handle for you, and let you access the individual Ts simply by writing v[0], v[1], and so on, exactly like you would do for a C-style array.\n\n
+ * VPVector::vector is a template class that is a perfect replacement for the good old C-style arrays. It allows the same natural syntax that is used with plain arrays but offers a series of services that free the C++ programmer from taking care of the allocated memory and help to operate consistently on the contained objects.\n\n
  * The first step using vector is to include the appropriate header:\n
  * \code
  * #include <CPVector.h>
@@ -23,12 +24,8 @@
  * \code
  * CPVector::vector<int> v;    // declares a vector of integers
  * \endcode 
- * For small projects, you can bring the entire namespace std into scope by inserting a using directive on top of your .cpp file:
+ * 
  * \code
- * #include <vector>
- * using namespace std;
- * //...
- * vector<int> v;         // no need to prepend std:: any more
  * \endcode 
  */
 
