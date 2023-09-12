@@ -29,6 +29,7 @@
 
 /*!\page BasicUsage Basic CPVector::vector Usage
  *  
+ * \subpage Constructing
  * 
  * \code
  * \endcode 
@@ -36,4 +37,9 @@
 
 /*!\page Resizing Resizing a CPVector::vector
  * 
+ */
+
+/*!\page Constructing Constructing vector objects
+ * 
+ *
  */
