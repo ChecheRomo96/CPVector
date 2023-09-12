@@ -22,7 +22,9 @@
  * Below is a list of tutorials explaining more in depth how to use CPVector:\n\n
  * 
  * \subpage BasicUsage \n
- * \subpage Resizing 
+ * 
+ *   \ref Constructing "Constructing vector objects"\n
+ *   \ref Resizing 
  * 
  * 
  */
