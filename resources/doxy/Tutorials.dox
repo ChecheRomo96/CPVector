@@ -39,74 +39,74 @@
 
 
 /*!\page Constructing Constructing CPVector::vector objects
-
-\section Introduction
-The `CPVector::vector` class is a versatile container in the CPVector library that offers dynamic array functionality with a range of constructors and a destructor to manage its objects efficiently. These constructors allow you to create and initialize vectors to suit your needs, whether it's creating an empty vector, copying data from other vectors, or populating the vector with predefined values.
-
-This page provides a comprehensive guide to the various constructors available in the `CPVector::vector` class, along with explanations and examples of their usage. Additionally, the destructor is discussed to ensure proper resource management when vectors are no longer needed.
-
-Whether you are a beginner looking to understand the basics of vector construction or an experienced developer seeking to leverage the power of dynamic arrays, this documentation will guide you through the process of creating and managing `CPVector::vector` objects effectively.
-
-Explore the following sections to learn about each constructor and the destructor in detail.
-
-
-\section Constructors
-
-- CPVector::vector ()
-    - Default constructor.
-    - Initializes an empty vector.
-
-- CPVector::vector (unsigned int count, const T &value=T())
-    - Resize constructor.
-    - Constructs a vector with a specified count of elements, each initialized to the provided value.
-    - Example:
-        \code
-        CPVector::vector<int> v(5, 42); // Creates a vector with 5 elements, all initialized to 42
-        \endcode
-
-- CPVector::vector (const vector< T > &other)
-    - Copy constructor.
-    - Constructs a vector by copying the contents of another vector.
-    - Example:
-        \code
-        CPVector::vector<int> original;
-        // Populate original...
-        CPVector::vector<int> copy(original); // Creates a copy of 'original'
-        \endcode
-
-- CPVector::vector (const T *pointer, unsigned int len)
-    - Copy constructor.
-    - Constructs a vector by copying elements from a C-style array.
-    - Example:
-        \code
-        int arr[] = {1, 2, 3, 4, 5};
-        CPVector::vector<int> v(arr, 5); // Creates a vector from the array
-        \endcode
-
-- CPVector::vector (vector< T > &&source) noexcept
-    - Move constructor.
-    - Constructs a vector by moving the contents of another vector.
-    - Example:
-        \code
-        CPVector::vector<int> source;
-        // Populate source...
-        CPVector::vector<int> target(std::move(source)); // Moves the contents of 'source' to 'target'
-        \endcode
-
-- CPVector::vector (std::initializer_list< T > list)
-    - std::initializer list constructor (only available if CPVECTOR_USING_STD_VECTOR_ALLOCATION is enabled).
-    - Constructs a vector using an initializer list.
-    - Example:
-        \code
-        CPVector::vector<int> v = {1, 2, 3, 4, 5}; // Creates a vector with the specified elements
-        \endcode
-
-\section Destructor
-
-- ~vector ()
-    - Destructor.
-    - Destroys the vector and frees the associated memory.
-
+ *
+ * \section Introduction
+ * The `CPVector::vector` class is a versatile container in the CPVector library that offers dynamic array functionality with a range of constructors and a destructor to manage its objects efficiently. These constructors allow you to create and initialize vectors to suit your needs, whether it's creating an empty vector, copying data from other vectors, or populating the vector with predefined values.
+ * 
+ * This page provides a comprehensive guide to the various constructors available in the `CPVector::vector` class, along with explanations and examples of their usage. Additionally, the destructor is discussed to ensure proper resource management when vectors are no longer needed.
+ * 
+ * Whether you are a beginner looking to understand the basics of vector construction or an experienced developer seeking to leverage the power of dynamic arrays, this documentation will guide you through the process of creating and managing `CPVector::vector` objects effectively.
+ * 
+ * Explore the following sections to learn about each constructor and the destructor in detail.
+ * 
+ * 
+ * \section Constructors
+ * 
+ * - CPVector::vector ()
+ *     - Default constructor.
+ *     - Initializes an empty vector.
+ * 
+ * - CPVector::vector (unsigned int count, const T &value=T())
+ *     - Resize constructor.
+ *     - Constructs a vector with a specified count of elements, each initialized to the provided value.
+ *     - Example:
+ *         \code
+ *         CPVector::vector<int> v(5, 42); // Creates a vector with 5 elements, all initialized to 42
+ *         \endcode
+ * 
+ * - CPVector::vector (const vector< T > &other)
+ *     - Copy constructor.
+ *     - Constructs a vector by copying the contents of another vector.
+ *     - Example:
+ *         \code
+ *         CPVector::vector<int> original;
+ *         // Populate original...
+ *         CPVector::vector<int> copy(original); // Creates a copy of 'original'
+ *         \endcode
+ * 
+ * - CPVector::vector (const T *pointer, unsigned int len)
+ *     - Copy constructor.
+ *     - Constructs a vector by copying elements from a C-style array.
+ *     - Example:
+ *         \code
+ *         int arr[] = {1, 2, 3, 4, 5};
+ *         CPVector::vector<int> v(arr, 5); // Creates a vector from the array
+ *         \endcode
+ * 
+ * - CPVector::vector (vector< T > &&source) noexcept
+ *     - Move constructor.
+ *     - Constructs a vector by moving the contents of another vector.
+ *     - Example:
+ *         \code
+ *         CPVector::vector<int> source;
+ *         // Populate source...
+ *         CPVector::vector<int> target(CPVector::move(source)); // Moves the contents of 'source' to 'target'
+ *         \endcode
+ * 
+ * - CPVector::vector (std::initializer_list< T > list)
+ *     - std::initializer list constructor (only available if CPVECTOR_USING_STD_VECTOR_ALLOCATION is enabled).
+ *     - Constructs a vector using an initializer list.
+ *     - Example:
+ *         \code
+ *         CPVector::vector<int> v = {1, 2, 3, 4, 5}; // Creates a vector with the specified elements
+ *         \endcode
+ * 
+ * \section Destructor
+ * 
+ * - ~vector ()
+ *     - Destructor.
+ *     - Destroys the vector and frees the associated memory.
+ * 
 */
 
 /*!\page Resizing Resizing a CPVector::vector
