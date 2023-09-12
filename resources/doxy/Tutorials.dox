@@ -24,6 +24,7 @@
  * - \subpage BasicUsage \n
  * 
  *  -# \ref Constructing \n
+ *  -# \ref Operators \n
  *  -# \ref Resizing \n
  * 
  * 
@@ -57,7 +58,8 @@
  *     - Initializes an empty vector.
  *     - Example:
  * \code
- * CPVector::vector<int> v; // Creates an empty vector
+ * CPVector::vector<int> v(); // Creates an empty vector
+ * CPVector::vector<int> v;   // Creates an empty vector
  * \endcode
  * 
  * - CPVector::vector (unsigned int count, const T &value=T())
@@ -111,6 +113,84 @@
  *     - Destructor.
  *     - Destroys the vector and frees the associated memory.
  * 
+ */
+
+/*!\page Operators
+ *
+ *\section AssignmentOperator Assignment Operator
+ *
+ * vector & operator= (const vector &source)
+ *    - Assignment operator.
+ *    - Copies the contents of another vector into the current vector.
+ *    - Example:
+ *      \code
+ *      CPVector::vector<int> original;
+ *      // Populate original...
+ *      CPVector::vector<int> copy;
+ *      copy = original; // Copies 'original' into 'copy'
+ *      \endcode
+ *
+ * vector & operator= (vector &&source)
+ *    - Move Assignment operator.
+ *    - Moves the contents of another vector into the current vector.
+ *    - Example:
+ *      \code
+ *      CPVector::vector<int> source;
+ *      // Populate source...
+ *      CPVector::vector<int> target;
+ *      target = std::move(source); // Moves the contents of 'source' to 'target'
+ *      \endcode
+ *
+ *\section SubscriptArrayOperator Subscript Array Operator
+ *
+ * T & operator[] (unsigned int position)
+ *    - Subscript Array operator.
+ *    - Allows access to the element at the specified position in the vector.
+ *    - Example:
+ *      \code
+ *      CPVector::vector<int> v;
+ *      // Populate v...
+ *      int element = v[2]; // Accesses the element at position 2
+ *      \endcode
+ *
+ * const T & operator[] (unsigned int position) const
+ *    - Subscript Array operator.
+ *    - Allows read-only access to the element at the specified position in the vector.
+ *    - Example:
+ *      \code
+ *      const CPVector::vector<int> v;
+ *      // Populate v...
+ *      int element = v[2]; // Accesses the element at position 2
+ *      \endcode
+ *
+ * \section ComparisonOperators Comparison Operators
+ *
+ * bool operator== (const vector &source) const
+ *    - Equal to operator.
+ *    - Checks if both vectors have the same size and contents.
+ *    - Note: The class T must have defined `==` and `!=` operators for this to work.
+ *    - Example:
+ *      \code
+ *      CPVector::vector<int> v1, v2;
+ *      // Populate v1 and v2...
+ *      if (v1 == v2) {
+ *          // Vectors have the same contents
+ *      }
+ *      \endcode
+ *
+ * bool operator!= (const vector &source) const
+ *    - Not Equal to operator.
+ *    - Checks if both vectors have different contents.
+ *    - Note: The class T must have defined `==` and `!=` operators for this to work.
+ *    - Example:
+ *      \code
+ *      CPVector::vector<int> v1, v2;
+ *      // Populate v1 and v2...
+ *      if (v1 != v2) {
+ *          // Vectors have different contents
+ *      }
+ *      \endcode
+ *
  */
 
 /*!\page Resizing Resizing a CPVector::vector
