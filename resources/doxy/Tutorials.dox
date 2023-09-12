@@ -40,6 +40,16 @@
 
 /*!\page Constructing Constructing CPVector::vector objects
 
+\section Introduction
+The `CPVector::vector` class is a versatile container in the CPVector library that offers dynamic array functionality with a range of constructors and a destructor to manage its objects efficiently. These constructors allow you to create and initialize vectors to suit your needs, whether it's creating an empty vector, copying data from other vectors, or populating the vector with predefined values.
+
+This page provides a comprehensive guide to the various constructors available in the `CPVector::vector` class, along with explanations and examples of their usage. Additionally, the destructor is discussed to ensure proper resource management when vectors are no longer needed.
+
+Whether you are a beginner looking to understand the basics of vector construction or an experienced developer seeking to leverage the power of dynamic arrays, this documentation will guide you through the process of creating and managing `CPVector::vector` objects effectively.
+
+Explore the following sections to learn about each constructor and the destructor in detail.
+
+
 \section Constructors
 
 - CPVector::vector ()
