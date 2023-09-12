@@ -1,4 +1,4 @@
-/*!  \page Tutorials
+/*!\page Tutorials
  * CPVector::vector is a template class that will wrap an array of Ts. In this widely used notation, ‘T’ stands for any data type, built-in, 
  * or user-defined class. The vector will store the Ts in a contiguous memory area that it will handle for you, and let you access the individual 
  * Ts simply by writing v[0], v[1], and so on, exactly like you would do for a C-style array.\n\n
@@ -27,14 +27,13 @@
  * 
  */
 
-/*! 
- * \page BasicUsage Basic CPVector::vector Usage
+/*!\page BasicUsage Basic CPVector::vector Usage
  *  
  * 
  * \code
  * \endcode 
  */
 
-/*! \page Resizing Resizing a CPVector::vector
+/*!\page Resizing Resizing a CPVector::vector
  * 
  */
