@@ -3,40 +3,52 @@
 #include <iostream>
 
 //////////////////////////////////////////////////////////////////////////////////
-// DefaultConstructor
+//! @test
+//! This test case assesses the default constructor of the CPVector class.
+//! The purpose of this test is to verify that the default constructor correctly
+//! initializes an empty vector with a size of zero.\n\n
+//! The test is expected to pass if the assertion holds true, demonstrating that
+//! the default constructor effectively creates an empty vector with a size of zero.
 
 	TEST(ConstructorTesting, DefaultConstructor) {
-
 		CPVector::vector<uint8_t> myVector;
 		ASSERT_EQ(myVector.size(),0);
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// ResizeConstructor
+//! @test
+//! This test case assesses the resize constructor of the CPVector class.
+//! The purpose of this test is to verify that the resize constructor correctly
+//! initializes a vector with the specified size.\n\n
+//! The test is expected to pass if the assertion holds true, demonstrating that
+//! the resize constructor effectively creates a vector with the specified size.
+
 
 	TEST(ConstructorTesting, ResizeConstructor) {
-
 		CPVector::vector<uint8_t> myVector(20);
 		ASSERT_EQ(myVector.size(),20);
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// CopyConstructor
+//! @test
+//! This test case assesses the copy constructor of the CPVector class.
+//! The purpose of this test is to verify that the copy constructor correctly
+//! initializes a new vector by copying the content of an existing vector.\n\n
+//! The test is expected to pass if all assertions hold true, demonstrating that
+//! the copy constructor effectively creates a new vector with content identical
+//! to the original vector.
 
 	TEST(ConstructorTesting, CopyConstructor) {
-
 		CPVector::vector<uint8_t> myVector(20);
 		ASSERT_EQ(myVector.size(),20);
 
-		for(uint8_t i = 0; i < myVector.size(); i++)
-		{
+		for(uint8_t i = 0; i < myVector.size(); i++){
 			myVector[i] = i;
 		}
 
 		CPVector::vector<uint8_t> myVector2(myVector);
 
-		for(uint8_t i = 0; i < myVector.size(); i++)
-		{
+		for(uint8_t i = 0; i < myVector.size(); i++){
 			EXPECT_EQ(myVector[i], myVector2[i]);
 		}
 	}
@@ -48,22 +60,27 @@
 
 		uint8_t Data[UINT8_MAX] = {};
 
-		for(uint8_t i = 0; i < UINT8_MAX; i++ )
-		{
+		for(uint8_t i = 0; i < UINT8_MAX; i++ ){
 			Data[i] = i;
 		}
 
 		CPVector::vector<uint8_t> myVector(Data, UINT8_MAX);
 		ASSERT_EQ(myVector.size(),UINT8_MAX);
 
-		for(uint8_t i = 0; i < myVector.size(); i++)
-		{
+		for(uint8_t i = 0; i < myVector.size(); i++){
 			EXPECT_EQ(myVector[i], i);
 		}
 	}
 //
 //////////////////////////////////////////////////////////////////////////////////
-// Move Constructor
+//! @test
+//! This test case assesses the copy constructor of the CPVector class with a
+//! range of data.
+//! The purpose of this test is to verify that the copy constructor correctly
+//! initializes a new vector by copying a range of data from an external array.\n\n
+//! The test is expected to pass if all assertions hold true, demonstrating that
+//! the copy constructor effectively creates a new vector with content identical
+//! to the specified data range.
 
 	TEST(ConstructorTesting, MoveConstructor) {
 
