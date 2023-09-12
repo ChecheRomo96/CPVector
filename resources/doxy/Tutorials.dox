@@ -37,11 +37,68 @@
  * \endcode 
  */
 
-/*!\page Resizing Resizing a CPVector::vector
- * 
- */
 
 /*!\page Constructing Constructing CPVector::vector objects
+
+\section Constructors
+
+- CPVector::vector ()
+    - Default constructor.
+    - Initializes an empty vector.
+
+- CPVector::vector (unsigned int count, const T &value=T())
+    - Resize constructor.
+    - Constructs a vector with a specified count of elements, each initialized to the provided value.
+    - Example:
+        \code
+        CPVector::vector<int> v(5, 42); // Creates a vector with 5 elements, all initialized to 42
+        \endcode
+
+- CPVector::vector (const vector< T > &other)
+    - Copy constructor.
+    - Constructs a vector by copying the contents of another vector.
+    - Example:
+        \code
+        CPVector::vector<int> original;
+        // Populate original...
+        CPVector::vector<int> copy(original); // Creates a copy of 'original'
+        \endcode
+
+- CPVector::vector (const T *pointer, unsigned int len)
+    - Copy constructor.
+    - Constructs a vector by copying elements from a C-style array.
+    - Example:
+        \code
+        int arr[] = {1, 2, 3, 4, 5};
+        CPVector::vector<int> v(arr, 5); // Creates a vector from the array
+        \endcode
+
+- CPVector::vector (vector< T > &&source) noexcept
+    - Move constructor.
+    - Constructs a vector by moving the contents of another vector.
+    - Example:
+        \code
+        CPVector::vector<int> source;
+        // Populate source...
+        CPVector::vector<int> target(std::move(source)); // Moves the contents of 'source' to 'target'
+        \endcode
+
+- CPVector::vector (std::initializer_list< T > list)
+    - std::initializer list constructor (only available if CPVECTOR_USING_STD_VECTOR_ALLOCATION is enabled).
+    - Constructs a vector using an initializer list.
+    - Example:
+        \code
+        CPVector::vector<int> v = {1, 2, 3, 4, 5}; // Creates a vector with the specified elements
+        \endcode
+
+\section Destructor
+
+- ~vector ()
+    - Destructor.
+    - Destroys the vector and frees the associated memory.
+
+*/
+
+/*!\page Resizing Resizing a CPVector::vector
  * 
- *
  */
