@@ -73,7 +73,11 @@
 #
 ######################################################################################################
 # Add libs Subdirectory
-
+	
+	find_package(CPSTRING)
+#
+######################################################################################################
+# Music Composition Core install process
 	if( CPVECTOR_INSTALL STREQUAL "ON")
 
 		install(
