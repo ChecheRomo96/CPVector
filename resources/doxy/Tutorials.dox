@@ -55,6 +55,10 @@
  * - CPVector::vector ()
  *     - Default constructor.
  *     - Initializes an empty vector.
+ *     - Example:
+ * \code
+ * CPVector::vector<int> v; // Creates an empty vector
+ * \endcode
  * 
  * - CPVector::vector (unsigned int count, const T &value=T())
  *     - Resize constructor.
@@ -107,7 +111,7 @@
  *     - Destructor.
  *     - Destroys the vector and frees the associated memory.
  * 
-*/
+ */
 
 /*!\page Resizing Resizing a CPVector::vector
  * 
