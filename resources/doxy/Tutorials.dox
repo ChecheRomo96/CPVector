@@ -23,6 +23,13 @@
  * \code
  * CPVector::vector<int> v;    // declares a vector of integers
  * \endcode 
+ * For small projects, you can bring the entire namespace std into scope by inserting a using directive on top of your .cpp file:
+ * \code
+ * #include <vector>
+ * using namespace std;
+ * //...
+ * vector<int> v;         // no need to prepend std:: any more
+ * \endcode 
  */
 
 /*! \page Resizing Resizing a CPVector::vector
