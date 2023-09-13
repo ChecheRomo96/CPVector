@@ -9,7 +9,7 @@
  * 
  * There are two fundametal things to know before proceding to the tutorials.\n\n
  * 
- * The first step using vector is to include the appropriate header:\n
+ * The first one is that in order to use vectors in your code, you need to include the appropriate header:\n
  * \code
  * #include <CPVector.h>
  * \endcode 
@@ -29,7 +29,6 @@
  *  -# \ref Operators \n
  *  -# \ref Resizing \n
  * 
- * 
  */
 
 /*!\page BasicUsage Basic CPVector::vector Usage
@@ -39,7 +38,6 @@
  * \code
  * \endcode 
  */
-
 
 /*!\page Constructing Constructing CPVector::vector objects
  *
@@ -126,7 +124,7 @@
 
 /*!\page Operators
  *
- *\section AssignmentOperator Assignment Operator
+ * \section AssignmentOperator Assignment Operator
  *
  * vector & operator= (const vector &source)
  *    - Assignment operator.
@@ -150,7 +148,7 @@
  *      target = CPVector::move(source); // Moves the contents of 'source' to 'target'
  *      \endcode
  *
- *\section SubscriptArrayOperator Subscript Array Operator
+ * \section SubscriptArrayOperator Subscript Array Operator
  *
  * T & operator[] (unsigned int position)
  *    - Subscript Array operator.
