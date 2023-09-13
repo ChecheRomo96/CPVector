@@ -17,7 +17,7 @@
  * The second thing to know is that vector lives in the namespace CPVector. This means that you have to resolve the names by prepending CPVector:: to them:\n
  * \code
  * CPVector::vector<int> v;    // declares a vector of integers
- * \endcode
+ * \endcode \n\n
  * 
  * <hr/>
  * 
