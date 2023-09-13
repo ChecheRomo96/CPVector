@@ -19,7 +19,9 @@
  * CPVector::vector<int> v;    // declares a vector of integers
  * \endcode
  * 
- * Below is a list of tutorials explaining more in depth how to use CPVector:\n\n
+ * <hr/>
+ * 
+ * Below is a list of documents explaining more in depth the usage of CPVector:\n\n
  * 
  * - \subpage BasicUsage \n
  * 
