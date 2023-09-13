@@ -108,6 +108,8 @@
  *         CPVector::vector<int> v = {1, 2, 3, 4, 5}; // Creates a vector with the specified elements
  *         \endcode
  * 
+ * <hr/>
+ * 
  * \section Destructor
  * 
  * - ~vector ()
